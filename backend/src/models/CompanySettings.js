@@ -1,0 +1,52 @@
+const mongoose = require('mongoose');
+
+const companySettingsSchema = new mongoose.Schema(
+  {
+    companyName: {
+      type: String,
+      required: [true, 'Company name is required'],
+      trim: true,
+    },
+    companyLogo: {
+      type: String,
+      default: '',
+    },
+    email: {
+      type: String,
+      required: [true, 'Company email is required'],
+      trim: true,
+      lowercase: true,
+    },
+    phone: {
+      type: String,
+      required: [true, 'Company phone is required'],
+      trim: true,
+    },
+    address: {
+      type: String,
+      required: [true, 'Company address is required'],
+      trim: true,
+    },
+    website: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    invoicePrefix: {
+      type: String,
+      default: 'INV',
+      trim: true,
+    },
+    invoiceStartNumber: {
+      type: Number,
+      default: 1,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const CompanySettings = mongoose.model('CompanySettings', companySettingsSchema);
+
+module.exports = CompanySettings;

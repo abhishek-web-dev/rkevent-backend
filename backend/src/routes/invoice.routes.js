@@ -1,0 +1,26 @@
+const express = require('express');
+const router = express.Router();
+const invoiceController = require('../controllers/invoice.controller');
+const validate = require('../middleware/validation.middleware');
+const invoiceValidation = require('../validations/invoice.validation');
+const { protect } = require('../middleware/auth.middleware');
+
+router.use(protect); // Require auth for all invoice routes
+
+router
+  .route('/')
+  .post(validate(invoiceValidation.createInvoice), invoiceController.createInvoice)
+  .get(invoiceController.getInvoices);
+
+router
+  .route('/:id')
+  .get(invoiceController.getInvoice)
+  .put(validate(invoiceValidation.updateInvoice), invoiceController.updateInvoice)
+  .delete(invoiceController.deleteInvoice);
+
+// Special routes for PDF, Email, and WhatsApp share
+router.get('/:id/pdf', invoiceController.downloadPdf);
+router.post('/:id/email', invoiceController.emailInvoice);
+router.get('/:id/share-whatsapp', invoiceController.getWhatsAppLink);
+
+module.exports = router;

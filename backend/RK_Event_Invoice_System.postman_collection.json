@@ -1,0 +1,919 @@
+{
+  "info": {
+    "_postman_id": "8c591a56-4c4f-4d40-9a2c-d1a1b1d1f054",
+    "name": "RK Event Invoice Management System",
+    "description": "Production-ready backend API collection for the RK Event Invoice System.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Admin\",\n  \"email\": \"jane@rkevent.com\",\n  \"password\": \"adminpassword123\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const responseJson = pm.response.json();",
+                  "if (responseJson && responseJson.success && responseJson.data.token) {",
+                  "    pm.environment.set(\"token\", responseJson.data.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@rkevent.com\",\n  \"password\": \"adminpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"RK Admin Renamed\",\n  \"email\": \"admin@rkevent.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"adminpassword123\",\n  \"newPassword\": \"newadminpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/change-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "change-password"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company Settings",
+      "item": [
+        {
+          "name": "Get Settings",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/company",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Settings & Logo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "companyName",
+                  "value": "RK Event Solutions Ltd",
+                  "type": "text"
+                },
+                {
+                  "key": "email",
+                  "value": "billing@rkeventsolutions.com",
+                  "type": "text"
+                },
+                {
+                  "key": "phone",
+                  "value": "+91 99999 88888",
+                  "type": "text"
+                },
+                {
+                  "key": "address",
+                  "value": "RK Event Plaza, Okhla Phase 3, New Delhi, India",
+                  "type": "text"
+                },
+                {
+                  "key": "website",
+                  "value": "https://rkeventsolutions.com",
+                  "type": "text"
+                },
+                {
+                  "key": "invoicePrefix",
+                  "value": "RKES",
+                  "type": "text"
+                },
+                {
+                  "key": "invoiceStartNumber",
+                  "value": "201",
+                  "type": "text"
+                },
+                {
+                  "key": "logo",
+                  "type": "file",
+                  "src": [],
+                  "description": "Select image file to upload"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/company",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Cooper\",\n  \"companyName\": \"Cooper Festivals Ltd\",\n  \"email\": \"alice@cooperfestivals.com\",\n  \"phone\": \"+1 888-293-1111\",\n  \"address\": \"45 Rock Road, Detroit, MI\",\n  \"notes\": \"Requires clean set stage configurations.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "customers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customers List",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/customers?page=1&limit=10&search=cooper",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "customers"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "cooper"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customer details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/customers/{{customerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                "{{customerId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Customer details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Cooper Updated\",\n  \"phone\": \"+1 888-293-2222\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/customers/{{customerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                "{{customerId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/customers/{{customerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                "{{customerId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "item": [
+        {
+          "name": "Create Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dueDate\": \"2026-07-20\",\n  \"customer\": \"{{customerId}}\",\n  \"notes\": \"Due on receipt. 1.5% interest per month late fee.\",\n  \"discount\": 100,\n  \"items\": [\n    {\n      \"title\": \"Stage truss installation\",\n      \"description\": \"Aluminum trussing setup for concert stage.\",\n      \"quantity\": 1,\n      \"price\": 1200\n    },\n    {\n      \"title\": \"Wireless mic package\",\n      \"description\": \"Shure ULXD microphones with active receivers.\",\n      \"quantity\": 4,\n      \"price\": 75\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Invoices List",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices?page=1&limit=10&status=Pending",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "status",
+                  "value": "Pending"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Invoice details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices/{{invoiceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{invoiceId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Invoice details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"discount\": 150,\n  \"notes\": \"Updated payment term notes.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices/{{invoiceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{invoiceId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Download PDF Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices/{{invoiceId}}/pdf",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{invoiceId}}",
+                "pdf"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Email Invoice to Customer",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices/{{invoiceId}}/email",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{invoiceId}}",
+                "email"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get WhatsApp Share Link",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices/{{invoiceId}}/share-whatsapp",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{invoiceId}}",
+                "share-whatsapp"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Invoice",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/invoices/{{invoiceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "invoices",
+                "{{invoiceId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Add Payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceId\": \"{{invoiceId}}\",\n  \"amount\": 500,\n  \"paymentMethod\": \"Cash\",\n  \"transactionId\": \"CASH-99182\",\n  \"notes\": \"Partial payment handed to site coordinator.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/payments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Payment History",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/payments?page=1&limit=10&invoiceId={{invoiceId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "invoiceId",
+                  "value": "{{invoiceId}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Payment details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 600,\n  \"notes\": \"Adjusted partial payment details.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/payments/{{paymentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "{{paymentId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Payment record",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/payments/{{paymentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "{{paymentId}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard KPIs",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "dashboard"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "customerId",
+      "value": "REPLACE_WITH_CUSTOMER_ID_FROM_API",
+      "type": "string"
+    },
+    {
+      "key": "invoiceId",
+      "value": "REPLACE_WITH_INVOICE_ID_FROM_API",
+      "type": "string"
+    },
+    {
+      "key": "paymentId",
+      "value": "REPLACE_WITH_PAYMENT_ID_FROM_API",
+      "type": "string"
+    }
+  ]
+}
