@@ -3,7 +3,24 @@ const nodemailer = require('nodemailer');
 /**
  * Create SMTP Transporter.
  */
-const createTransporter = () => {
+const createTransporter = async () => {
+  if (process.env.SMTP_USER === 'dummy_smtp_user' || !process.env.SMTP_USER) {
+    try {
+      const testAccount = await nodemailer.createTestAccount();
+      return nodemailer.createTransport({
+        host: 'smtp.ethereal.email',
+        port: 587,
+        secure: false,
+        auth: {
+          user: testAccount.user,
+          pass: testAccount.pass,
+        },
+      });
+    } catch (err) {
+      console.warn('Ethereal SMTP fallback failed, using defaults.', err.message);
+    }
+  }
+
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '2525', 10),
@@ -25,7 +42,7 @@ const createTransporter = () => {
  */
 const sendInvoiceEmail = async (toEmail, customerName, invoice, pdfBuffer) => {
   try {
-    const transporter = createTransporter();
+    const transporter = await createTransporter();
     const fromName = process.env.SMTP_FROM_NAME || 'RK Event Invoice System';
     const fromEmail = process.env.SMTP_FROM_EMAIL || 'noreply@rkevent.com';
 

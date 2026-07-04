@@ -1,5 +1,8 @@
+require('dotenv').config();
 const app = require('./src/app');
 const connectDB = require('./src/config/db');
+const { printRouteTable } = require('./src/utils/routePrinter');
+const { initScheduler } = require('./src/services/scheduler.service');
 
 // Handle uncaught exceptions globally
 process.on('uncaughtException', (err) => {
@@ -8,20 +11,41 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-// Establish Database Connection
-connectDB();
-
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    // 1. Connect to Database
+    await connectDB();
 
-// Handle unhandled promise rejections globally
-process.on('unhandledRejection', (err) => {
-  console.error('UNHANDLED REJECTION! Shutting down...');
-  console.error(err.name, err.message, err.stack);
-  server.close(() => {
+    // 2. Start Listening
+    const server = app.listen(PORT, () => {
+      console.log('\n================ STARTUP CHECKLIST ================');
+      console.log('✔ MongoDB Connected');
+      console.log(`✔ Server Running on port ${PORT}`);
+      console.log('✔ Routes Loaded');
+      console.log('✔ Swagger Loaded');
+      console.log('===================================================\n');
+
+      // Initialize Automated Cron Scheduler
+      initScheduler();
+
+      // Print the complete endpoints table
+      printRouteTable(app);
+    });
+
+    // Handle unhandled promise rejections globally
+    process.on('unhandledRejection', (err) => {
+      console.error('UNHANDLED REJECTION! Shutting down...');
+      console.error(err.name, err.message, err.stack);
+      server.close(() => {
+        process.exit(1);
+      });
+    });
+  } catch (error) {
+    console.error('Startup Error:', error);
     process.exit(1);
-  });
-});
+  }
+};
+
+startServer();

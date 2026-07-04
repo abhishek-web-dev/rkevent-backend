@@ -42,15 +42,46 @@ const seedDB = async () => {
     });
 
     console.log('Seeding company settings...');
+    const { uploadToCloudinary } = require('../services/cloudinary.service');
+    const fs = require('fs');
+    
+    let logoUrl = 'https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg';
+    let signatureUrl = '';
+
+    try {
+      if (fs.existsSync('E:\\Projects\\RK-Event\\logo-white.png')) {
+        console.log('Uploading default logo-white.png to Cloudinary...');
+        const logoBuffer = fs.readFileSync('E:\\Projects\\RK-Event\\logo-white.png');
+        const uploadResult = await uploadToCloudinary(logoBuffer, 'rk-event-invoice/company');
+        logoUrl = uploadResult.secure_url;
+      }
+    } catch (logoErr) {
+      console.warn('Could not upload default logo file, using placeholder:', logoErr.message);
+    }
+
+    try {
+      if (fs.existsSync('E:\\Projects\\RK-Event\\signature.png')) {
+        console.log('Uploading default signature.png to Cloudinary...');
+        const sigBuffer = fs.readFileSync('E:\\Projects\\RK-Event\\signature.png');
+        const uploadResult = await uploadToCloudinary(sigBuffer, 'rk-event-invoice/company');
+        signatureUrl = uploadResult.secure_url;
+      }
+    } catch (sigErr) {
+      console.warn('Could not upload default signature file:', sigErr.message);
+    }
+
     const companySettings = await CompanySettings.create({
-      companyName: 'RK Event Group',
-      companyLogo: 'https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg',
-      email: 'billing@rkevent.com',
-      phone: '+91 99999 99999',
-      address: 'RK Event Tower, Connaught Place, New Delhi - 110001',
+      companyName: 'RK Event Jhansi',
+      ownerName: 'Rahul Kumar',
+      companyLogo: logoUrl,
+      signatureUrl: signatureUrl,
+      email: 'Rkeventrajgarh@gmail.com',
+      phone: '9369649071',
+      address: 'In front of Punjab National Bank, Rajgarh, Jhansi',
+      upiId: '9169659965-5@ybl',
       website: 'https://rkevent.com',
       invoicePrefix: 'RKE',
-      invoiceStartNumber: 101,
+      invoiceStartNumber: 1,
     });
 
     console.log('Seeding mock customers...');

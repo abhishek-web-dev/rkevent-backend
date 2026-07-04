@@ -7,6 +7,11 @@ const { protect } = require('../middleware/auth.middleware');
 
 router.use(protect); // Require auth for all customer routes
 
+// Trash and Restore routes (placed above dynamic /:id to prevent collisions)
+router.get('/trash', customerController.getTrashCustomers);
+router.post('/:id/restore', customerController.restoreCustomer);
+router.delete('/:id/permanent', customerController.deleteCustomerPermanent);
+
 router
   .route('/')
   .post(validate(customerValidation.createCustomer), customerController.createCustomer)

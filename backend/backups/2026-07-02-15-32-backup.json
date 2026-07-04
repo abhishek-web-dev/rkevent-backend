@@ -1,0 +1,3826 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-07-02T10:02:15.740Z",
+  "data": {
+    "users": [
+      {
+        "_id": "6a4632d1da2ac4748c61229b",
+        "name": "RK Admin",
+        "email": "admin@rkevent.com",
+        "password": "$2a$10$s2/VpxCWdVe7CSjr90YDNebPZ4/CSMrFbxO.eR7MzohYd9Ju9kQWW",
+        "role": "admin",
+        "createdAt": "2026-07-02T09:43:45.622Z",
+        "updatedAt": "2026-07-02T09:43:45.622Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633775ca36bc48dbd6bc2",
+        "name": "Integration Tester",
+        "email": "integration_tester@rkevent.com",
+        "password": "$2a$10$2JogiXA09m6txKPnMGt2E.HOnVbCnNda5va7Mz.nkTK9.o.vfSbwm",
+        "role": "admin",
+        "createdAt": "2026-07-02T09:46:31.334Z",
+        "updatedAt": "2026-07-02T09:46:31.334Z",
+        "__v": 0
+      }
+    ],
+    "companySettings": [
+      {
+        "_id": "6a4633775ca36bc48dbd6bcb",
+        "companyLogo": "",
+        "website": "https://rkintegration.com",
+        "invoicePrefix": "TINV",
+        "invoiceStartNumber": 1,
+        "companyName": "RK Event Integration Corp",
+        "email": "billing@rkintegration.com",
+        "phone": "+91 88888 88888",
+        "address": "Event Plaza Block 12, New Delhi, India",
+        "createdAt": "2026-07-02T09:46:31.956Z",
+        "updatedAt": "2026-07-02T09:46:31.956Z",
+        "__v": 0
+      }
+    ],
+    "customers": [
+      {
+        "_id": "6a4633785ca36bc48dbd6bd0",
+        "name": "Customer Name 1",
+        "companyName": "Customer Corp 1",
+        "email": "customer1@rkevent-test.com",
+        "phone": "+91 99000 00001",
+        "address": "Street Address 1, Landmark Road, India",
+        "notes": "Test notes for customer number 1",
+        "createdAt": "2026-07-02T09:46:32.132Z",
+        "updatedAt": "2026-07-02T09:46:32.132Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bd5",
+        "name": "Customer Name 2",
+        "companyName": "Customer Corp 2",
+        "email": "customer2@rkevent-test.com",
+        "phone": "+91 99000 00002",
+        "address": "Street Address 2, Landmark Road, India",
+        "notes": "Test notes for customer number 2",
+        "createdAt": "2026-07-02T09:46:32.278Z",
+        "updatedAt": "2026-07-02T09:46:32.278Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bda",
+        "name": "Customer Name 3",
+        "companyName": "Customer Corp 3",
+        "email": "customer3@rkevent-test.com",
+        "phone": "+91 99000 00003",
+        "address": "Street Address 3, Landmark Road, India",
+        "notes": "Test notes for customer number 3",
+        "createdAt": "2026-07-02T09:46:32.394Z",
+        "updatedAt": "2026-07-02T09:46:32.394Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bdf",
+        "name": "Customer Name 4",
+        "companyName": "Customer Corp 4",
+        "email": "customer4@rkevent-test.com",
+        "phone": "+91 99000 00004",
+        "address": "Street Address 4, Landmark Road, India",
+        "notes": "Test notes for customer number 4",
+        "createdAt": "2026-07-02T09:46:32.532Z",
+        "updatedAt": "2026-07-02T09:46:32.532Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6be4",
+        "name": "Customer Name 5",
+        "companyName": "Customer Corp 5",
+        "email": "customer5@rkevent-test.com",
+        "phone": "+91 99000 00005",
+        "address": "Street Address 5, Landmark Road, India",
+        "notes": "Test notes for customer number 5",
+        "createdAt": "2026-07-02T09:46:32.650Z",
+        "updatedAt": "2026-07-02T09:46:32.650Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817a1",
+        "name": "Customer Name 1",
+        "companyName": "Customer Corp 1",
+        "email": "customer1@rkevent-test.com",
+        "phone": "+91 99000 00001",
+        "address": "Street Address 1, Landmark Road, India",
+        "notes": "Test notes for customer number 1",
+        "createdAt": "2026-07-02T09:47:20.340Z",
+        "updatedAt": "2026-07-02T09:47:20.340Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817a6",
+        "name": "Customer Name 2",
+        "companyName": "Customer Corp 2",
+        "email": "customer2@rkevent-test.com",
+        "phone": "+91 99000 00002",
+        "address": "Street Address 2, Landmark Road, India",
+        "notes": "Test notes for customer number 2",
+        "createdAt": "2026-07-02T09:47:20.464Z",
+        "updatedAt": "2026-07-02T09:47:20.464Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817ab",
+        "name": "Customer Name 3",
+        "companyName": "Customer Corp 3",
+        "email": "customer3@rkevent-test.com",
+        "phone": "+91 99000 00003",
+        "address": "Street Address 3, Landmark Road, India",
+        "notes": "Test notes for customer number 3",
+        "createdAt": "2026-07-02T09:47:20.582Z",
+        "updatedAt": "2026-07-02T09:47:20.582Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817b0",
+        "name": "Customer Name 4",
+        "companyName": "Customer Corp 4",
+        "email": "customer4@rkevent-test.com",
+        "phone": "+91 99000 00004",
+        "address": "Street Address 4, Landmark Road, India",
+        "notes": "Test notes for customer number 4",
+        "createdAt": "2026-07-02T09:47:20.697Z",
+        "updatedAt": "2026-07-02T09:47:20.697Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817b5",
+        "name": "Customer Name 5",
+        "companyName": "Customer Corp 5",
+        "email": "customer5@rkevent-test.com",
+        "phone": "+91 99000 00005",
+        "address": "Street Address 5, Landmark Road, India",
+        "notes": "Test notes for customer number 5",
+        "createdAt": "2026-07-02T09:47:20.822Z",
+        "updatedAt": "2026-07-02T09:47:20.822Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463415dbe5796ff8c8187c",
+        "name": "Customer Name 1",
+        "companyName": "Customer Corp 1",
+        "email": "customer1@rkevent-test.com",
+        "phone": "+91 99000 00001",
+        "address": "Street Address 1, Landmark Road, India",
+        "notes": "Test notes for customer number 1",
+        "createdAt": "2026-07-02T09:49:09.863Z",
+        "updatedAt": "2026-07-02T09:49:09.863Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463415dbe5796ff8c81881",
+        "name": "Customer Name 2",
+        "companyName": "Customer Corp 2",
+        "email": "customer2@rkevent-test.com",
+        "phone": "+91 99000 00002",
+        "address": "Street Address 2, Landmark Road, India",
+        "notes": "Test notes for customer number 2",
+        "createdAt": "2026-07-02T09:49:09.978Z",
+        "updatedAt": "2026-07-02T09:49:09.978Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c81886",
+        "name": "Customer Name 3",
+        "companyName": "Customer Corp 3",
+        "email": "customer3@rkevent-test.com",
+        "phone": "+91 99000 00003",
+        "address": "Street Address 3, Landmark Road, India",
+        "notes": "Test notes for customer number 3",
+        "createdAt": "2026-07-02T09:49:10.088Z",
+        "updatedAt": "2026-07-02T09:49:10.088Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c8188b",
+        "name": "Customer Name 4",
+        "companyName": "Customer Corp 4",
+        "email": "customer4@rkevent-test.com",
+        "phone": "+91 99000 00004",
+        "address": "Street Address 4, Landmark Road, India",
+        "notes": "Test notes for customer number 4",
+        "createdAt": "2026-07-02T09:49:10.199Z",
+        "updatedAt": "2026-07-02T09:49:10.199Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c81890",
+        "name": "Customer Name 5",
+        "companyName": "Customer Corp 5",
+        "email": "customer5@rkevent-test.com",
+        "phone": "+91 99000 00005",
+        "address": "Street Address 5, Landmark Road, India",
+        "notes": "Test notes for customer number 5",
+        "createdAt": "2026-07-02T09:49:10.314Z",
+        "updatedAt": "2026-07-02T09:49:10.314Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634435037116eb56c8b86",
+        "name": "Customer Name 1",
+        "companyName": "Customer Corp 1",
+        "email": "customer1@rkevent-test.com",
+        "phone": "+91 99000 00001",
+        "address": "Street Address 1, Landmark Road, India",
+        "notes": "Test notes for customer number 1",
+        "createdAt": "2026-07-02T09:49:55.834Z",
+        "updatedAt": "2026-07-02T09:49:55.834Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634435037116eb56c8b8b",
+        "name": "Customer Name 2",
+        "companyName": "Customer Corp 2",
+        "email": "customer2@rkevent-test.com",
+        "phone": "+91 99000 00002",
+        "address": "Street Address 2, Landmark Road, India",
+        "notes": "Test notes for customer number 2",
+        "createdAt": "2026-07-02T09:49:55.949Z",
+        "updatedAt": "2026-07-02T09:49:55.949Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8b90",
+        "name": "Customer Name 3",
+        "companyName": "Customer Corp 3",
+        "email": "customer3@rkevent-test.com",
+        "phone": "+91 99000 00003",
+        "address": "Street Address 3, Landmark Road, India",
+        "notes": "Test notes for customer number 3",
+        "createdAt": "2026-07-02T09:49:56.061Z",
+        "updatedAt": "2026-07-02T09:49:56.061Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8b95",
+        "name": "Customer Name 4",
+        "companyName": "Customer Corp 4",
+        "email": "customer4@rkevent-test.com",
+        "phone": "+91 99000 00004",
+        "address": "Street Address 4, Landmark Road, India",
+        "notes": "Test notes for customer number 4",
+        "createdAt": "2026-07-02T09:49:56.173Z",
+        "updatedAt": "2026-07-02T09:49:56.173Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8b9a",
+        "name": "Customer Name 5",
+        "companyName": "Customer Corp 5",
+        "email": "customer5@rkevent-test.com",
+        "phone": "+91 99000 00005",
+        "address": "Street Address 5, Landmark Road, India",
+        "notes": "Test notes for customer number 5",
+        "createdAt": "2026-07-02T09:49:56.286Z",
+        "updatedAt": "2026-07-02T09:49:56.286Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aaffd37dd791f8d2a4",
+        "name": "Customer Name 1",
+        "companyName": "Customer Corp 1",
+        "email": "customer1@rkevent-test.com",
+        "phone": "+91 99000 00001",
+        "address": "Street Address 1, Landmark Road, India",
+        "notes": "Test notes for customer number 1",
+        "createdAt": "2026-07-02T09:51:38.554Z",
+        "updatedAt": "2026-07-02T09:51:38.554Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2a9",
+        "name": "Customer Name 2",
+        "companyName": "Customer Corp 2",
+        "email": "customer2@rkevent-test.com",
+        "phone": "+91 99000 00002",
+        "address": "Street Address 2, Landmark Road, India",
+        "notes": "Test notes for customer number 2",
+        "createdAt": "2026-07-02T09:51:39.217Z",
+        "updatedAt": "2026-07-02T09:51:39.217Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2ae",
+        "name": "Customer Name 3",
+        "companyName": "Customer Corp 3",
+        "email": "customer3@rkevent-test.com",
+        "phone": "+91 99000 00003",
+        "address": "Street Address 3, Landmark Road, India",
+        "notes": "Test notes for customer number 3",
+        "createdAt": "2026-07-02T09:51:39.337Z",
+        "updatedAt": "2026-07-02T09:51:39.337Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2b3",
+        "name": "Customer Name 4",
+        "companyName": "Customer Corp 4",
+        "email": "customer4@rkevent-test.com",
+        "phone": "+91 99000 00004",
+        "address": "Street Address 4, Landmark Road, India",
+        "notes": "Test notes for customer number 4",
+        "createdAt": "2026-07-02T09:51:39.481Z",
+        "updatedAt": "2026-07-02T09:51:39.481Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2b8",
+        "name": "Customer Name 5",
+        "companyName": "Customer Corp 5",
+        "email": "customer5@rkevent-test.com",
+        "phone": "+91 99000 00005",
+        "address": "Street Address 5, Landmark Road, India",
+        "notes": "Test notes for customer number 5",
+        "createdAt": "2026-07-02T09:51:39.600Z",
+        "updatedAt": "2026-07-02T09:51:39.600Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463508bb7b35045cc626fc",
+        "name": "Customer Name 1",
+        "companyName": "Customer Corp 1",
+        "email": "customer1@rkevent-test.com",
+        "phone": "+91 99000 00001",
+        "address": "Street Address 1, Landmark Road, India",
+        "notes": "Test notes for customer number 1",
+        "createdAt": "2026-07-02T09:53:12.820Z",
+        "updatedAt": "2026-07-02T09:53:12.820Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463508bb7b35045cc62701",
+        "name": "Customer Name 2",
+        "companyName": "Customer Corp 2",
+        "email": "customer2@rkevent-test.com",
+        "phone": "+91 99000 00002",
+        "address": "Street Address 2, Landmark Road, India",
+        "notes": "Test notes for customer number 2",
+        "createdAt": "2026-07-02T09:53:12.921Z",
+        "updatedAt": "2026-07-02T09:53:12.921Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62706",
+        "name": "Customer Name 3",
+        "companyName": "Customer Corp 3",
+        "email": "customer3@rkevent-test.com",
+        "phone": "+91 99000 00003",
+        "address": "Street Address 3, Landmark Road, India",
+        "notes": "Test notes for customer number 3",
+        "createdAt": "2026-07-02T09:53:13.032Z",
+        "updatedAt": "2026-07-02T09:53:13.032Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc6270b",
+        "name": "Customer Name 4",
+        "companyName": "Customer Corp 4",
+        "email": "customer4@rkevent-test.com",
+        "phone": "+91 99000 00004",
+        "address": "Street Address 4, Landmark Road, India",
+        "notes": "Test notes for customer number 4",
+        "createdAt": "2026-07-02T09:53:13.127Z",
+        "updatedAt": "2026-07-02T09:53:13.127Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62710",
+        "name": "Customer Name 5",
+        "companyName": "Customer Corp 5",
+        "email": "customer5@rkevent-test.com",
+        "phone": "+91 99000 00005",
+        "address": "Street Address 5, Landmark Road, India",
+        "notes": "Test notes for customer number 5",
+        "createdAt": "2026-07-02T09:53:13.223Z",
+        "updatedAt": "2026-07-02T09:53:13.223Z",
+        "__v": 0
+      }
+    ],
+    "invoices": [
+      {
+        "_id": "6a4633785ca36bc48dbd6bec",
+        "invoiceNumber": "TINV-0001",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bd0",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 1",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633785ca36bc48dbd6bed"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633785ca36bc48dbd6bee"
+          }
+        ],
+        "notes": "Due terms for event invoice 1.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 230,
+        "pendingAmount": 0,
+        "status": "Paid",
+        "invoiceDate": "2026-07-02T09:46:32.883Z",
+        "createdAt": "2026-07-02T09:46:32.887Z",
+        "updatedAt": "2026-07-02T09:46:35.271Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6bf8",
+        "invoiceNumber": "TINV-0002",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bd5",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 2",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633795ca36bc48dbd6bf9"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633795ca36bc48dbd6bfa"
+          }
+        ],
+        "notes": "Due terms for event invoice 2.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 100,
+        "pendingAmount": 130,
+        "status": "Partial",
+        "invoiceDate": "2026-07-02T09:46:33.128Z",
+        "createdAt": "2026-07-02T09:46:33.129Z",
+        "updatedAt": "2026-07-02T09:46:35.470Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6c04",
+        "invoiceNumber": "TINV-0003",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bda",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 3",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633795ca36bc48dbd6c05"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633795ca36bc48dbd6c06"
+          }
+        ],
+        "notes": "Due terms for event invoice 3.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:33.363Z",
+        "createdAt": "2026-07-02T09:46:33.364Z",
+        "updatedAt": "2026-07-02T09:46:33.364Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6c10",
+        "invoiceNumber": "TINV-0004",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bdf",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 4",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633795ca36bc48dbd6c11"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633795ca36bc48dbd6c12"
+          }
+        ],
+        "notes": "Due terms for event invoice 4.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:33.598Z",
+        "createdAt": "2026-07-02T09:46:33.600Z",
+        "updatedAt": "2026-07-02T09:46:33.600Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6c1c",
+        "invoiceNumber": "TINV-0005",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6be4",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 5",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633795ca36bc48dbd6c1d"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633795ca36bc48dbd6c1e"
+          }
+        ],
+        "notes": "Due terms for event invoice 5.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:33.830Z",
+        "createdAt": "2026-07-02T09:46:33.831Z",
+        "updatedAt": "2026-07-02T09:46:33.831Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c28",
+        "invoiceNumber": "TINV-0006",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bd0",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 6",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46337a5ca36bc48dbd6c29"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46337a5ca36bc48dbd6c2a"
+          }
+        ],
+        "notes": "Due terms for event invoice 6.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:34.064Z",
+        "createdAt": "2026-07-02T09:46:34.066Z",
+        "updatedAt": "2026-07-02T09:46:34.066Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c34",
+        "invoiceNumber": "TINV-0007",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bd5",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 7",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46337a5ca36bc48dbd6c35"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46337a5ca36bc48dbd6c36"
+          }
+        ],
+        "notes": "Due terms for event invoice 7.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:34.306Z",
+        "createdAt": "2026-07-02T09:46:34.308Z",
+        "updatedAt": "2026-07-02T09:46:34.308Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c40",
+        "invoiceNumber": "TINV-0008",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bda",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 8",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46337a5ca36bc48dbd6c41"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46337a5ca36bc48dbd6c42"
+          }
+        ],
+        "notes": "Due terms for event invoice 8.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:34.559Z",
+        "createdAt": "2026-07-02T09:46:34.561Z",
+        "updatedAt": "2026-07-02T09:46:34.561Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c4c",
+        "invoiceNumber": "TINV-0009",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6bdf",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 9",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46337a5ca36bc48dbd6c4d"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46337a5ca36bc48dbd6c4e"
+          }
+        ],
+        "notes": "Due terms for event invoice 9.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:34.800Z",
+        "createdAt": "2026-07-02T09:46:34.801Z",
+        "updatedAt": "2026-07-02T09:46:34.801Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337b5ca36bc48dbd6c58",
+        "invoiceNumber": "TINV-0010",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633785ca36bc48dbd6be4",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 10",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46337b5ca36bc48dbd6c59"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46337b5ca36bc48dbd6c5a"
+          }
+        ],
+        "notes": "Due terms for event invoice 10.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:46:35.050Z",
+        "createdAt": "2026-07-02T09:46:35.054Z",
+        "updatedAt": "2026-07-02T09:46:35.054Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817bf",
+        "invoiceNumber": "TINV-0011",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817a1",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 1",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633a9dbe5796ff8c817c0"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633a9dbe5796ff8c817c1"
+          }
+        ],
+        "notes": "Due terms for event invoice 1.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 230,
+        "pendingAmount": 0,
+        "status": "Paid",
+        "invoiceDate": "2026-07-02T09:47:21.044Z",
+        "createdAt": "2026-07-02T09:47:21.047Z",
+        "updatedAt": "2026-07-02T09:47:23.227Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817cb",
+        "invoiceNumber": "TINV-0012",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817a6",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 2",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633a9dbe5796ff8c817cc"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633a9dbe5796ff8c817cd"
+          }
+        ],
+        "notes": "Due terms for event invoice 2.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 100,
+        "pendingAmount": 130,
+        "status": "Partial",
+        "invoiceDate": "2026-07-02T09:47:21.261Z",
+        "createdAt": "2026-07-02T09:47:21.262Z",
+        "updatedAt": "2026-07-02T09:47:23.417Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817d7",
+        "invoiceNumber": "TINV-0013",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817ab",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 3",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633a9dbe5796ff8c817d8"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633a9dbe5796ff8c817d9"
+          }
+        ],
+        "notes": "Due terms for event invoice 3.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:21.501Z",
+        "createdAt": "2026-07-02T09:47:21.501Z",
+        "updatedAt": "2026-07-02T09:47:21.501Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817e3",
+        "invoiceNumber": "TINV-0014",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817b0",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 4",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633a9dbe5796ff8c817e4"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633a9dbe5796ff8c817e5"
+          }
+        ],
+        "notes": "Due terms for event invoice 4.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:21.736Z",
+        "createdAt": "2026-07-02T09:47:21.737Z",
+        "updatedAt": "2026-07-02T09:47:21.737Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817ef",
+        "invoiceNumber": "TINV-0015",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817b5",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 5",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633a9dbe5796ff8c817f0"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633a9dbe5796ff8c817f1"
+          }
+        ],
+        "notes": "Due terms for event invoice 5.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:21.955Z",
+        "createdAt": "2026-07-02T09:47:21.955Z",
+        "updatedAt": "2026-07-02T09:47:21.955Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c817fb",
+        "invoiceNumber": "TINV-0016",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817a1",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 6",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633aadbe5796ff8c817fc"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633aadbe5796ff8c817fd"
+          }
+        ],
+        "notes": "Due terms for event invoice 6.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:22.173Z",
+        "createdAt": "2026-07-02T09:47:22.174Z",
+        "updatedAt": "2026-07-02T09:47:22.174Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c81807",
+        "invoiceNumber": "TINV-0017",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817a6",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 7",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633aadbe5796ff8c81808"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633aadbe5796ff8c81809"
+          }
+        ],
+        "notes": "Due terms for event invoice 7.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:22.399Z",
+        "createdAt": "2026-07-02T09:47:22.400Z",
+        "updatedAt": "2026-07-02T09:47:22.400Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c81813",
+        "invoiceNumber": "TINV-0018",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817ab",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 8",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633aadbe5796ff8c81814"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633aadbe5796ff8c81815"
+          }
+        ],
+        "notes": "Due terms for event invoice 8.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:22.617Z",
+        "createdAt": "2026-07-02T09:47:22.617Z",
+        "updatedAt": "2026-07-02T09:47:22.617Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c8181f",
+        "invoiceNumber": "TINV-0019",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817b0",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 9",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633aadbe5796ff8c81820"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633aadbe5796ff8c81821"
+          }
+        ],
+        "notes": "Due terms for event invoice 9.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:22.829Z",
+        "createdAt": "2026-07-02T09:47:22.830Z",
+        "updatedAt": "2026-07-02T09:47:22.830Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633abdbe5796ff8c8182b",
+        "invoiceNumber": "TINV-0020",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4633a8dbe5796ff8c817b5",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 10",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4633abdbe5796ff8c8182c"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4633abdbe5796ff8c8182d"
+          }
+        ],
+        "notes": "Due terms for event invoice 10.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:47:23.044Z",
+        "createdAt": "2026-07-02T09:47:23.045Z",
+        "updatedAt": "2026-07-02T09:47:23.045Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c8189a",
+        "invoiceNumber": "TINV-0021",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463415dbe5796ff8c8187c",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 1",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463416dbe5796ff8c8189b"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463416dbe5796ff8c8189c"
+          }
+        ],
+        "notes": "Due terms for event invoice 1.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 230,
+        "pendingAmount": 0,
+        "status": "Paid",
+        "invoiceDate": "2026-07-02T09:49:10.545Z",
+        "createdAt": "2026-07-02T09:49:10.546Z",
+        "updatedAt": "2026-07-02T09:49:12.842Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c818a6",
+        "invoiceNumber": "TINV-0022",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463415dbe5796ff8c81881",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 2",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463416dbe5796ff8c818a7"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463416dbe5796ff8c818a8"
+          }
+        ],
+        "notes": "Due terms for event invoice 2.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 100,
+        "pendingAmount": 130,
+        "status": "Partial",
+        "invoiceDate": "2026-07-02T09:49:10.789Z",
+        "createdAt": "2026-07-02T09:49:10.789Z",
+        "updatedAt": "2026-07-02T09:49:13.031Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818b2",
+        "invoiceNumber": "TINV-0023",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463416dbe5796ff8c81886",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 3",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463417dbe5796ff8c818b3"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463417dbe5796ff8c818b4"
+          }
+        ],
+        "notes": "Due terms for event invoice 3.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:11.005Z",
+        "createdAt": "2026-07-02T09:49:11.005Z",
+        "updatedAt": "2026-07-02T09:49:11.005Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818be",
+        "invoiceNumber": "TINV-0024",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463416dbe5796ff8c8188b",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 4",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463417dbe5796ff8c818bf"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463417dbe5796ff8c818c0"
+          }
+        ],
+        "notes": "Due terms for event invoice 4.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:11.236Z",
+        "createdAt": "2026-07-02T09:49:11.236Z",
+        "updatedAt": "2026-07-02T09:49:11.236Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818ca",
+        "invoiceNumber": "TINV-0025",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463416dbe5796ff8c81890",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 5",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463417dbe5796ff8c818cb"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463417dbe5796ff8c818cc"
+          }
+        ],
+        "notes": "Due terms for event invoice 5.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:11.451Z",
+        "createdAt": "2026-07-02T09:49:11.452Z",
+        "updatedAt": "2026-07-02T09:49:11.452Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818d6",
+        "invoiceNumber": "TINV-0026",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463415dbe5796ff8c8187c",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 6",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463417dbe5796ff8c818d7"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463417dbe5796ff8c818d8"
+          }
+        ],
+        "notes": "Due terms for event invoice 6.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:11.690Z",
+        "createdAt": "2026-07-02T09:49:11.690Z",
+        "updatedAt": "2026-07-02T09:49:11.690Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818e2",
+        "invoiceNumber": "TINV-0027",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463415dbe5796ff8c81881",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 7",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463417dbe5796ff8c818e3"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463417dbe5796ff8c818e4"
+          }
+        ],
+        "notes": "Due terms for event invoice 7.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:11.927Z",
+        "createdAt": "2026-07-02T09:49:11.928Z",
+        "updatedAt": "2026-07-02T09:49:11.928Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c818ee",
+        "invoiceNumber": "TINV-0028",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463416dbe5796ff8c81886",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 8",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463418dbe5796ff8c818ef"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463418dbe5796ff8c818f0"
+          }
+        ],
+        "notes": "Due terms for event invoice 8.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:12.163Z",
+        "createdAt": "2026-07-02T09:49:12.164Z",
+        "updatedAt": "2026-07-02T09:49:12.164Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c818fa",
+        "invoiceNumber": "TINV-0029",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463416dbe5796ff8c8188b",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 9",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463418dbe5796ff8c818fb"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463418dbe5796ff8c818fc"
+          }
+        ],
+        "notes": "Due terms for event invoice 9.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:12.402Z",
+        "createdAt": "2026-07-02T09:49:12.402Z",
+        "updatedAt": "2026-07-02T09:49:12.402Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c81906",
+        "invoiceNumber": "TINV-0030",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463416dbe5796ff8c81890",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 10",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463418dbe5796ff8c81907"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463418dbe5796ff8c81908"
+          }
+        ],
+        "notes": "Due terms for event invoice 10.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:12.633Z",
+        "createdAt": "2026-07-02T09:49:12.634Z",
+        "updatedAt": "2026-07-02T09:49:12.634Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8ba4",
+        "invoiceNumber": "TINV-0031",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634435037116eb56c8b86",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 1",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634445037116eb56c8ba5"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634445037116eb56c8ba6"
+          }
+        ],
+        "notes": "Due terms for event invoice 1.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 230,
+        "pendingAmount": 0,
+        "status": "Paid",
+        "invoiceDate": "2026-07-02T09:49:56.512Z",
+        "createdAt": "2026-07-02T09:49:56.514Z",
+        "updatedAt": "2026-07-02T09:49:58.570Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8bb0",
+        "invoiceNumber": "TINV-0032",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634435037116eb56c8b8b",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 2",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634445037116eb56c8bb1"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634445037116eb56c8bb2"
+          }
+        ],
+        "notes": "Due terms for event invoice 2.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 100,
+        "pendingAmount": 130,
+        "status": "Partial",
+        "invoiceDate": "2026-07-02T09:49:56.719Z",
+        "createdAt": "2026-07-02T09:49:56.720Z",
+        "updatedAt": "2026-07-02T09:49:58.749Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8bbc",
+        "invoiceNumber": "TINV-0033",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634445037116eb56c8b90",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 3",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634445037116eb56c8bbd"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634445037116eb56c8bbe"
+          }
+        ],
+        "notes": "Due terms for event invoice 3.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:56.930Z",
+        "createdAt": "2026-07-02T09:49:56.931Z",
+        "updatedAt": "2026-07-02T09:49:56.931Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bc8",
+        "invoiceNumber": "TINV-0034",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634445037116eb56c8b95",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 4",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634455037116eb56c8bc9"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634455037116eb56c8bca"
+          }
+        ],
+        "notes": "Due terms for event invoice 4.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:57.136Z",
+        "createdAt": "2026-07-02T09:49:57.137Z",
+        "updatedAt": "2026-07-02T09:49:57.137Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bd4",
+        "invoiceNumber": "TINV-0035",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634445037116eb56c8b9a",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 5",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634455037116eb56c8bd5"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634455037116eb56c8bd6"
+          }
+        ],
+        "notes": "Due terms for event invoice 5.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:57.349Z",
+        "createdAt": "2026-07-02T09:49:57.350Z",
+        "updatedAt": "2026-07-02T09:49:57.350Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8be0",
+        "invoiceNumber": "TINV-0036",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634435037116eb56c8b86",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 6",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634455037116eb56c8be1"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634455037116eb56c8be2"
+          }
+        ],
+        "notes": "Due terms for event invoice 6.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:57.560Z",
+        "createdAt": "2026-07-02T09:49:57.561Z",
+        "updatedAt": "2026-07-02T09:49:57.561Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bec",
+        "invoiceNumber": "TINV-0037",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634435037116eb56c8b8b",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 7",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634455037116eb56c8bed"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634455037116eb56c8bee"
+          }
+        ],
+        "notes": "Due terms for event invoice 7.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:57.765Z",
+        "createdAt": "2026-07-02T09:49:57.766Z",
+        "updatedAt": "2026-07-02T09:49:57.766Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bf8",
+        "invoiceNumber": "TINV-0038",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634445037116eb56c8b90",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 8",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634455037116eb56c8bf9"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634455037116eb56c8bfa"
+          }
+        ],
+        "notes": "Due terms for event invoice 8.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:57.970Z",
+        "createdAt": "2026-07-02T09:49:57.971Z",
+        "updatedAt": "2026-07-02T09:49:57.971Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c04",
+        "invoiceNumber": "TINV-0039",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634445037116eb56c8b95",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 9",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634465037116eb56c8c05"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634465037116eb56c8c06"
+          }
+        ],
+        "notes": "Due terms for event invoice 9.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:58.177Z",
+        "createdAt": "2026-07-02T09:49:58.178Z",
+        "updatedAt": "2026-07-02T09:49:58.178Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c10",
+        "invoiceNumber": "TINV-0040",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634445037116eb56c8b9a",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 10",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634465037116eb56c8c11"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634465037116eb56c8c12"
+          }
+        ],
+        "notes": "Due terms for event invoice 10.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:49:58.383Z",
+        "createdAt": "2026-07-02T09:49:58.384Z",
+        "updatedAt": "2026-07-02T09:49:58.384Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2c2",
+        "invoiceNumber": "TINV-0041",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634aaffd37dd791f8d2a4",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 1",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634abffd37dd791f8d2c3"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634abffd37dd791f8d2c4"
+          }
+        ],
+        "notes": "Due terms for event invoice 1.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 230,
+        "pendingAmount": 0,
+        "status": "Paid",
+        "invoiceDate": "2026-07-02T09:51:39.952Z",
+        "createdAt": "2026-07-02T09:51:39.985Z",
+        "updatedAt": "2026-07-02T09:51:42.268Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2ce",
+        "invoiceNumber": "TINV-0042",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2a9",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 2",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634acffd37dd791f8d2cf"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634acffd37dd791f8d2d0"
+          }
+        ],
+        "notes": "Due terms for event invoice 2.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 100,
+        "pendingAmount": 130,
+        "status": "Partial",
+        "invoiceDate": "2026-07-02T09:51:40.253Z",
+        "createdAt": "2026-07-02T09:51:40.254Z",
+        "updatedAt": "2026-07-02T09:51:42.433Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2da",
+        "invoiceNumber": "TINV-0043",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2ae",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 3",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634acffd37dd791f8d2db"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634acffd37dd791f8d2dc"
+          }
+        ],
+        "notes": "Due terms for event invoice 3.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:40.489Z",
+        "createdAt": "2026-07-02T09:51:40.493Z",
+        "updatedAt": "2026-07-02T09:51:40.493Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2e6",
+        "invoiceNumber": "TINV-0044",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2b3",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 4",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634acffd37dd791f8d2e7"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634acffd37dd791f8d2e8"
+          }
+        ],
+        "notes": "Due terms for event invoice 4.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:40.744Z",
+        "createdAt": "2026-07-02T09:51:40.755Z",
+        "updatedAt": "2026-07-02T09:51:40.755Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d2f2",
+        "invoiceNumber": "TINV-0045",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2b8",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 5",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634adffd37dd791f8d2f3"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634adffd37dd791f8d2f4"
+          }
+        ],
+        "notes": "Due terms for event invoice 5.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:41.004Z",
+        "createdAt": "2026-07-02T09:51:41.005Z",
+        "updatedAt": "2026-07-02T09:51:41.005Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d2fe",
+        "invoiceNumber": "TINV-0046",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634aaffd37dd791f8d2a4",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 6",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634adffd37dd791f8d2ff"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634adffd37dd791f8d300"
+          }
+        ],
+        "notes": "Due terms for event invoice 6.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:41.253Z",
+        "createdAt": "2026-07-02T09:51:41.255Z",
+        "updatedAt": "2026-07-02T09:51:41.255Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d30a",
+        "invoiceNumber": "TINV-0047",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2a9",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 7",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634adffd37dd791f8d30b"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634adffd37dd791f8d30c"
+          }
+        ],
+        "notes": "Due terms for event invoice 7.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:41.484Z",
+        "createdAt": "2026-07-02T09:51:41.486Z",
+        "updatedAt": "2026-07-02T09:51:41.486Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d316",
+        "invoiceNumber": "TINV-0048",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2ae",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 8",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634adffd37dd791f8d317"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634adffd37dd791f8d318"
+          }
+        ],
+        "notes": "Due terms for event invoice 8.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:41.680Z",
+        "createdAt": "2026-07-02T09:51:41.681Z",
+        "updatedAt": "2026-07-02T09:51:41.681Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d322",
+        "invoiceNumber": "TINV-0049",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2b3",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 9",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634adffd37dd791f8d323"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634adffd37dd791f8d324"
+          }
+        ],
+        "notes": "Due terms for event invoice 9.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:41.898Z",
+        "createdAt": "2026-07-02T09:51:41.899Z",
+        "updatedAt": "2026-07-02T09:51:41.899Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aeffd37dd791f8d32e",
+        "invoiceNumber": "TINV-0050",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a4634abffd37dd791f8d2b8",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 10",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a4634aeffd37dd791f8d32f"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a4634aeffd37dd791f8d330"
+          }
+        ],
+        "notes": "Due terms for event invoice 10.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:51:42.099Z",
+        "createdAt": "2026-07-02T09:51:42.100Z",
+        "updatedAt": "2026-07-02T09:51:42.100Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc6271a",
+        "invoiceNumber": "TINV-0051",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463508bb7b35045cc626fc",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 1",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463509bb7b35045cc6271b"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463509bb7b35045cc6271c"
+          }
+        ],
+        "notes": "Due terms for event invoice 1.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 230,
+        "pendingAmount": 0,
+        "status": "Paid",
+        "invoiceDate": "2026-07-02T09:53:13.460Z",
+        "createdAt": "2026-07-02T09:53:13.462Z",
+        "updatedAt": "2026-07-02T09:53:15.335Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62726",
+        "invoiceNumber": "TINV-0052",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463508bb7b35045cc62701",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 2",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463509bb7b35045cc62727"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463509bb7b35045cc62728"
+          }
+        ],
+        "notes": "Due terms for event invoice 2.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 100,
+        "pendingAmount": 130,
+        "status": "Partial",
+        "invoiceDate": "2026-07-02T09:53:13.676Z",
+        "createdAt": "2026-07-02T09:53:13.676Z",
+        "updatedAt": "2026-07-02T09:53:15.503Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62732",
+        "invoiceNumber": "TINV-0053",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463509bb7b35045cc62706",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 3",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a463509bb7b35045cc62733"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a463509bb7b35045cc62734"
+          }
+        ],
+        "notes": "Due terms for event invoice 3.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:13.859Z",
+        "createdAt": "2026-07-02T09:53:13.860Z",
+        "updatedAt": "2026-07-02T09:53:13.860Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6273e",
+        "invoiceNumber": "TINV-0054",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463509bb7b35045cc6270b",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 4",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350abb7b35045cc6273f"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350abb7b35045cc62740"
+          }
+        ],
+        "notes": "Due terms for event invoice 4.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:14.044Z",
+        "createdAt": "2026-07-02T09:53:14.045Z",
+        "updatedAt": "2026-07-02T09:53:14.045Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6274a",
+        "invoiceNumber": "TINV-0055",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463509bb7b35045cc62710",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 5",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350abb7b35045cc6274b"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350abb7b35045cc6274c"
+          }
+        ],
+        "notes": "Due terms for event invoice 5.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:14.221Z",
+        "createdAt": "2026-07-02T09:53:14.221Z",
+        "updatedAt": "2026-07-02T09:53:14.221Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc62756",
+        "invoiceNumber": "TINV-0056",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463508bb7b35045cc626fc",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 6",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350abb7b35045cc62757"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350abb7b35045cc62758"
+          }
+        ],
+        "notes": "Due terms for event invoice 6.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:14.397Z",
+        "createdAt": "2026-07-02T09:53:14.398Z",
+        "updatedAt": "2026-07-02T09:53:14.398Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc62762",
+        "invoiceNumber": "TINV-0057",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463508bb7b35045cc62701",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 7",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350abb7b35045cc62763"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350abb7b35045cc62764"
+          }
+        ],
+        "notes": "Due terms for event invoice 7.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:14.592Z",
+        "createdAt": "2026-07-02T09:53:14.593Z",
+        "updatedAt": "2026-07-02T09:53:14.593Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6276e",
+        "invoiceNumber": "TINV-0058",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463509bb7b35045cc62706",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 8",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350abb7b35045cc6276f"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350abb7b35045cc62770"
+          }
+        ],
+        "notes": "Due terms for event invoice 8.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:14.770Z",
+        "createdAt": "2026-07-02T09:53:14.771Z",
+        "updatedAt": "2026-07-02T09:53:14.771Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6277a",
+        "invoiceNumber": "TINV-0059",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463509bb7b35045cc6270b",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 9",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350abb7b35045cc6277b"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350abb7b35045cc6277c"
+          }
+        ],
+        "notes": "Due terms for event invoice 9.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:14.952Z",
+        "createdAt": "2026-07-02T09:53:14.953Z",
+        "updatedAt": "2026-07-02T09:53:14.953Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350bbb7b35045cc62786",
+        "invoiceNumber": "TINV-0060",
+        "dueDate": "2026-09-15T00:00:00.000Z",
+        "customer": "6a463509bb7b35045cc62710",
+        "items": [
+          {
+            "title": "Audio Event Rental Package 10",
+            "description": "Set of wireless sound systems and arrays.",
+            "quantity": 1,
+            "price": 200,
+            "amount": 200,
+            "_id": "6a46350bbb7b35045cc62787"
+          },
+          {
+            "title": "Microphone set",
+            "description": "",
+            "quantity": 2,
+            "price": 25,
+            "amount": 50,
+            "_id": "6a46350bbb7b35045cc62788"
+          }
+        ],
+        "notes": "Due terms for event invoice 10.",
+        "subtotal": 250,
+        "discount": 20,
+        "totalAmount": 230,
+        "paidAmount": 0,
+        "pendingAmount": 230,
+        "status": "Pending",
+        "invoiceDate": "2026-07-02T09:53:15.155Z",
+        "createdAt": "2026-07-02T09:53:15.156Z",
+        "updatedAt": "2026-07-02T09:53:15.156Z",
+        "__v": 0
+      }
+    ],
+    "payments": [
+      {
+        "_id": "6a46337b5ca36bc48dbd6c62",
+        "invoiceId": "6a4633785ca36bc48dbd6bec",
+        "amount": 230,
+        "paymentMethod": "Credit Card",
+        "transactionId": "TXN-FULL-001",
+        "notes": "Cleared full invoice balance",
+        "paymentDate": "2026-07-02T09:46:35.226Z",
+        "createdAt": "2026-07-02T09:46:35.227Z",
+        "updatedAt": "2026-07-02T09:46:35.227Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337b5ca36bc48dbd6c6b",
+        "invoiceId": "6a4633795ca36bc48dbd6bf8",
+        "amount": 100,
+        "paymentMethod": "UPI",
+        "transactionId": "TXN-PART-002",
+        "notes": "Partial advance booking fee",
+        "paymentDate": "2026-07-02T09:46:35.429Z",
+        "createdAt": "2026-07-02T09:46:35.429Z",
+        "updatedAt": "2026-07-02T09:46:35.429Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633abdbe5796ff8c81835",
+        "invoiceId": "6a4633a9dbe5796ff8c817bf",
+        "amount": 230,
+        "paymentMethod": "Credit Card",
+        "transactionId": "TXN-FULL-001",
+        "notes": "Cleared full invoice balance",
+        "paymentDate": "2026-07-02T09:47:23.189Z",
+        "createdAt": "2026-07-02T09:47:23.189Z",
+        "updatedAt": "2026-07-02T09:47:23.189Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633abdbe5796ff8c8183e",
+        "invoiceId": "6a4633a9dbe5796ff8c817cb",
+        "amount": 100,
+        "paymentMethod": "UPI",
+        "transactionId": "TXN-PART-002",
+        "notes": "Partial advance booking fee",
+        "paymentDate": "2026-07-02T09:47:23.379Z",
+        "createdAt": "2026-07-02T09:47:23.380Z",
+        "updatedAt": "2026-07-02T09:47:23.380Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c81910",
+        "invoiceId": "6a463416dbe5796ff8c8189a",
+        "amount": 230,
+        "paymentMethod": "Credit Card",
+        "transactionId": "TXN-FULL-001",
+        "notes": "Cleared full invoice balance",
+        "paymentDate": "2026-07-02T09:49:12.804Z",
+        "createdAt": "2026-07-02T09:49:12.805Z",
+        "updatedAt": "2026-07-02T09:49:12.805Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c81919",
+        "invoiceId": "6a463416dbe5796ff8c818a6",
+        "amount": 100,
+        "paymentMethod": "UPI",
+        "transactionId": "TXN-PART-002",
+        "notes": "Partial advance booking fee",
+        "paymentDate": "2026-07-02T09:49:12.994Z",
+        "createdAt": "2026-07-02T09:49:12.994Z",
+        "updatedAt": "2026-07-02T09:49:12.994Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c1a",
+        "invoiceId": "6a4634445037116eb56c8ba4",
+        "amount": 230,
+        "paymentMethod": "Credit Card",
+        "transactionId": "TXN-FULL-001",
+        "notes": "Cleared full invoice balance",
+        "paymentDate": "2026-07-02T09:49:58.533Z",
+        "createdAt": "2026-07-02T09:49:58.534Z",
+        "updatedAt": "2026-07-02T09:49:58.534Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c23",
+        "invoiceId": "6a4634445037116eb56c8bb0",
+        "amount": 100,
+        "paymentMethod": "UPI",
+        "transactionId": "TXN-PART-002",
+        "notes": "Partial advance booking fee",
+        "paymentDate": "2026-07-02T09:49:58.712Z",
+        "createdAt": "2026-07-02T09:49:58.713Z",
+        "updatedAt": "2026-07-02T09:49:58.713Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aeffd37dd791f8d338",
+        "invoiceId": "6a4634abffd37dd791f8d2c2",
+        "amount": 230,
+        "paymentMethod": "Credit Card",
+        "transactionId": "TXN-FULL-001",
+        "notes": "Cleared full invoice balance",
+        "paymentDate": "2026-07-02T09:51:42.234Z",
+        "createdAt": "2026-07-02T09:51:42.235Z",
+        "updatedAt": "2026-07-02T09:51:42.235Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aeffd37dd791f8d341",
+        "invoiceId": "6a4634acffd37dd791f8d2ce",
+        "amount": 100,
+        "paymentMethod": "UPI",
+        "transactionId": "TXN-PART-002",
+        "notes": "Partial advance booking fee",
+        "paymentDate": "2026-07-02T09:51:42.399Z",
+        "createdAt": "2026-07-02T09:51:42.399Z",
+        "updatedAt": "2026-07-02T09:51:42.399Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350bbb7b35045cc62790",
+        "invoiceId": "6a463509bb7b35045cc6271a",
+        "amount": 230,
+        "paymentMethod": "Credit Card",
+        "transactionId": "TXN-FULL-001",
+        "notes": "Cleared full invoice balance",
+        "paymentDate": "2026-07-02T09:53:15.298Z",
+        "createdAt": "2026-07-02T09:53:15.300Z",
+        "updatedAt": "2026-07-02T09:53:15.300Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350bbb7b35045cc62799",
+        "invoiceId": "6a463509bb7b35045cc62726",
+        "amount": 100,
+        "paymentMethod": "UPI",
+        "transactionId": "TXN-PART-002",
+        "notes": "Partial advance booking fee",
+        "paymentDate": "2026-07-02T09:53:15.470Z",
+        "createdAt": "2026-07-02T09:53:15.470Z",
+        "updatedAt": "2026-07-02T09:53:15.470Z",
+        "__v": 0
+      }
+    ],
+    "activityLogs": [
+      {
+        "_id": "6a4632d1da2ac4748c61229d",
+        "userId": "6a4632d1da2ac4748c61229b",
+        "action": "User Registered",
+        "details": "New user registered: admin@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:43:45.872Z",
+        "updatedAt": "2026-07-02T09:43:45.872Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633775ca36bc48dbd6bc4",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Registered",
+        "details": "New user registered: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:31.542Z",
+        "updatedAt": "2026-07-02T09:46:31.542Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633775ca36bc48dbd6bc7",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Login",
+        "details": "User logged in: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:31.818Z",
+        "updatedAt": "2026-07-02T09:46:31.818Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bcd",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Company Settings Updated",
+        "details": "Company settings updated: RK Event Integration Corp",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.042Z",
+        "updatedAt": "2026-07-02T09:46:32.042Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bd2",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 1 (customer1@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.203Z",
+        "updatedAt": "2026-07-02T09:46:32.203Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bd7",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 2 (customer2@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.317Z",
+        "updatedAt": "2026-07-02T09:46:32.317Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bdc",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 3 (customer3@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.434Z",
+        "updatedAt": "2026-07-02T09:46:32.434Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6be1",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 4 (customer4@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.571Z",
+        "updatedAt": "2026-07-02T09:46:32.571Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6be6",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 5 (customer5@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.689Z",
+        "updatedAt": "2026-07-02T09:46:32.689Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633785ca36bc48dbd6bf0",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0001 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:32.931Z",
+        "updatedAt": "2026-07-02T09:46:32.931Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6bfc",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0002 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:33.170Z",
+        "updatedAt": "2026-07-02T09:46:33.170Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6c08",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0003 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:33.406Z",
+        "updatedAt": "2026-07-02T09:46:33.406Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6c14",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0004 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:33.641Z",
+        "updatedAt": "2026-07-02T09:46:33.641Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633795ca36bc48dbd6c20",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0005 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:33.873Z",
+        "updatedAt": "2026-07-02T09:46:33.873Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c2c",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0006 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:34.107Z",
+        "updatedAt": "2026-07-02T09:46:34.107Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c38",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0007 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:34.348Z",
+        "updatedAt": "2026-07-02T09:46:34.348Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c44",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0008 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:34.604Z",
+        "updatedAt": "2026-07-02T09:46:34.604Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337a5ca36bc48dbd6c50",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0009 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:34.842Z",
+        "updatedAt": "2026-07-02T09:46:34.842Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337b5ca36bc48dbd6c5c",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0010 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:35.102Z",
+        "updatedAt": "2026-07-02T09:46:35.102Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337b5ca36bc48dbd6c65",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $230 received for invoice TINV-0001 (Method: Credit Card)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:35.314Z",
+        "updatedAt": "2026-07-02T09:46:35.314Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46337b5ca36bc48dbd6c6e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $100 received for invoice TINV-0002 (Method: UPI)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:46:35.510Z",
+        "updatedAt": "2026-07-02T09:46:35.510Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c81799",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Login",
+        "details": "User logged in: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.095Z",
+        "updatedAt": "2026-07-02T09:47:20.095Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c8179e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Company Settings Updated",
+        "details": "Company settings updated: RK Event Integration Corp",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.258Z",
+        "updatedAt": "2026-07-02T09:47:20.258Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817a3",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 1 (customer1@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.381Z",
+        "updatedAt": "2026-07-02T09:47:20.381Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817a8",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 2 (customer2@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.503Z",
+        "updatedAt": "2026-07-02T09:47:20.503Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817ad",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 3 (customer3@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.619Z",
+        "updatedAt": "2026-07-02T09:47:20.619Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817b2",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 4 (customer4@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.739Z",
+        "updatedAt": "2026-07-02T09:47:20.739Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a8dbe5796ff8c817b7",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 5 (customer5@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:20.859Z",
+        "updatedAt": "2026-07-02T09:47:20.859Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817c3",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0011 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:21.085Z",
+        "updatedAt": "2026-07-02T09:47:21.085Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817cf",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0012 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:21.301Z",
+        "updatedAt": "2026-07-02T09:47:21.301Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817db",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0013 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:21.538Z",
+        "updatedAt": "2026-07-02T09:47:21.538Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817e7",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0014 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:21.774Z",
+        "updatedAt": "2026-07-02T09:47:21.774Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633a9dbe5796ff8c817f3",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0015 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:21.993Z",
+        "updatedAt": "2026-07-02T09:47:21.993Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c817ff",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0016 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:22.211Z",
+        "updatedAt": "2026-07-02T09:47:22.211Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c8180b",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0017 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:22.436Z",
+        "updatedAt": "2026-07-02T09:47:22.436Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c81817",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0018 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:22.654Z",
+        "updatedAt": "2026-07-02T09:47:22.654Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633aadbe5796ff8c81823",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0019 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:22.867Z",
+        "updatedAt": "2026-07-02T09:47:22.867Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633abdbe5796ff8c8182f",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0020 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:23.083Z",
+        "updatedAt": "2026-07-02T09:47:23.083Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633abdbe5796ff8c81838",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $230 received for invoice TINV-0011 (Method: Credit Card)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:23.272Z",
+        "updatedAt": "2026-07-02T09:47:23.272Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4633abdbe5796ff8c81841",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $100 received for invoice TINV-0012 (Method: UPI)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:47:23.453Z",
+        "updatedAt": "2026-07-02T09:47:23.453Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463415dbe5796ff8c81874",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Login",
+        "details": "User logged in: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:09.629Z",
+        "updatedAt": "2026-07-02T09:49:09.629Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463415dbe5796ff8c81879",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Company Settings Updated",
+        "details": "Company settings updated: RK Event Integration Corp",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:09.789Z",
+        "updatedAt": "2026-07-02T09:49:09.789Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463415dbe5796ff8c8187e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 1 (customer1@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:09.901Z",
+        "updatedAt": "2026-07-02T09:49:09.901Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c81883",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 2 (customer2@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:10.014Z",
+        "updatedAt": "2026-07-02T09:49:10.014Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c81888",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 3 (customer3@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:10.124Z",
+        "updatedAt": "2026-07-02T09:49:10.124Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c8188d",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 4 (customer4@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:10.236Z",
+        "updatedAt": "2026-07-02T09:49:10.236Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c81892",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 5 (customer5@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:10.352Z",
+        "updatedAt": "2026-07-02T09:49:10.352Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c8189e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0021 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:10.585Z",
+        "updatedAt": "2026-07-02T09:49:10.585Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463416dbe5796ff8c818aa",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0022 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:10.829Z",
+        "updatedAt": "2026-07-02T09:49:10.829Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818b6",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0023 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:11.058Z",
+        "updatedAt": "2026-07-02T09:49:11.058Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818c2",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0024 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:11.272Z",
+        "updatedAt": "2026-07-02T09:49:11.272Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818ce",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0025 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:11.498Z",
+        "updatedAt": "2026-07-02T09:49:11.498Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818da",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0026 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:11.727Z",
+        "updatedAt": "2026-07-02T09:49:11.727Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463417dbe5796ff8c818e6",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0027 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:11.977Z",
+        "updatedAt": "2026-07-02T09:49:11.977Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c818f2",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0028 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:12.203Z",
+        "updatedAt": "2026-07-02T09:49:12.203Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c818fe",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0029 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:12.441Z",
+        "updatedAt": "2026-07-02T09:49:12.441Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c8190a",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0030 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:12.683Z",
+        "updatedAt": "2026-07-02T09:49:12.683Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463418dbe5796ff8c81913",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $230 received for invoice TINV-0021 (Method: Credit Card)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:12.880Z",
+        "updatedAt": "2026-07-02T09:49:12.880Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463419dbe5796ff8c8191c",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $100 received for invoice TINV-0022 (Method: UPI)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:13.071Z",
+        "updatedAt": "2026-07-02T09:49:13.071Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634435037116eb56c8b7e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Login",
+        "details": "User logged in: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:55.568Z",
+        "updatedAt": "2026-07-02T09:49:55.568Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634435037116eb56c8b83",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Company Settings Updated",
+        "details": "Company settings updated: RK Event Integration Corp",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:55.739Z",
+        "updatedAt": "2026-07-02T09:49:55.739Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634435037116eb56c8b88",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 1 (customer1@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:55.871Z",
+        "updatedAt": "2026-07-02T09:49:55.871Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634435037116eb56c8b8d",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 2 (customer2@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:55.983Z",
+        "updatedAt": "2026-07-02T09:49:55.983Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8b92",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 3 (customer3@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:56.098Z",
+        "updatedAt": "2026-07-02T09:49:56.098Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8b97",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 4 (customer4@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:56.211Z",
+        "updatedAt": "2026-07-02T09:49:56.211Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8b9c",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 5 (customer5@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:56.322Z",
+        "updatedAt": "2026-07-02T09:49:56.322Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8ba8",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0031 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:56.550Z",
+        "updatedAt": "2026-07-02T09:49:56.550Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8bb4",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0032 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:56.755Z",
+        "updatedAt": "2026-07-02T09:49:56.755Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634445037116eb56c8bc0",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0033 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:56.967Z",
+        "updatedAt": "2026-07-02T09:49:56.967Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bcc",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0034 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:57.172Z",
+        "updatedAt": "2026-07-02T09:49:57.172Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bd8",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0035 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:57.387Z",
+        "updatedAt": "2026-07-02T09:49:57.387Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8be4",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0036 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:57.598Z",
+        "updatedAt": "2026-07-02T09:49:57.598Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634455037116eb56c8bf0",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0037 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:57.803Z",
+        "updatedAt": "2026-07-02T09:49:57.803Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8bfc",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0038 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:58.006Z",
+        "updatedAt": "2026-07-02T09:49:58.006Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c08",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0039 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:58.214Z",
+        "updatedAt": "2026-07-02T09:49:58.214Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c14",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0040 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:58.424Z",
+        "updatedAt": "2026-07-02T09:49:58.424Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c1d",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $230 received for invoice TINV-0031 (Method: Credit Card)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:58.607Z",
+        "updatedAt": "2026-07-02T09:49:58.607Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634465037116eb56c8c26",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $100 received for invoice TINV-0032 (Method: UPI)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:49:58.785Z",
+        "updatedAt": "2026-07-02T09:49:58.785Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634a9ffd37dd791f8d29c",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Login",
+        "details": "User logged in: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:37.953Z",
+        "updatedAt": "2026-07-02T09:51:37.953Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aaffd37dd791f8d2a1",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Company Settings Updated",
+        "details": "Company settings updated: RK Event Integration Corp",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:38.453Z",
+        "updatedAt": "2026-07-02T09:51:38.453Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aaffd37dd791f8d2a6",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 1 (customer1@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:38.591Z",
+        "updatedAt": "2026-07-02T09:51:38.591Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2ab",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 2 (customer2@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:39.258Z",
+        "updatedAt": "2026-07-02T09:51:39.258Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2b0",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 3 (customer3@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:39.372Z",
+        "updatedAt": "2026-07-02T09:51:39.372Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2b5",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 4 (customer4@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:39.519Z",
+        "updatedAt": "2026-07-02T09:51:39.519Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634abffd37dd791f8d2ba",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 5 (customer5@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:39.638Z",
+        "updatedAt": "2026-07-02T09:51:39.638Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2c6",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0041 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:40.025Z",
+        "updatedAt": "2026-07-02T09:51:40.025Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2d2",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0042 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:40.303Z",
+        "updatedAt": "2026-07-02T09:51:40.303Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2de",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0043 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:40.538Z",
+        "updatedAt": "2026-07-02T09:51:40.538Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634acffd37dd791f8d2ea",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0044 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:40.800Z",
+        "updatedAt": "2026-07-02T09:51:40.800Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d2f6",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0045 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:41.040Z",
+        "updatedAt": "2026-07-02T09:51:41.040Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d302",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0046 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:41.288Z",
+        "updatedAt": "2026-07-02T09:51:41.288Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d30e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0047 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:41.519Z",
+        "updatedAt": "2026-07-02T09:51:41.519Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d31a",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0048 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:41.715Z",
+        "updatedAt": "2026-07-02T09:51:41.715Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634adffd37dd791f8d326",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0049 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:41.932Z",
+        "updatedAt": "2026-07-02T09:51:41.932Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aeffd37dd791f8d332",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0050 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:42.135Z",
+        "updatedAt": "2026-07-02T09:51:42.135Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aeffd37dd791f8d33b",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $230 received for invoice TINV-0041 (Method: Credit Card)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:42.303Z",
+        "updatedAt": "2026-07-02T09:51:42.303Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a4634aeffd37dd791f8d344",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $100 received for invoice TINV-0042 (Method: UPI)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:51:42.467Z",
+        "updatedAt": "2026-07-02T09:51:42.467Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463508bb7b35045cc626f4",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "User Login",
+        "details": "User logged in: integration_tester@rkevent.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:12.599Z",
+        "updatedAt": "2026-07-02T09:53:12.599Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463508bb7b35045cc626f9",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Company Settings Updated",
+        "details": "Company settings updated: RK Event Integration Corp",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:12.754Z",
+        "updatedAt": "2026-07-02T09:53:12.754Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463508bb7b35045cc626fe",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 1 (customer1@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:12.853Z",
+        "updatedAt": "2026-07-02T09:53:12.853Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463508bb7b35045cc62703",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 2 (customer2@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:12.955Z",
+        "updatedAt": "2026-07-02T09:53:12.955Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62708",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 3 (customer3@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:13.064Z",
+        "updatedAt": "2026-07-02T09:53:13.064Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc6270d",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 4 (customer4@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:13.158Z",
+        "updatedAt": "2026-07-02T09:53:13.158Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62712",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Customer Created",
+        "details": "Customer created: Customer Name 5 (customer5@rkevent-test.com)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:13.255Z",
+        "updatedAt": "2026-07-02T09:53:13.255Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc6271e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0051 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:13.496Z",
+        "updatedAt": "2026-07-02T09:53:13.496Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc6272a",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0052 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:13.708Z",
+        "updatedAt": "2026-07-02T09:53:13.708Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a463509bb7b35045cc62736",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0053 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:13.890Z",
+        "updatedAt": "2026-07-02T09:53:13.890Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc62742",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0054 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:14.074Z",
+        "updatedAt": "2026-07-02T09:53:14.074Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6274e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0055 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:14.252Z",
+        "updatedAt": "2026-07-02T09:53:14.252Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6275a",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0056 for customer: Customer Name 1",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:14.429Z",
+        "updatedAt": "2026-07-02T09:53:14.429Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc62766",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0057 for customer: Customer Name 2",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:14.623Z",
+        "updatedAt": "2026-07-02T09:53:14.623Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc62772",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0058 for customer: Customer Name 3",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:14.805Z",
+        "updatedAt": "2026-07-02T09:53:14.805Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350abb7b35045cc6277e",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0059 for customer: Customer Name 4",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:14.989Z",
+        "updatedAt": "2026-07-02T09:53:14.989Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350bbb7b35045cc6278a",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Created",
+        "details": "Invoice created: TINV-0060 for customer: Customer Name 5",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:15.187Z",
+        "updatedAt": "2026-07-02T09:53:15.187Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350bbb7b35045cc62793",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $230 received for invoice TINV-0051 (Method: Credit Card)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:15.373Z",
+        "updatedAt": "2026-07-02T09:53:15.373Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46350bbb7b35045cc6279c",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Payment Received",
+        "details": "Payment of $100 received for invoice TINV-0052 (Method: UPI)",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:15.547Z",
+        "updatedAt": "2026-07-02T09:53:15.547Z",
+        "__v": 0
+      },
+      {
+        "_id": "6a46351dbb7b35045cc627c7",
+        "userId": "6a4633775ca36bc48dbd6bc2",
+        "action": "Invoice Emailed",
+        "details": "Invoice TINV-0051 emailed to customer1@rkevent-test.com",
+        "ipAddress": "::1",
+        "createdAt": "2026-07-02T09:53:33.599Z",
+        "updatedAt": "2026-07-02T09:53:33.599Z",
+        "__v": 0
+      }
+    ]
+  }
+}

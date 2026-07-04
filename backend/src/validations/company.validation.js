@@ -24,6 +24,8 @@ const updateSettings = {
     invoiceStartNumber: Joi.number().integer().min(1).default(1).messages({
       'number.min': 'Invoice start number must be at least 1',
     }),
+    ownerName: Joi.string().allow('').optional(),
+    upiId: Joi.string().allow('').optional(),
   }),
 };
 

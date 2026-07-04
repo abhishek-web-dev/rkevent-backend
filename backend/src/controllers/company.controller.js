@@ -15,12 +15,14 @@ const getSettings = async (req, res, next) => {
     // Auto-create default settings if database is blank
     if (!settings) {
       settings = await CompanySettings.create({
-        companyName: 'RK Event Group',
-        email: 'billing@rkevent.com',
-        phone: '+91 99999 99999',
-        address: 'RK Event Headquarters, New Delhi, India',
+        companyName: 'RK Event Jhansi',
+        ownerName: 'Rahul Kumar',
+        email: 'Rkeventrajgarh@gmail.com',
+        phone: '9369649071',
+        address: 'In front of Punjab National Bank, Rajgarh, Jhansi',
+        upiId: '9169659965-5@ybl',
         website: 'https://rkevent.com',
-        invoicePrefix: 'INV',
+        invoicePrefix: 'RKE',
         invoiceStartNumber: 1,
       });
     }
@@ -50,6 +52,8 @@ const updateSettings = async (req, res, next) => {
       website,
       invoicePrefix,
       invoiceStartNumber,
+      ownerName,
+      upiId,
     } = req.body;
 
     // Apply values
@@ -60,11 +64,19 @@ const updateSettings = async (req, res, next) => {
     if (website !== undefined) settings.website = website;
     if (invoicePrefix) settings.invoicePrefix = invoicePrefix.toUpperCase().trim();
     if (invoiceStartNumber !== undefined) settings.invoiceStartNumber = Number(invoiceStartNumber);
+    if (ownerName !== undefined) settings.ownerName = ownerName;
+    if (upiId !== undefined) settings.upiId = upiId;
 
-    // Upload logo image to Cloudinary if provided
-    if (req.file) {
-      const uploadResult = await uploadToCloudinary(req.file.buffer, 'rk-event-invoice/company');
-      settings.companyLogo = uploadResult.secure_url;
+    // Upload files to Cloudinary if provided
+    if (req.files) {
+      if (req.files['logo'] && req.files['logo'][0]) {
+        const uploadResult = await uploadToCloudinary(req.files['logo'][0].buffer, 'rk-event-invoice/company');
+        settings.companyLogo = uploadResult.secure_url;
+      }
+      if (req.files['signature'] && req.files['signature'][0]) {
+        const uploadResult = await uploadToCloudinary(req.files['signature'][0].buffer, 'rk-event-invoice/company');
+        settings.signatureUrl = uploadResult.secure_url;
+      }
     }
 
     const updatedSettings = await settings.save();

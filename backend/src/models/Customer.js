@@ -12,12 +12,16 @@ const customerSchema = new mongoose.Schema(
       trim: true,
       default: '',
     },
+    alternatePhone: {
+      type: String,
+      trim: true,
+      default: '',
+    },
     email: {
       type: String,
-      required: [true, 'Customer email is required'],
       trim: true,
       lowercase: true,
-      match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email address'],
+      default: '',
     },
     phone: {
       type: String,
@@ -26,13 +30,36 @@ const customerSchema = new mongoose.Schema(
     },
     address: {
       type: String,
-      required: [true, 'Customer address is required'],
       trim: true,
+      default: '',
+    },
+    city: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    state: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    pincode: {
+      type: String,
+      trim: true,
+      default: '',
     },
     notes: {
       type: String,
       trim: true,
       default: '',
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
+    deletedAt: {
+      type: Date,
+      default: null,
     },
   },
   {

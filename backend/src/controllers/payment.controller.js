@@ -11,10 +11,10 @@ const addPayment = async (req, res, next) => {
   try {
     const { invoiceId, amount, paymentMethod, transactionId, notes } = req.body;
 
-    // Check if invoice exists
-    const invoice = await Invoice.findById(invoiceId);
+    // Check if invoice exists and is active
+    const invoice = await Invoice.findOne({ _id: invoiceId, isDeleted: { $ne: true } });
     if (!invoice) {
-      throw new ApiError(404, 'Invoice not found');
+      throw new ApiError(404, 'Invoice not found or has been deleted');
     }
 
     // Verify payment amount doesn't exceed pending balance

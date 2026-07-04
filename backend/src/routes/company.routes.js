@@ -27,7 +27,10 @@ router.get('/', companyController.getSettings);
 router.put(
   '/',
   authorize('admin'),
-  upload.single('logo'),
+  upload.fields([
+    { name: 'logo', maxCount: 1 },
+    { name: 'signature', maxCount: 1 },
+  ]),
   validate(companyValidation.updateSettings),
   companyController.updateSettings
 );

@@ -2,13 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config();
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
 const routes = require('./routes');
 const errorHandler = require('./middleware/error.middleware');
 const { apiLimiter } = require('./middleware/rateLimit.middleware');
 const ApiError = require('./utils/apiError');
-
-// Load environment variables
-dotenv.config();
 
 const app = express();
 
@@ -27,17 +30,36 @@ app.use(express.urlencoded({ extended: true }));
 // Apply global rate limiting for API paths
 app.use('/api', apiLimiter);
 
-// Root/health endpoint
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', message: 'RK Event Invoice API is healthy' });
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'RK Event Invoice Backend Running 🚀'
+  });
 });
+
+// Health check route
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Server is healthy'
+  });
+});
+
+// Mount Swagger Documentation
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+console.log('✔ Swagger Loaded');
 
 // Mount routes
 app.use('/api', routes);
+console.log('✔ Routes Loaded');
 
 // Send back a 404 error for any unknown api request
-app.use((req, res, next) => {
-  next(new ApiError(404, `Route ${req.originalUrl} not found`));
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found`
+  });
 });
 
 // Centralized error handler middleware

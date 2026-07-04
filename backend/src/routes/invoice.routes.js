@@ -7,6 +7,11 @@ const { protect } = require('../middleware/auth.middleware');
 
 router.use(protect); // Require auth for all invoice routes
 
+// Trash and Restore routes (placed above dynamic /:id to prevent collisions)
+router.get('/trash', invoiceController.getTrashInvoices);
+router.post('/:id/restore', invoiceController.restoreInvoice);
+router.delete('/:id/permanent', invoiceController.deleteInvoicePermanent);
+
 router
   .route('/')
   .post(validate(invoiceValidation.createInvoice), invoiceController.createInvoice)

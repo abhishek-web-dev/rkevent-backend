@@ -8,13 +8,14 @@ const ApiResponse = require('../utils/apiResponse');
 const getDashboardStats = async (req, res, next) => {
   try {
     // 1. Total Customers
-    const totalCustomers = await Customer.countDocuments();
+    const totalCustomers = await Customer.countDocuments({ isDeleted: { $ne: true } });
 
     // 2. Total Invoices
-    const totalInvoices = await Invoice.countDocuments();
+    const totalInvoices = await Invoice.countDocuments({ isDeleted: { $ne: true } });
 
     // 3. Revenue aggregates
     const revenueAgg = await Invoice.aggregate([
+      { $match: { isDeleted: { $ne: true } } },
       {
         $group: {
           _id: null,
@@ -32,14 +33,15 @@ const getDashboardStats = async (req, res, next) => {
     };
 
     // 4. Overdue Invoices
-    const overdueInvoicesCount = await Invoice.countDocuments({ status: 'Overdue' });
-    const latestOverdueInvoices = await Invoice.find({ status: 'Overdue' })
+    const overdueInvoicesCount = await Invoice.countDocuments({ status: 'Overdue', isDeleted: { $ne: true } });
+    const latestOverdueInvoices = await Invoice.find({ status: 'Overdue', isDeleted: { $ne: true } })
       .populate('customer', 'name email phone')
       .sort({ dueDate: 1 })
       .limit(5);
 
     // 5. Monthly Revenue Aggregation (last 12 months)
     const monthlyRevenue = await Invoice.aggregate([
+      { $match: { isDeleted: { $ne: true } } },
       {
         $group: {
           _id: {
@@ -68,7 +70,7 @@ const getDashboardStats = async (req, res, next) => {
     ]);
 
     // 6. Recent Invoice List
-    const recentInvoices = await Invoice.find()
+    const recentInvoices = await Invoice.find({ isDeleted: { $ne: true } })
       .populate('customer', 'name email')
       .sort({ createdAt: -1 })
       .limit(5);

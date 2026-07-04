@@ -41,6 +41,20 @@ const companySettingsSchema = new mongoose.Schema(
       type: Number,
       default: 1,
     },
+    ownerName: {
+      type: String,
+      default: 'Rahul Kumar',
+      trim: true,
+    },
+    upiId: {
+      type: String,
+      default: '9169659965-5@ybl',
+      trim: true,
+    },
+    signatureUrl: {
+      type: String,
+      default: '',
+    },
   },
   {
     timestamps: true,

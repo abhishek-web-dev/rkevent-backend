@@ -24,9 +24,10 @@ const formatDate = (dateVal) => {
  */
 const formatCurrency = (amount) => {
   const parsed = parseFloat(amount) || 0;
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-IN', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
+    minimumFractionDigits: 2,
   }).format(parsed);
 };
 
@@ -47,8 +48,7 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     if (companySettings.companyLogo) {
       logoHtml = `<img src="${companySettings.companyLogo}" alt="${companySettings.companyName}">`;
     } else {
-      // Default textual logo if no image uploaded
-      logoHtml = `<div style="font-size: 24px; font-weight: 800; color: #1a1f36; border: 2px solid #1a1f36; padding: 5px 15px; display: inline-block;">${companySettings.companyName.substring(0, 3).toUpperCase()}</div>`;
+      logoHtml = `<div style="font-size: 22px; font-weight: 800; color: #681AA7; border: 2px solid #681AA7; padding: 5px 12px; display: inline-block;">${companySettings.companyName.substring(0, 3).toUpperCase()}</div>`;
     }
 
     // 2. Prepare Status Badge Class
@@ -57,48 +57,85 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     else if (invoice.status === 'Partial') statusBadgeClass = 'status-partial';
     else if (invoice.status === 'Overdue') statusBadgeClass = 'status-overdue';
 
-    // 3. Compile invoice items rows
+    // 3. Compile invoice items rows with category column
     let itemsHtmlRows = '';
     invoice.items.forEach((item, index) => {
       itemsHtmlRows += `
         <tr>
-          <td>${index + 1}</td>
+          <td style="text-align: center;">${index + 1}</td>
           <td>
-            <p class="item-title">${item.title}</p>
-            ${item.description ? `<p class="item-desc">${item.description}</p>` : ''}
+            <span class="item-title" style="font-weight: 600;">${item.serviceName || item.title || ''}</span>
           </td>
-          <td class="text-center">${item.quantity}</td>
-          <td class="text-right">${formatCurrency(item.price)}</td>
-          <td class="text-right">${formatCurrency(item.amount)}</td>
+          <td style="text-align: center;">${item.category || 'N/A'}</td>
+          <td>${item.description || '-'}</td>
+          <td style="text-align: center;">${item.quantity}</td>
+          <td style="text-align: right;">${formatCurrency(item.price)}</td>
+          <td style="text-align: right; font-weight: 600;">${formatCurrency(item.amount)}</td>
         </tr>
       `;
     });
 
-    // 4. Inject variables into template
+    // 4. Generate UPI QR Code URL
+    const upiId = companySettings.upiId || '9169659965-5@ybl';
+    const ownerName = companySettings.ownerName || 'Rahul Kumar';
+    const upiAmount = invoice.pendingAmount || 0;
+    const upiNote = `Invoice-${invoice.invoiceNumber}`;
+    const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(ownerName)}&am=${upiAmount}&tn=${encodeURIComponent(upiNote)}&cu=INR`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUri)}`;
+
+    // 5. Prepare Signature Image HTML
+    let signatureHtml = '';
+    if (companySettings.signatureUrl) {
+      signatureHtml = `<img src="${companySettings.signatureUrl}" alt="Signature" style="max-height: 50px; max-width: 120px; object-fit: contain;">`;
+    }
+
+    // 6. Inject variables into template
+    // 6. Inject variables into template
     const placeholders = {
       '{{invoiceNumber}}': invoice.invoiceNumber,
       '{{logoHtml}}': logoHtml,
       '{{companyName}}': companySettings.companyName,
-      '{{companyAddress}}': companySettings.address.replace(/\n/g, '<br>'),
+      '{{companyAddress}}': companySettings.address ? companySettings.address.replace(/\n/g, '<br>') : '',
       '{{companyPhone}}': companySettings.phone,
       '{{companyEmail}}': companySettings.email,
-      '{{companyWebsite}}': companySettings.website ? companySettings.website : '',
-      '{{customerName}}': invoice.customer.name,
-      '{{customerCompanyName}}': invoice.customer.companyName ? invoice.customer.companyName : '',
-      '{{customerAddress}}': invoice.customer.address.replace(/\n/g, '<br>'),
-      '{{customerPhone}}': invoice.customer.phone,
-      '{{customerEmail}}': invoice.customer.email,
+      '{{ownerName}}': companySettings.ownerName || 'Rahul Kumar',
+      '{{upiId}}': upiId,
+      '{{customerName}}': invoice.customer ? invoice.customer.name : 'N/A',
+      '{{customerPhone}}': invoice.customer ? invoice.customer.phone : 'N/A',
+      '{{customerAlternatePhone}}': invoice.customer && invoice.customer.alternatePhone ? `<p class="info-subtext">Alt Phone: ${invoice.customer.alternatePhone}</p>` : '',
+      '{{customerEmail}}': invoice.customer && invoice.customer.email ? `<p class="info-subtext">Email: ${invoice.customer.email}</p>` : '',
+      '{{customerAddress}}': invoice.customer && invoice.customer.address ? invoice.customer.address.replace(/\n/g, '<br>') : '',
+      '{{customerCity}}': invoice.customer && invoice.customer.city ? invoice.customer.city : '',
+      '{{customerState}}': invoice.customer && invoice.customer.state ? invoice.customer.state : '',
+      '{{customerPincode}}': invoice.customer && invoice.customer.pincode ? invoice.customer.pincode : '',
       '{{invoiceDate}}': formatDate(invoice.invoiceDate),
       '{{dueDate}}': formatDate(invoice.dueDate),
+      
+      // Event Info
+      '{{eventType}}': invoice.eventType || 'N/A',
+      '{{eventDate}}': invoice.eventDate ? formatDate(invoice.eventDate) : 'N/A',
+      '{{eventTime}}': invoice.eventTime || 'N/A',
+      '{{eventLocation}}': invoice.eventLocation || 'N/A',
+      '{{expectedGuestCount}}': invoice.expectedGuestCount ? `<p class="info-label" style="margin-top: 6px;">Expected Guest Count</p><p class="info-value" style="margin-bottom: 0;">${invoice.expectedGuestCount}</p>` : '',
+      '{{specialRequirements}}': invoice.specialRequirements ? `<p class="info-label" style="margin-top: 6px;">Special Requirements</p><p class="info-subtext" style="font-style: italic;">${invoice.specialRequirements}</p>` : '',
+      
+      // Payment Tally Details
+      '{{tokenAmount}}': formatCurrency(invoice.tokenAmount || 0),
+      '{{advancePaid}}': formatCurrency(invoice.advancePaid || 0),
+      '{{remainingAmount}}': formatCurrency(invoice.remainingAmount || 0),
+      '{{paymentMode}}': invoice.paymentMode ? `<tr><td class="totals-label">Payment Mode:</td><td class="totals-value" style="text-transform: uppercase;">${invoice.paymentMode}</td></tr>` : '',
+      
       '{{status}}': invoice.status,
       '{{statusBadgeClass}}': statusBadgeClass,
       '{{invoiceItemsRows}}': itemsHtmlRows,
-      '{{notes}}': invoice.notes || 'N/A',
+      '{{notes}}': invoice.notes ? `<p style="margin-top: 6px; font-style: italic;">Note: ${invoice.notes}</p>` : '',
       '{{subtotal}}': formatCurrency(invoice.subtotal),
       '{{discount}}': formatCurrency(invoice.discount),
       '{{totalAmount}}': formatCurrency(invoice.totalAmount),
       '{{paidAmount}}': formatCurrency(invoice.paidAmount),
       '{{pendingAmount}}': formatCurrency(invoice.pendingAmount),
+      '{{qrCodeUrl}}': qrCodeUrl,
+      '{{signatureHtml}}': signatureHtml,
     };
 
     Object.keys(placeholders).forEach((key) => {
@@ -106,8 +143,13 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     });
 
     // 5. Generate PDF using Puppeteer
+    const executablePath = fs.existsSync('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
+      ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+      : undefined;
+
     browser = await puppeteer.launch({
-      headless: true, // headless: true is compatible with newer versions
+      headless: true,
+      executablePath,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
