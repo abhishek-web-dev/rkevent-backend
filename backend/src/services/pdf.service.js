@@ -18,7 +18,7 @@ const formatDate = (dateVal) => {
 };
 
 /**
- * Format number to currency style (e.g., $1,250.00)
+ * Format number to currency style (e.g., ₹1,250.00)
  * @param {number} amount 
  * @returns {string}
  */

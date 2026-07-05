@@ -127,7 +127,7 @@ const seedDB = async () => {
         },
       ],
     });
-    await invoice1.save(); // pre-save hook calculates subtotal, total ($750), pending ($750)
+    await invoice1.save(); // pre-save hook calculates subtotal, total (₹750), pending (₹750)
 
     // Create Invoice 2 - Status will be Partial/Paid depending on payment
     const invoice2 = new Invoice({
@@ -146,7 +146,7 @@ const seedDB = async () => {
         },
       ],
     });
-    await invoice2.save(); // total = $1800
+    await invoice2.save(); // total = ₹1800
 
     // Create Invoice 3 - Overdue Invoice
     const invoice3 = new Invoice({
@@ -165,7 +165,7 @@ const seedDB = async () => {
         },
       ],
     });
-    await invoice3.save(); // total = $900, status = Overdue
+    await invoice3.save(); // total = ₹900, status = Overdue
 
     console.log('Seeding payment entries...');
     // Create a payment for invoice 2

@@ -76,11 +76,12 @@
     }
     
     .logo-block {
-      width: 28%;
+      width: 35%;
     }
     
     .logo-block img {
-      max-height: 80px !important;
+      max-height: 180px !important;
+      max-width: 100% !important;
       width: auto;
       display: block;
       object-fit: contain;
@@ -701,8 +702,11 @@
           <p class="card-text"><strong>Phone:</strong> {{customerPhone}}</p>
           {{customerAlternatePhone}}
           {{customerEmail}}
-          <p class="card-text">{{customerAddress}}</p>
-          <p class="card-text">{{customerCity}} {{customerState}} {{customerPincode}}</p>
+          <p class="card-text" style="margin-top: 8px; line-height: 1.35;">
+            <strong>Address:</strong><br>
+            <span style="display: block; padding-top: 2px;">{{customerAddress}}</span>
+            <span>{{customerCity}} {{customerState}} {{customerPincode}}</span>
+          </p>
         </div>
         
         <!-- Card 2: Event Details -->
@@ -813,7 +817,7 @@
       <div class="footer-block">
         <div class="footer-thanks">
           <span>Thank you for choosing RK Event Jhansi!</span>
-          <div class="footer-logo">{{logoHtml}}</div>
+          <span style="font-size: 9.5px; font-weight: 700; color: #C9A227; margin-top: 3px; letter-spacing: 0.5px;">"We Plan. You Celebrate. We Create Memories."</span>
         </div>
         <div class="signature-area">
           {{signatureHtml}}
@@ -921,7 +925,7 @@
       <div class="footer-block">
         <div class="footer-thanks">
           <span>We look forward to making your event memorable!</span>
-          <div class="footer-logo">{{logoHtml}}</div>
+          <span style="font-size: 9.5px; font-weight: 700; color: #C9A227; margin-top: 3px; letter-spacing: 0.5px;">"We Plan. You Celebrate. We Create Memories."</span>
         </div>
         <div class="signature-area">
           {{signatureHtml}}

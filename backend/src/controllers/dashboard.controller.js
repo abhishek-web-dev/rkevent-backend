@@ -1,5 +1,6 @@
 const Customer = require('../models/Customer');
 const Invoice = require('../models/Invoice');
+const Payment = require('../models/Payment');
 const ApiResponse = require('../utils/apiResponse');
 
 /**
@@ -13,7 +14,7 @@ const getDashboardStats = async (req, res, next) => {
     // 2. Total Invoices
     const totalInvoices = await Invoice.countDocuments({ isDeleted: { $ne: true } });
 
-    // 3. Revenue aggregates
+    // 3. Revenue aggregates (Amount Pending calculated from remaining balances of active invoices)
     const revenueAgg = await Invoice.aggregate([
       { $match: { isDeleted: { $ne: true } } },
       {
@@ -40,7 +41,8 @@ const getDashboardStats = async (req, res, next) => {
       .limit(5);
 
     // 5. Monthly Revenue Aggregation (last 12 months)
-    const monthlyRevenue = await Invoice.aggregate([
+    // Revenue is calculated from Invoice totals, and Paid is calculated from Payment history records.
+    const invoiceMonths = await Invoice.aggregate([
       { $match: { isDeleted: { $ne: true } } },
       {
         $group: {
@@ -49,25 +51,61 @@ const getDashboardStats = async (req, res, next) => {
             month: { $month: '$invoiceDate' },
           },
           revenue: { $sum: '$totalAmount' },
-          paid: { $sum: '$paidAmount' },
-          pending: { $sum: '$pendingAmount' },
           count: { $sum: 1 },
         },
       },
+    ]);
+
+    const paymentMonths = await Payment.aggregate([
       {
-        $project: {
-          _id: 0,
-          year: '$_id.year',
-          month: '$_id.month',
-          revenue: 1,
-          paid: 1,
-          pending: 1,
-          count: 1,
+        $group: {
+          _id: {
+            year: { $year: '$paymentDate' },
+            month: { $month: '$paymentDate' },
+          },
+          paid: { $sum: '$amount' },
         },
       },
-      { $sort: { year: -1, month: -1 } },
-      { $limit: 12 },
     ]);
+
+    const monthlyMap = {};
+
+    invoiceMonths.forEach((item) => {
+      if (item._id && item._id.year && item._id.month) {
+        const key = `${item._id.year}-${item._id.month}`;
+        monthlyMap[key] = {
+          year: item._id.year,
+          month: item._id.month,
+          revenue: item.revenue || 0,
+          paid: 0,
+          pending: item.revenue || 0,
+          count: item.count || 0,
+        };
+      }
+    });
+
+    paymentMonths.forEach((item) => {
+      if (item._id && item._id.year && item._id.month) {
+        const key = `${item._id.year}-${item._id.month}`;
+        if (!monthlyMap[key]) {
+          monthlyMap[key] = {
+            year: item._id.year,
+            month: item._id.month,
+            revenue: 0,
+            paid: item.paid || 0,
+            pending: 0,
+            count: 0,
+          };
+        } else {
+          monthlyMap[key].paid = item.paid || 0;
+          monthlyMap[key].pending = Math.max(0, monthlyMap[key].revenue - monthlyMap[key].paid);
+        }
+      }
+    });
+
+    const monthlyRevenue = Object.values(monthlyMap)
+      .sort((a, b) => b.year - a.year || b.month - a.month)
+      .slice(0, 12);
 
     // 6. Recent Invoice List
     const recentInvoices = await Invoice.find({ isDeleted: { $ne: true } })

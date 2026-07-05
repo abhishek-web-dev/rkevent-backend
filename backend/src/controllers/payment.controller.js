@@ -9,7 +9,7 @@ const { logActivity } = require('../services/logger.service');
  */
 const addPayment = async (req, res, next) => {
   try {
-    const { invoiceId, amount, paymentMethod, transactionId, notes } = req.body;
+    const { invoiceId, amount, paymentMethod, transactionId, notes, paymentDate } = req.body;
 
     // Check if invoice exists and is active
     const invoice = await Invoice.findOne({ _id: invoiceId, isDeleted: { $ne: true } });
@@ -21,7 +21,7 @@ const addPayment = async (req, res, next) => {
     if (amount > invoice.pendingAmount) {
       throw new ApiError(
         400,
-        `Payment amount ($${amount}) exceeds invoice pending balance ($${invoice.pendingAmount})`
+        `Payment amount (₹${amount}) exceeds invoice pending balance (₹${invoice.pendingAmount})`
       );
     }
 
@@ -32,6 +32,7 @@ const addPayment = async (req, res, next) => {
       paymentMethod,
       transactionId,
       notes,
+      paymentDate: paymentDate || new Date(),
     });
 
     // Update invoice paidAmount
@@ -43,7 +44,7 @@ const addPayment = async (req, res, next) => {
     await logActivity(
       req.user._id,
       'Payment Received',
-      `Payment of $${amount} received for invoice ${invoice.invoiceNumber} (Method: ${paymentMethod})`,
+      `Payment of ₹${amount} received for invoice ${invoice.invoiceNumber} (Method: ${paymentMethod})`,
       req
     );
 
@@ -58,7 +59,7 @@ const addPayment = async (req, res, next) => {
  */
 const updatePayment = async (req, res, next) => {
   try {
-    const { amount, paymentMethod, transactionId, notes } = req.body;
+    const { amount, paymentMethod, transactionId, notes, paymentDate } = req.body;
 
     const payment = await Payment.findById(req.params.id);
     if (!payment) {
@@ -80,7 +81,7 @@ const updatePayment = async (req, res, next) => {
       if (amount > maxAllowed) {
         throw new ApiError(
           400,
-          `Updated payment amount ($${amount}) exceeds remaining invoice balance ($${maxAllowed})`
+          `Updated payment amount (₹${amount}) exceeds remaining invoice balance (₹${maxAllowed})`
         );
       }
 
@@ -94,6 +95,7 @@ const updatePayment = async (req, res, next) => {
     if (paymentMethod) payment.paymentMethod = paymentMethod;
     if (transactionId !== undefined) payment.transactionId = transactionId;
     if (notes !== undefined) payment.notes = notes;
+    if (paymentDate) payment.paymentDate = paymentDate;
 
     await payment.save();
 
@@ -134,7 +136,7 @@ const deletePayment = async (req, res, next) => {
     await logActivity(
       req.user._id,
       'Payment Deleted',
-      `Payment of $${payment.amount} deleted from invoice ${invoice ? invoice.invoiceNumber : 'Unknown'}`,
+      `Payment of ₹${payment.amount} deleted from invoice ${invoice ? invoice.invoiceNumber : 'Unknown'}`,
       req
     );
 
