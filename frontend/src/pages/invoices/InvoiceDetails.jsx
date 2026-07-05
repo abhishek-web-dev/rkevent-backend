@@ -22,7 +22,7 @@ import {
   Download,
   Mail,
   Share2,
-  DollarSign,
+  IndianRupee,
   PlusCircle,
   CreditCard,
   AlertTriangle,
@@ -40,6 +40,7 @@ const paymentSchema = (maxAmount) =>
     paymentMethod: zod.string().min(1, 'Please select a payment method'),
     transactionId: zod.string().optional(),
     notes: zod.string().optional(),
+    paymentDate: zod.string().min(1, 'Please select a payment date'),
   });
 
 const InvoiceDetails = () => {
@@ -90,7 +91,13 @@ const InvoiceDetails = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(paymentSchema(maxBalance)),
-    values: { amount: maxBalance, paymentMethod: 'UPI', transactionId: '', notes: '' },
+    values: {
+      amount: maxBalance,
+      paymentMethod: 'UPI',
+      transactionId: '',
+      notes: '',
+      paymentDate: new Date().toISOString().split('T')[0]
+    },
   });
 
   // Record payment mutation
@@ -219,7 +226,7 @@ const InvoiceDetails = () => {
           {invoice.pendingAmount > 0 && (
             <Button onClick={() => setPayModalOpen(true)} className="rounded-xl px-4 py-2 flex items-center space-x-2 text-xs">
               <PlusCircle className="w-4 h-4" />
-              <span>Record Payment</span>
+              <span>+ Add Payment</span>
             </Button>
           )}
         </div>
@@ -315,24 +322,28 @@ const InvoiceDetails = () => {
                 <Table>
                   <THead>
                     <TR>
-                      <TH>Method</TH>
-                      <TH>Transaction ID</TH>
-                      <TH>Paid Date</TH>
+                      <TH>Date</TH>
+                      <TH>Amount</TH>
+                      <TH>Payment Mode</TH>
                       <TH>Notes</TH>
-                      <TH className="text-right">Amount</TH>
                     </TR>
                   </THead>
                   <TBody>
                     {payments.map((pay) => (
                       <TR key={pay._id}>
-                        <TD className="font-bold text-white text-xs uppercase">{pay.paymentMethod}</TD>
-                        <TD className="text-slate-400 font-mono text-xs">{pay.transactionId || 'N/A'}</TD>
-                        <TD className="text-slate-400 text-xs">
-                          {new Date(pay.createdAt).toLocaleDateString()}
+                        <TD className="text-slate-300 text-xs">
+                          {new Date(pay.paymentDate || pay.createdAt).toLocaleDateString('en-IN', {
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
                         </TD>
-                        <TD className="text-slate-400 text-xs max-w-[150px] truncate">{pay.notes || '-'}</TD>
-                        <TD className="text-right font-extrabold text-emerald-400 font-sans">
+                        <TD className="font-extrabold text-emerald-400 font-sans">
                           {formatCurrency(pay.amount)}
+                        </TD>
+                        <TD className="font-bold text-white text-xs uppercase">{pay.paymentMethod}</TD>
+                        <TD className="text-slate-400 text-xs">
+                          {pay.notes || '-'} {pay.transactionId ? `(Txn: ${pay.transactionId})` : ''}
                         </TD>
                       </TR>
                     ))}
@@ -399,13 +410,21 @@ const InvoiceDetails = () => {
             step="0.01"
             label="Payment Amount (₹) *"
             placeholder="0.00"
-            icon={DollarSign}
+            icon={IndianRupee}
             error={errors.amount?.message}
+          />
+
+          <Input
+            {...register('paymentDate')}
+            type="date"
+            label="Payment Date *"
+            icon={Calendar}
+            error={errors.paymentDate?.message}
           />
 
           <Select
             {...register('paymentMethod')}
-            label="Payment Method *"
+            label="Payment Mode *"
             options={[
               { label: 'UPI / NetBanking', value: 'UPI' },
               { label: 'Card Payment (Credit/Debit)', value: 'Card' },
@@ -426,7 +445,7 @@ const InvoiceDetails = () => {
 
           <div className="space-y-1.5">
             <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-              Reference Notes
+              Notes
             </label>
             <textarea
               {...register('notes')}
@@ -441,7 +460,7 @@ const InvoiceDetails = () => {
               Cancel
             </Button>
             <Button type="submit" isLoading={submittingPayment}>
-              Record Payment
+              Save Payment
             </Button>
           </div>
         </form>

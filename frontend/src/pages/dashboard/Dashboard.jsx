@@ -6,7 +6,7 @@ import Badge from '../../components/ui/Badge';
 import Button from '../../components/ui/Button';
 import { Link } from 'react-router-dom';
 import {
-  DollarSign,
+  IndianRupee,
   Users,
   FileText,
   AlertTriangle,
@@ -23,25 +23,34 @@ const Dashboard = () => {
     refetchInterval: 30000, // auto refetch every 30s
   });
 
+  if (isLoading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="text-slate-400 font-medium animate-pulse flex items-center space-x-2">
+          <span>Loading dashboard statistics...</span>
+        </div>
+      </div>
+    );
+  }
+
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh] text-slate-400">
-        <AlertTriangle className="w-10 h-10 text-rose-500 mb-4" />
-        <p className="text-slate-200 font-semibold">Failed to load dashboard data</p>
-        <p className="text-sm mt-1">{error.message}</p>
+      <div className="p-6 bg-rose-500/10 border border-rose-500/25 rounded-3xl text-rose-400 flex items-center space-x-2">
+        <AlertTriangle className="w-5 h-5 flex-shrink-0" />
+        <span>Failed to load dashboard metrics: {error.message}</span>
       </div>
     );
   }
 
   const stats = data?.data || {
-    customersCount: 0,
-    invoicesCount: 0,
     totalRevenue: 0,
     totalPaid: 0,
     totalPending: 0,
-    overdue: { count: 0, list: [] },
-    monthlyRevenue: [],
+    customersCount: 0,
+    invoicesCount: 0,
+    overdueInvoicesCount: 0,
     recentInvoices: [],
+    monthlyRevenue: [],
   };
 
   const formatCurrency = (val) => {
@@ -53,19 +62,19 @@ const Dashboard = () => {
     {
       title: 'Total Revenue',
       value: formatCurrency(stats.totalRevenue),
-      icon: DollarSign,
+      icon: IndianRupee,
       color: 'from-violet-500/10 to-indigo-500/10 border-violet-500/20 text-violet-400',
     },
     {
       title: 'Amount Paid',
       value: formatCurrency(stats.totalPaid),
-      icon: DollarSign,
+      icon: IndianRupee,
       color: 'from-emerald-500/10 to-teal-500/10 border-emerald-500/20 text-emerald-400',
     },
     {
       title: 'Amount Pending',
       value: formatCurrency(stats.totalPending),
-      icon: DollarSign,
+      icon: IndianRupee,
       color: 'from-amber-500/10 to-orange-500/10 border-amber-500/20 text-amber-400',
     },
     {
@@ -128,7 +137,9 @@ const Dashboard = () => {
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     {kpi.title}
                   </span>
-                  <kpi.icon className="w-5 h-5 opacity-80" />
+                  <div className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
+                    <kpi.icon className="w-5.5 h-5.5" />
+                  </div>
                 </div>
                 <div className="text-3xl font-extrabold text-white mt-4 font-sans tracking-tight">
                   {kpi.value}

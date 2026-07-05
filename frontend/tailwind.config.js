@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         brand: {
-          light: '#8B35D6',   // Vibrant purple accent
-          DEFAULT: '#681AA7', // Brand primary indigo-violet
-          dark: '#4D0E80',    // Rich purple-navy
+          light: '#A855F7',   // Hover Purple
+          DEFAULT: '#8B5CF6', // Primary Purple
+          dark: '#171125',    // Cards Background
         }
       },
       borderRadius: {

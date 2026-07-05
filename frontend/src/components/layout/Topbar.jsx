@@ -34,7 +34,7 @@ const Topbar = ({ toggleSidebar }) => {
   };
 
   return (
-    <header className="h-16 border-b border-white/5 bg-[#0a0715]/40 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-30">
+    <header className="h-16 border-b border-white/5 bg-[#0F0B1A]/80 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-42">
       <div className="flex items-center space-x-4">
         {/* Toggle Sidebar (Mobile) */}
         <button
@@ -52,7 +52,7 @@ const Topbar = ({ toggleSidebar }) => {
         {/* Notification Bell stub */}
         <button className="p-2 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition-colors relative">
           <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-light rounded-full" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-brand rounded-full" />
         </button>
 
         {/* User profile actions dropdown */}
@@ -61,7 +61,7 @@ const Topbar = ({ toggleSidebar }) => {
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="flex items-center space-x-2 text-slate-300 hover:text-white transition-colors focus:outline-none"
           >
-            <div className="w-8 h-8 rounded-xl bg-brand/30 border border-brand-light/35 flex items-center justify-center text-brand-light font-bold text-sm">
+            <div className="w-8 h-8 rounded-xl bg-brand/20 border border-brand/35 flex items-center justify-center text-brand font-bold text-sm">
               {user ? user.name.charAt(0).toUpperCase() : 'U'}
             </div>
             <span className="text-sm font-semibold hidden md:block select-none">{user?.name}</span>
@@ -73,27 +73,27 @@ const Topbar = ({ toggleSidebar }) => {
               {/* Overlay to close on outside clicks */}
               <div onClick={() => setDropdownOpen(false)} className="fixed inset-0 z-40" />
 
-              <div className="absolute right-0 mt-3.5 w-52 glass-card rounded-2xl p-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="px-3.5 py-2.5 border-b border-white/5 mb-1.5 md:hidden">
-                  <p className="text-sm font-semibold text-slate-200 truncate">{user?.name}</p>
-                  <p className="text-xs text-slate-500 capitalize">{user?.role}</p>
+              <div className="absolute right-0 mt-3.5 w-56 glass-card rounded-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="px-4 py-3 border-b border-white/5 mb-1.5">
+                  <p className="text-sm font-semibold text-white truncate">{user?.name}</p>
+                  <p className="text-xs text-slate-400 capitalize">{user?.role}</p>
                 </div>
 
                 <Link
                   to="/settings/profile"
                   onClick={() => setDropdownOpen(false)}
-                  className="flex items-center space-x-2 px-3 py-2.5 rounded-xl text-sm text-slate-400 hover:bg-white/5 hover:text-white transition-colors font-medium"
+                  className="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm text-slate-300 hover:bg-white/5 hover:text-white transition-colors font-medium"
                 >
-                  <User className="w-4 h-4" />
+                  <User className="w-4 h-4 text-slate-400" />
                   <span>My Profile</span>
                 </Link>
 
                 <Link
                   to="/settings/company"
                   onClick={() => setDropdownOpen(false)}
-                  className="flex items-center space-x-2 px-3 py-2.5 rounded-xl text-sm text-slate-400 hover:bg-white/5 hover:text-white transition-colors font-medium"
+                  className="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm text-slate-300 hover:bg-white/5 hover:text-white transition-colors font-medium mt-0.5"
                 >
-                  <Settings className="w-4 h-4" />
+                  <Settings className="w-4 h-4 text-slate-400" />
                   <span>Settings</span>
                 </Link>
 
@@ -102,9 +102,9 @@ const Topbar = ({ toggleSidebar }) => {
                     setDropdownOpen(false);
                     logout();
                   }}
-                  className="w-full flex items-center space-x-2 px-3 py-2.5 rounded-xl text-sm text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors font-medium border-t border-white/5 mt-1.5"
+                  className="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition-colors font-medium border-t border-white/5 mt-1.5 pt-2.5"
                 >
-                  <LogOut className="w-4 h-4" />
+                  <LogOut className="w-4 h-4 text-rose-400" />
                   <span>Sign Out</span>
                 </button>
               </div>

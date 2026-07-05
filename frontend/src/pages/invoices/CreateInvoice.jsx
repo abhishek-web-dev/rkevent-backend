@@ -17,7 +17,7 @@ import {
   Check,
   User,
   Calendar,
-  DollarSign,
+  IndianRupee,
   Briefcase,
   Layers,
   FileText,
@@ -731,7 +731,7 @@ const CreateInvoice = () => {
           <Card className="space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-white/5">
               <h3 className="text-lg font-bold text-white flex items-center space-x-2">
-                <DollarSign className="w-5 h-5 text-brand-light" />
+                <IndianRupee className="w-5 h-5 text-brand-light" />
                 <span>Payment Summary & Token Advance</span>
               </h3>
             </div>

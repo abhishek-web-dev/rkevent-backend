@@ -6,17 +6,16 @@ import {
   FileText,
   CreditCard,
   Settings,
-  Shield,
   X,
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import logoWhite from '../../assets/logo-white.png';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { user } = useAuth();
 
   const links = [
     { name: 'Dashboard', path: '/', icon: LayoutDashboard },
-    { name: 'Customers', path: '/customers', icon: Users },
     { name: 'Invoices', path: '/invoices', icon: FileText },
     { name: 'Payments', path: '/payments', icon: CreditCard },
     { name: 'Settings', path: '/settings/company', icon: Settings },
@@ -33,19 +32,22 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-45 w-64 bg-[#0a0715] border-r border-white/5 flex flex-col transition-transform duration-300 transform lg:translate-x-0 lg:static lg:h-screen ${
+        className={`fixed inset-y-0 left-0 z-45 w-64 bg-[#171125] border-r border-white/5 flex flex-col transition-transform duration-300 transform lg:translate-x-0 lg:static lg:h-screen ${
           isOpen ? 'translate-x-0' : '-translate-x-0 -translate-x-full'
         }`}
       >
         {/* Sidebar Header */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-white/5">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-tr from-brand-light to-brand rounded-lg flex items-center justify-center shadow shadow-brand/20">
-              <Shield className="w-4 h-4 text-white" />
+            <img src={logoWhite} alt="RK Event Logo" className="w-9 h-9 object-contain" />
+            <div className="flex flex-col">
+              <span className="font-black text-white text-xs tracking-widest font-sans leading-none uppercase">
+                RK EVENT
+              </span>
+              <span className="text-[9px] text-brand font-extrabold tracking-widest leading-none mt-1">
+                JHANSI
+              </span>
             </div>
-            <span className="font-bold text-white text-base tracking-wide font-sans">
-              RK Event Backend
-            </span>
           </div>
           <button
             onClick={toggleSidebar}
