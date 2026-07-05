@@ -205,7 +205,7 @@ const seedDB = async () => {
       {
         userId: adminUser._id,
         action: 'Payment Received',
-        details: `Payment of $${payment.amount} received for invoice ${invoice2.invoiceNumber}`,
+        details: `Payment of ₹${payment.amount} received for invoice ${invoice2.invoiceNumber}`,
         ipAddress: '127.0.0.1',
       },
     ]);

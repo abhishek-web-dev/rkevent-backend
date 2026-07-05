@@ -27,6 +27,10 @@ app.use(express.json());
 // Parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static uploads when Cloudinary fallback is active
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+
 // Apply global rate limiting for API paths
 app.use('/api', apiLimiter);
 

@@ -63,7 +63,7 @@ const sendInvoiceEmail = async (toEmail, customerName, invoice, pdfBuffer) => {
             </tr>
             <tr>
               <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">Total Amount</td>
-              <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">$${invoice.totalAmount.toFixed(2)}</td>
+              <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">${invoice.totalAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, style: 'currency', currency: 'INR' })}</td>
             </tr>
             <tr style="background-color: #f8f9fa;">
               <td style="padding: 10px; border: 1px solid #dee2e6; font-weight: bold;">Due Date</td>

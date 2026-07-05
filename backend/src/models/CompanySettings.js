@@ -61,6 +61,15 @@ const companySettingsSchema = new mongoose.Schema(
   }
 );
 
+// Virtual for logoUrl to match frontend expectations
+companySettingsSchema.virtual('logoUrl').get(function() {
+  return this.companyLogo;
+});
+
+// Ensure virtual fields are serialized to JSON and Objects
+companySettingsSchema.set('toJSON', { virtuals: true });
+companySettingsSchema.set('toObject', { virtuals: true });
+
 const CompanySettings = mongoose.model('CompanySettings', companySettingsSchema);
 
 module.exports = CompanySettings;

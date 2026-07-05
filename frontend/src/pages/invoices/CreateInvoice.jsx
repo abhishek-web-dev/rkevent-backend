@@ -27,34 +27,28 @@ import {
   HelpCircle
 } from 'lucide-react';
 
-// Preset Services matching Indian Event Business Categories
-const PRESET_SERVICES = {
-  'Photography': [
-    { name: 'Wedding Photography', price: 25000 },
-    { name: 'Pre Wedding Shoot', price: 15000 },
-    { name: 'Cinematic Video', price: 30000 },
-    { name: 'Ring Ceremony Photography', price: 10000 },
-    { name: 'Birthday Photography', price: 8000 },
-    { name: 'Drone Shoot', price: 12000 },
-    { name: 'Album', price: 5000 }
-  ],
-  'Decoration': [
-    { name: 'Stage Decoration', price: 20000 },
-    { name: 'Home Decoration', price: 5000 },
-    { name: 'Birthday Decoration', price: 4000 },
-    { name: 'Bride Entry', price: 6000 },
-    { name: 'Flower Decoration', price: 8000 }
-  ],
-  'Event Planning': [
-    { name: 'Full Event Planner', price: 50000 },
-    { name: 'DJ', price: 10000 },
-    { name: 'Sound System', price: 8000 },
-    { name: 'LED Screen', price: 12000 },
-    { name: 'Catering', price: 450 }, // Per plate
-    { name: 'Makeup Artist', price: 15000 },
-    { name: 'Car Decoration', price: 3000 }
-  ]
-};
+// Preset Services matching Indian Event Business
+const PRESET_SERVICES_LIST = [
+  'Wedding Photography',
+  'Pre Wedding Shoot',
+  'Cinematic Video',
+  'Ring Ceremony Photography',
+  'Birthday Photography',
+  'Drone Shoot',
+  'Album',
+  'Stage Decoration',
+  'Home Decoration',
+  'Birthday Decoration',
+  'Bride Entry',
+  'Flower Decoration',
+  'Full Event Planner',
+  'DJ',
+  'Sound System',
+  'LED Screen',
+  'Catering',
+  'Makeup Artist',
+  'Car Decoration'
+];
 
 // Flattened validation schema
 const bookingFormSchema = zod.object({
@@ -71,6 +65,7 @@ const bookingFormSchema = zod.object({
   saveCustomer: zod.boolean().default(true),
 
   eventType: zod.string().min(1, 'Event type is required'),
+  customEventType: zod.string().optional(),
   eventDate: zod.string().min(1, 'Event date is required'),
   eventTime: zod.string().optional(),
   eventLocation: zod.string().min(1, 'Event location is required'),
@@ -80,7 +75,7 @@ const bookingFormSchema = zod.object({
   items: zod.array(
     zod.object({
       serviceName: zod.string().min(1, 'Service name is required'),
-      category: zod.string().min(1, 'Service category is required'),
+      category: zod.string().optional().default(''),
       description: zod.string().optional(),
       quantity: zod.coerce.number().min(1, 'Quantity must be at least 1'),
       price: zod.coerce.number().min(0, 'Price must be positive'),
@@ -113,6 +108,13 @@ const bookingFormSchema = zod.object({
         path: ['customerPhone'],
       });
     }
+  }
+  if (data.eventType === 'Other' && (!data.customEventType || data.customEventType.trim() === '')) {
+    ctx.addIssue({
+      code: zod.ZodIssueCode.custom,
+      message: 'Custom event type is required',
+      path: ['customEventType'],
+    });
   }
 });
 
@@ -152,13 +154,14 @@ const CreateInvoice = () => {
       saveCustomer: true,
       
       eventType: '',
+      customEventType: '',
       eventDate: new Date().toISOString().substring(0, 10),
       eventTime: '18:00',
       eventLocation: '',
       expectedGuestCount: 0,
       specialRequirements: '',
       
-      items: [{ serviceName: '', category: 'Photography', description: '', quantity: 1, price: 0 }],
+      items: [{ serviceName: '', category: '', description: '', quantity: 1, price: 0 }],
       discount: 0,
       tokenAmount: 0,
       paymentMode: 'UPI',
@@ -176,6 +179,25 @@ const CreateInvoice = () => {
   const watchedItems = watch('items') || [];
   const watchedDiscount = watch('discount') || 0;
   const watchedTokenAmount = watch('tokenAmount') || 0;
+  const watchedEventType = watch('eventType');
+  const watchedCustomEventType = watch('customEventType');
+
+  // Photography event check to hide guest counts
+  const shouldShowGuestCount = (type) => {
+    if (!type) return true;
+    const t = type.toLowerCase();
+    return !(
+      t.includes('photography') ||
+      t.includes('shoot') ||
+      t.includes('drone') ||
+      t.includes('album') ||
+      t === 'pre wedding' ||
+      t === 'pre-wedding'
+    );
+  };
+
+  const resolvedEventTypeForGuestCheck = watchedEventType === 'Other' ? watchedCustomEventType : watchedEventType;
+  const showGuestCount = shouldShowGuestCount(resolvedEventTypeForGuestCheck);
 
   // Real-time calculations
   const subtotal = watchedItems.reduce((sum, item) => {
@@ -206,6 +228,7 @@ const CreateInvoice = () => {
     } else if (step === 2) {
       isValid = await trigger([
         'eventType',
+        'customEventType',
         'eventDate',
         'eventTime',
         'eventLocation',
@@ -242,15 +265,24 @@ const CreateInvoice = () => {
   });
 
   const onSubmit = (data) => {
+    const finalEventType = data.eventType === 'Other' ? data.customEventType : data.eventType;
+    const finalGuestCount = shouldShowGuestCount(finalEventType) ? data.expectedGuestCount : 0;
+
     const apiPayload = {
       dueDate: data.eventDate, // defaults due date to event date
-      eventType: data.eventType,
+      eventType: finalEventType,
       eventDate: data.eventDate,
       eventTime: data.eventTime,
       eventLocation: data.eventLocation,
-      expectedGuestCount: data.expectedGuestCount,
+      expectedGuestCount: finalGuestCount,
       specialRequirements: data.specialRequirements,
-      items: data.items,
+      items: data.items.map(item => ({
+        serviceName: item.serviceName,
+        category: item.category || '',
+        description: item.description || '',
+        quantity: item.quantity,
+        price: item.price
+      })),
       discount: data.discount,
       tokenAmount: data.tokenAmount,
       paymentMode: data.paymentMode,
@@ -262,12 +294,12 @@ const CreateInvoice = () => {
       apiPayload.customerDetails = {
         name: data.customerName,
         phone: data.customerPhone,
-        alternatePhone: data.customerAlternatePhone,
-        email: data.customerEmail,
-        address: data.customerAddress,
-        city: data.customerCity,
-        state: data.customerState,
-        pincode: data.customerPincode,
+        alternatePhone: data.customerAlternatePhone || undefined,
+        email: data.customerEmail || undefined,
+        address: data.customerAddress || undefined,
+        city: data.customerCity || undefined,
+        state: data.customerState || undefined,
+        pincode: data.customerPincode || undefined,
         saveCustomer: data.saveCustomer,
       };
     }
@@ -514,6 +546,15 @@ const CreateInvoice = () => {
                 error={errors.eventType?.message}
               />
 
+              {watchedEventType === 'Other' && (
+                <Input
+                  {...register('customEventType')}
+                  label="Enter Custom Event Type *"
+                  placeholder="e.g. Naming Ceremony, Temple Function"
+                  error={errors.customEventType?.message}
+                />
+              )}
+
               <Input
                 {...register('eventDate')}
                 type="date"
@@ -535,18 +576,20 @@ const CreateInvoice = () => {
                 error={errors.eventLocation?.message}
               />
 
-              <Input
-                {...register('expectedGuestCount')}
-                type="number"
-                label="Expected Guest Count"
-                placeholder="200"
-                error={errors.expectedGuestCount?.message}
-              />
+              {showGuestCount && (
+                <Input
+                  {...register('expectedGuestCount')}
+                  type="number"
+                  label="Expected Guest Count"
+                  placeholder="200"
+                  error={errors.expectedGuestCount?.message}
+                />
+              )}
             </div>
 
             <div className="space-y-1.5 animate-in fade-in duration-200">
               <label className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
-                Special Requirements
+                Client Requirements / Notes
               </label>
               <textarea
                 {...register('specialRequirements')}
@@ -564,13 +607,13 @@ const CreateInvoice = () => {
             <div className="flex items-center justify-between pb-3 border-b border-white/5">
               <h3 className="text-lg font-bold text-white flex items-center space-x-2">
                 <Briefcase className="w-5 h-5 text-brand-light" />
-                <span>Select Services & Rentals Packages</span>
+                <span>Select Services & Packages</span>
               </h3>
               <Button
                 type="button"
                 variant="glass"
                 size="sm"
-                onClick={() => append({ serviceName: '', category: 'Photography', description: '', quantity: 1, price: 0 })}
+                onClick={() => append({ serviceName: '', category: '', description: '', quantity: 1, price: 0 })}
                 className="rounded-xl flex items-center space-x-1.5"
               >
                 <Plus className="w-4 h-4" />
@@ -580,49 +623,56 @@ const CreateInvoice = () => {
 
             <div className="space-y-4">
               {fields.map((field, index) => {
-                const category = watchedItems[index]?.category;
                 const rowTotal = (watchedItems[index]?.quantity || 1) * (watchedItems[index]?.price || 0);
 
                 return (
                   <div
                     key={field.id}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end p-4.5 rounded-2xl bg-white/[0.01] border border-white/5 animate-in fade-in duration-200"
+                    className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end p-4 rounded-2xl bg-white/[0.01] border border-white/5 animate-in fade-in duration-200"
                   >
-                    {/* Category Select */}
-                    <div className="md:col-span-3">
-                      <Select
-                        {...register(`items.${index}.category`)}
-                        label={index === 0 ? 'Category *' : undefined}
-                        options={[
-                          { label: 'Photography', value: 'Photography' },
-                          { label: 'Decoration', value: 'Decoration' },
-                          { label: 'Event Planning', value: 'Event Planning' },
-                        ]}
-                      />
+                    {/* Service Name Input & Dropdown combo */}
+                    <div className="md:col-span-5 space-y-2">
+                      {index === 0 && (
+                        <label className="text-xs font-semibold text-slate-350 uppercase tracking-wider block">
+                          Service Name *
+                        </label>
+                      )}
+                      <div className="flex gap-2">
+                        <select
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === 'Other') {
+                              setValue(`items.${index}.serviceName`, '');
+                            } else {
+                              setValue(`items.${index}.serviceName`, val);
+                            }
+                          }}
+                          className="w-1/2 px-3 py-2 rounded-xl glass-input text-white text-xs outline-none focus:border-brand-light"
+                          defaultValue=""
+                        >
+                          <option value="" className="bg-slate-900">Preset list...</option>
+                          {PRESET_SERVICES_LIST.map((name) => (
+                            <option key={name} value={name} className="bg-slate-900">
+                              {name}
+                            </option>
+                          ))}
+                          <option value="Other" className="bg-slate-900">Other (Enter Custom)</option>
+                        </select>
+                        <input
+                          type="text"
+                          {...register(`items.${index}.serviceName`)}
+                          placeholder="Or enter custom name"
+                          className="w-1/2 px-3 py-2 rounded-xl glass-input text-white text-xs outline-none focus:border-brand-light"
+                        />
+                      </div>
+                      {errors.items?.[index]?.serviceName && (
+                        <span className="text-xs text-rose-450 font-medium block">
+                          {errors.items[index].serviceName.message}
+                        </span>
+                      )}
                     </div>
 
-                    {/* Service Preset Lookup & Text input combo */}
-                    <div className="md:col-span-3">
-                      <Select
-                        label={index === 0 ? 'Service Name *' : undefined}
-                        onChange={(e) => handlePresetSelect(index, e.target.value)}
-                        options={[
-                          { label: 'Choose Preset service...', value: '' },
-                          ...(PRESET_SERVICES[category] || []).map((p) => ({
-                            label: `${p.name} (₹${p.price})`,
-                            value: p.name,
-                          })),
-                          { label: 'Other (Enter Custom)', value: 'custom' },
-                        ]}
-                      />
-                      <Input
-                        {...register(`items.${index}.serviceName`)}
-                        placeholder="Or custom service name"
-                        className="mt-2"
-                        error={errors.items?.[index]?.serviceName?.message}
-                      />
-                    </div>
-
+                    {/* Quantity */}
                     <div className="md:col-span-2">
                       <Input
                         {...register(`items.${index}.quantity`)}
@@ -633,6 +683,7 @@ const CreateInvoice = () => {
                       />
                     </div>
 
+                    {/* Price */}
                     <div className="md:col-span-2">
                       <Input
                         {...register(`items.${index}.price`)}
@@ -643,16 +694,26 @@ const CreateInvoice = () => {
                       />
                     </div>
 
-                    <div className="md:col-span-2 flex items-center justify-between h-11">
-                      <span className="text-sm font-extrabold text-slate-200 font-sans mt-2">
+                    {/* Amount */}
+                    <div className="md:col-span-2 flex flex-col justify-end h-full pb-2">
+                      {index === 0 && (
+                        <label className="text-xs font-semibold text-slate-350 uppercase tracking-wider block mb-2">
+                          Amount
+                        </label>
+                      )}
+                      <span className="text-sm font-bold text-slate-200 font-sans mt-2">
                         {formatCurrency(rowTotal)}
                       </span>
+                    </div>
+
+                    {/* Delete */}
+                    <div className="md:col-span-1 flex justify-center pb-1">
                       {fields.length > 1 && (
                         <Button
                           type="button"
                           variant="glass"
                           onClick={() => remove(index)}
-                          className="rounded-xl p-2.5 text-rose-450 hover:bg-rose-500/10 hover:border-rose-500/20 mt-2"
+                          className="rounded-xl p-2.5 text-rose-450 hover:bg-rose-500/10 hover:border-rose-500/20"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -764,7 +825,6 @@ const CreateInvoice = () => {
                   <thead>
                     <tr className="border-b border-white/5 text-slate-400 font-semibold pb-2">
                       <th className="pb-2">Service</th>
-                      <th className="pb-2 text-center">Category</th>
                       <th className="pb-2 text-center">Qty</th>
                       <th className="pb-2 text-right">Price</th>
                       <th className="pb-2 text-right">Amount</th>
@@ -774,7 +834,6 @@ const CreateInvoice = () => {
                     {watchedItems.map((item, idx) => (
                       <tr key={idx} className="text-slate-350">
                         <td className="py-2.5 font-medium">{item.serviceName}</td>
-                        <td className="py-2.5 text-center">{item.category}</td>
                         <td className="py-2.5 text-center">{item.quantity}</td>
                         <td className="py-2.5 text-right font-sans">{formatCurrency(item.price)}</td>
                         <td className="py-2.5 text-right font-bold text-slate-200 font-sans">

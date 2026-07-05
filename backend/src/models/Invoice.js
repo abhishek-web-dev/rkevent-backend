@@ -99,7 +99,6 @@ const invoiceSchema = new mongoose.Schema(
     // Event Details
     eventType: {
       type: String,
-      enum: ['Wedding', 'Pre Wedding', 'Ring Ceremony', 'Birthday', 'Haldi', 'Engagement', 'Baby Shower', 'Anniversary', 'Corporate Event', 'Other', ''],
       default: '',
     },
     eventDate: {

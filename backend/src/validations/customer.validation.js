@@ -6,7 +6,7 @@ const createCustomer = {
       'any.required': 'Customer name is required',
     }),
     companyName: Joi.string().allow('').optional(),
-    email: Joi.string().email().allow('').optional().messages({
+    email: Joi.string().email().empty('').optional().messages({
       'string.email': 'Please enter a valid customer email',
     }),
     phone: Joi.string().required().messages({
@@ -25,7 +25,7 @@ const updateCustomer = {
   body: Joi.object().keys({
     name: Joi.string().optional(),
     companyName: Joi.string().allow('').optional(),
-    email: Joi.string().email().allow('').optional(),
+    email: Joi.string().email().empty('').optional(),
     phone: Joi.string().optional(),
     alternatePhone: Joi.string().allow('').optional(),
     address: Joi.string().allow('').optional(),

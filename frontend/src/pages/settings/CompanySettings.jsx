@@ -54,8 +54,8 @@ const CompanySettings = () => {
         invoicePrefix: c.invoicePrefix || 'INV',
         invoiceStartNumber: c.invoiceStartNumber || 1,
       });
-      if (c.logoUrl) {
-        setLogoPreview(c.logoUrl);
+      if (c.companyLogo || c.logoUrl) {
+        setLogoPreview(c.companyLogo || c.logoUrl);
       }
     }
   }, [settingsRes, reset]);

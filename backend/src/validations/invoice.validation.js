@@ -19,7 +19,7 @@ const createInvoice = {
         'any.required': 'Customer phone is required',
       }),
       alternatePhone: Joi.string().allow('').optional(),
-      email: Joi.string().email().allow('').optional(),
+      email: Joi.string().email().empty('').optional(),
       address: Joi.string().allow('').optional(),
       city: Joi.string().allow('').optional(),
       state: Joi.string().allow('').optional(),
@@ -27,7 +27,7 @@ const createInvoice = {
       saveCustomer: Joi.boolean().default(true),
     }).optional(),
     // Event Details
-    eventType: Joi.string().valid('Wedding', 'Pre Wedding', 'Ring Ceremony', 'Birthday', 'Haldi', 'Engagement', 'Baby Shower', 'Anniversary', 'Corporate Event', 'Other', '').optional(),
+    eventType: Joi.string().allow('').optional(),
     eventDate: Joi.date().allow(null).optional(),
     eventTime: Joi.string().allow('').optional(),
     eventLocation: Joi.string().allow('').optional(),
@@ -47,7 +47,7 @@ const createInvoice = {
         Joi.object().keys({
           title: Joi.string().allow('').optional(),
           serviceName: Joi.string().allow('').optional(),
-          category: Joi.string().valid('Photography', 'Decoration', 'Event Planning', '').optional(),
+          category: Joi.string().allow('').optional(),
           description: Joi.string().allow('').optional(),
           quantity: Joi.number().integer().min(1).required().messages({
             'any.required': 'Item quantity is required',
@@ -77,7 +77,7 @@ const updateInvoice = {
     status: Joi.string().valid('Pending', 'Partial', 'Paid', 'Overdue').optional(),
     
     // Event Details
-    eventType: Joi.string().valid('Wedding', 'Pre Wedding', 'Ring Ceremony', 'Birthday', 'Haldi', 'Engagement', 'Baby Shower', 'Anniversary', 'Corporate Event', 'Other', '').optional(),
+    eventType: Joi.string().allow('').optional(),
     eventDate: Joi.date().allow(null).optional(),
     eventTime: Joi.string().allow('').optional(),
     eventLocation: Joi.string().allow('').optional(),
@@ -95,7 +95,7 @@ const updateInvoice = {
           _id: Joi.string().regex(objectIdPattern).optional(),
           title: Joi.string().allow('').optional(),
           serviceName: Joi.string().allow('').optional(),
-          category: Joi.string().valid('Photography', 'Decoration', 'Event Planning', '').optional(),
+          category: Joi.string().allow('').optional(),
           description: Joi.string().allow('').optional(),
           quantity: Joi.number().integer().min(1).required(),
           price: Joi.number().min(0).required(),
