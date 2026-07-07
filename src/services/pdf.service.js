@@ -46,8 +46,9 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     // 1. Prepare Logo HTML with Base64 load fallback
     let logoHtml = '';
     try {
-      if (fs.existsSync('E:\\Projects\\RK-Event\\logo-white.png')) {
-        const logoBuffer = fs.readFileSync('E:\\Projects\\RK-Event\\logo-white.png');
+      const logoPath = path.join(__dirname, '../../public/logo-white.png');
+      if (fs.existsSync(logoPath)) {
+        const logoBuffer = fs.readFileSync(logoPath);
         const logoBase64 = `data:image/png;base64,${logoBuffer.toString('base64')}`;
         logoHtml = `<img src="${logoBase64}" alt="${companySettings.companyName}" style="max-height: 95px; max-width: 290px; object-fit: contain;">`;
       } else if (companySettings.companyLogo) {
@@ -90,8 +91,9 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     // 5. Prepare Signature Image HTML with Base64 fallback
     let signatureHtml = '';
     try {
-      if (fs.existsSync('E:\\Projects\\RK-Event\\signature.png')) {
-        const sigBuffer = fs.readFileSync('E:\\Projects\\RK-Event\\signature.png');
+      const sigPath = path.join(__dirname, '../../public/signature.png');
+      if (fs.existsSync(sigPath)) {
+        const sigBuffer = fs.readFileSync(sigPath);
         const sigBase64 = `data:image/png;base64,${sigBuffer.toString('base64')}`;
         signatureHtml = `<img src="${sigBase64}" alt="Signature" style="max-height: 55px; max-width: 140px; object-fit: contain;">`;
       } else if (companySettings.signatureUrl) {
