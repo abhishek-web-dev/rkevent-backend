@@ -34,7 +34,7 @@ const Topbar = ({ toggleSidebar }) => {
   };
 
   return (
-    <header className="h-16 border-b border-white/5 bg-[#0F0B1A]/80 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-42">
+    <header className="h-16 border-b border-white/5 bg-[#0F0B1A]/80 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-[100]">
       <div className="flex items-center space-x-4">
         {/* Toggle Sidebar (Mobile) */}
         <button
@@ -73,7 +73,7 @@ const Topbar = ({ toggleSidebar }) => {
               {/* Overlay to close on outside clicks */}
               <div onClick={() => setDropdownOpen(false)} className="fixed inset-0 z-40" />
 
-              <div className="absolute right-0 mt-3.5 w-56 glass-card rounded-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute right-0 mt-3.5 w-56 glass-card rounded-2xl p-2 z-[9999] animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="px-4 py-3 border-b border-white/5 mb-1.5">
                   <p className="text-sm font-semibold text-white truncate">{user?.name}</p>
                   <p className="text-xs text-slate-400 capitalize">{user?.role}</p>

@@ -9,7 +9,7 @@ const DashboardLayout = () => {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
-    <div className="flex h-screen bg-[#0c0817] overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#0F0B1A] overflow-hidden font-sans">
       {/* Sidebar Nav Drawer */}
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
