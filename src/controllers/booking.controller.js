@@ -237,7 +237,8 @@ const getBooking = async (req, res, next) => {
     const functions = await BookingFunction.find({ booking: booking._id }).sort({ date: 1, startTime: 1 });
     const services = await BookingService.find({ booking: booking._id })
       .populate('serviceId', 'name slug basePrice')
-      .populate('assignedStaff', 'name email role');
+      .populate('assignedStaff', 'name email role')
+      .populate('assignedEquipment', 'name category serialNumber status');
 
     res.status(200).json(new ApiResponse(200, {
       booking,

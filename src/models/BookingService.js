@@ -82,7 +82,8 @@ const bookingServiceSchema = new mongoose.Schema({
     ref: 'User' 
   }],
   assignedEquipment: [{ 
-    type: mongoose.Schema.Types.ObjectId 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Equipment'
   }], // Kept open for future equipment module
   tasks: {
     type: [taskSchema],

@@ -199,10 +199,23 @@ const changePassword = async (req, res, next) => {
   }
 };
 
+/**
+ * Get list of all staff
+ */
+const getStaff = async (req, res, next) => {
+  try {
+    const users = await User.find({}).select('name email role');
+    res.status(200).json(new ApiResponse(200, users, 'Staff list retrieved successfully'));
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
   getProfile,
   updateProfile,
   changePassword,
+  getStaff,
 };

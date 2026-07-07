@@ -11,6 +11,7 @@ const systemRoutes = require('./system.routes');
 const serviceRoutes = require('./service.routes');
 const templateRoutes = require('./template.routes');
 const bookingRoutes = require('./booking.routes');
+const equipmentRoutes = require('./equipment.routes');
 
 // Mount routes
 router.use('/auth', authRoutes);
@@ -23,5 +24,6 @@ router.use('/system', systemRoutes);
 router.use('/services', serviceRoutes);
 router.use('/templates', templateRoutes);
 router.use('/bookings', bookingRoutes);
+router.use('/equipment', equipmentRoutes);
 
 module.exports = router;

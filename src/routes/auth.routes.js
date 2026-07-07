@@ -13,5 +13,6 @@ router.post('/login', authLimiter, validate(authValidation.login), authControlle
 router.get('/profile', protect, authController.getProfile);
 router.put('/profile', protect, validate(authValidation.updateProfile), authController.updateProfile);
 router.put('/change-password', protect, validate(authValidation.changePassword), authController.changePassword);
+router.get('/staff', protect, authController.getStaff);
 
 module.exports = router;
