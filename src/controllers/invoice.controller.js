@@ -1,6 +1,8 @@
 const Invoice = require('../models/Invoice');
 const Customer = require('../models/Customer');
 const CompanySettings = require('../models/CompanySettings');
+const Booking = require('../models/Booking');
+const BookingService = require('../models/BookingService');
 const ApiError = require('../utils/apiError');
 const ApiResponse = require('../utils/apiResponse');
 const { generateInvoicePdf } = require('../services/pdf.service');
@@ -45,12 +47,14 @@ const createInvoice = async (req, res, next) => {
     const {
       dueDate,
       customer,
+      booking,
       customerDetails,
       notes,
       discount,
       items,
+      taxConfig,
       
-      // Event Details
+      // Event Details (Legacy)
       eventType,
       eventDate,
       eventTime,
@@ -66,8 +70,17 @@ const createInvoice = async (req, res, next) => {
 
     let finalCustomerId;
     let customerNameForLog = '';
+    let bookingObj = null;
 
-    // 1. Resolve Customer ID
+    // 1. Resolve Booking if linked
+    if (booking) {
+      bookingObj = await Booking.findById(booking);
+      if (!bookingObj) {
+        throw new ApiError(404, 'Booking not found');
+      }
+    }
+
+    // 2. Resolve Customer ID
     if (customer && typeof customer === 'string') {
       const customerObj = await Customer.findById(customer);
       if (!customerObj) {
@@ -75,15 +88,21 @@ const createInvoice = async (req, res, next) => {
       }
       finalCustomerId = customerObj._id;
       customerNameForLog = customerObj.name;
+    } else if (bookingObj) {
+      // Auto-extract customer from booking if customer parameter is omitted
+      const customerObj = await Customer.findById(bookingObj.customer);
+      if (customerObj) {
+        finalCustomerId = customerObj._id;
+        customerNameForLog = customerObj.name;
+      }
     } else if (customerDetails && customerDetails.name && customerDetails.phone) {
-      // Find customer by phone (not deleted)
+      // Legacy dynamic customer creation
       let customerObj = await Customer.findOne({
         phone: customerDetails.phone,
         isDeleted: { $ne: true },
       });
 
       if (customerObj) {
-        // Customer exists, update details if requested
         if (customerDetails.saveCustomer !== false) {
           customerObj.name = customerDetails.name;
           if (customerDetails.alternatePhone !== undefined) customerObj.alternatePhone = customerDetails.alternatePhone;
@@ -97,7 +116,6 @@ const createInvoice = async (req, res, next) => {
         finalCustomerId = customerObj._id;
         customerNameForLog = customerObj.name;
       } else {
-        // Create dynamic customer
         customerObj = new Customer({
           name: customerDetails.name,
           phone: customerDetails.phone,
@@ -116,25 +134,45 @@ const createInvoice = async (req, res, next) => {
       throw new ApiError(400, 'Customer reference or customerDetails are required');
     }
 
-    // 2. Generate Next auto invoice number
+    // 3. Resolve items (pulling from booking if not provided)
+    let invoiceItems = [];
+    if (items && items.length > 0) {
+      invoiceItems = items;
+    } else if (bookingObj) {
+      const bookingServices = await BookingService.find({ booking: bookingObj._id });
+      invoiceItems = bookingServices.map(bs => ({
+        title: bs.serviceSnapshot?.name || 'Service',
+        serviceName: bs.serviceSnapshot?.name || 'Service',
+        quantity: 1,
+        price: bs.quotedPrice,
+        amount: bs.quotedPrice,
+        bookingService: bs._id
+      }));
+    } else {
+      throw new ApiError(400, 'Invoice items are required');
+    }
+
+    // 4. Generate Next auto invoice number
     const invoiceNumber = await getNextInvoiceNumber();
 
-    // 3. Construct Invoice record
+    // 5. Construct Invoice record
     const invoice = new Invoice({
       invoiceNumber,
       dueDate,
       customer: finalCustomerId,
+      booking: bookingObj ? bookingObj._id : null,
       notes,
-      discount,
-      items,
+      discount: discount || 0,
+      items: invoiceItems,
+      taxConfig: taxConfig || { taxType: 'None' },
       
-      // Event Info
-      eventType,
-      eventDate,
-      eventTime,
-      eventLocation,
-      expectedGuestCount,
-      specialRequirements,
+      // Event Info (Legacy compatibility / fallback)
+      eventType: eventType || (bookingObj ? 'Event' : ''),
+      eventDate: eventDate || (bookingObj ? bookingObj.startDate : null),
+      eventTime: eventTime || '',
+      eventLocation: eventLocation || (bookingObj ? bookingObj.notes || '' : ''),
+      expectedGuestCount: expectedGuestCount || 0,
+      specialRequirements: specialRequirements || '',
       
       // Payment Details
       tokenAmount: tokenAmount || 0,
@@ -142,10 +180,10 @@ const createInvoice = async (req, res, next) => {
       paymentMode: paymentMode || '',
     });
 
-    // 4. Save Invoice (triggers calculations pre-save)
+    // 6. Save Invoice (triggers calculations pre-save)
     await invoice.save();
 
-    // 5. Automate payment ledger registration if advance/token paid
+    // 7. Automate payment ledger registration if advance/token paid
     const finalToken = tokenAmount || advancePaid || 0;
     if (finalToken > 0) {
       const Payment = require('../models/Payment');
@@ -168,7 +206,7 @@ const createInvoice = async (req, res, next) => {
     );
 
     // Retrieve populated invoice for response
-    const populatedInvoice = await Invoice.findById(invoice._id).populate('customer');
+    const populatedInvoice = await Invoice.findById(invoice._id).populate('customer').populate('booking');
 
     res.status(201).json(new ApiResponse(201, populatedInvoice, 'Invoice created successfully'));
   } catch (error) {
@@ -251,10 +289,12 @@ const getInvoices = async (req, res, next) => {
  */
 const getInvoice = async (req, res, next) => {
   try {
-    const invoice = await Invoice.findOne({ _id: req.params.id, isDeleted: { $ne: true } }).populate(
-      'customer',
-      'name companyName email phone address notes'
-    );
+    const invoice = await Invoice.findOne({ _id: req.params.id, isDeleted: { $ne: true } })
+      .populate('customer', 'name companyName email phone address notes')
+      .populate({
+        path: 'booking',
+        select: 'bookingNumber startDate endDate status notes'
+      });
     
     if (!invoice) {
       throw new ApiError(404, 'Invoice not found or has been deleted');
@@ -274,10 +314,12 @@ const updateInvoice = async (req, res, next) => {
     const {
       dueDate,
       customer,
+      booking,
       notes,
       discount,
       items,
       status,
+      taxConfig,
 
       // Event details
       eventType,
@@ -306,11 +348,30 @@ const updateInvoice = async (req, res, next) => {
       invoice.customer = customer;
     }
 
+    if (booking !== undefined) {
+      if (booking) {
+        const bookingObj = await Booking.findOne({ _id: booking, isDeleted: { $ne: true } });
+        if (!bookingObj) {
+          throw new ApiError(404, 'Booking not found');
+        }
+        invoice.booking = booking;
+      } else {
+        invoice.booking = null;
+      }
+    }
+
     if (dueDate) invoice.dueDate = dueDate;
     if (notes !== undefined) invoice.notes = notes;
     if (discount !== undefined) invoice.discount = discount;
     if (items) invoice.items = items;
     if (status) invoice.status = status;
+
+    if (taxConfig) {
+      invoice.taxConfig = {
+        ...invoice.taxConfig.toObject(),
+        ...taxConfig
+      };
+    }
 
     // Event updates
     if (eventType !== undefined) invoice.eventType = eventType;
@@ -336,7 +397,9 @@ const updateInvoice = async (req, res, next) => {
       req
     );
 
-    const updatedInvoice = await Invoice.findOne({ _id: invoice._id, isDeleted: { $ne: true } }).populate('customer');
+    const updatedInvoice = await Invoice.findOne({ _id: invoice._id, isDeleted: { $ne: true } })
+      .populate('customer')
+      .populate('booking');
     res.status(200).json(new ApiResponse(200, updatedInvoice, 'Invoice updated successfully'));
   } catch (error) {
     next(error);

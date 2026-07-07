@@ -36,6 +36,11 @@ const invoiceItemSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
+  bookingService: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'BookingService',
+    default: null,
+  },
 });
 
 const invoiceSchema = new mongoose.Schema(
@@ -59,6 +64,11 @@ const invoiceSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Customer',
       required: [true, 'Customer is required'],
+    },
+    booking: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Booking',
+      default: null,
     },
     items: [invoiceItemSchema],
     notes: {
@@ -95,6 +105,20 @@ const invoiceSchema = new mongoose.Schema(
       type: String,
       enum: ['Pending', 'Partial', 'Paid', 'Overdue'],
       default: 'Pending',
+    },
+    taxConfig: {
+      taxType: {
+        type: String,
+        enum: ['GST', 'IGST', 'None'],
+        default: 'None',
+      },
+      cgstRate: { type: Number, default: 0 },
+      sgstRate: { type: Number, default: 0 },
+      igstRate: { type: Number, default: 0 },
+      cgstAmount: { type: Number, default: 0 },
+      sgstAmount: { type: Number, default: 0 },
+      igstAmount: { type: Number, default: 0 },
+      taxableAmount: { type: Number, default: 0 },
     },
     // Event Details
     eventType: {
@@ -165,8 +189,30 @@ invoiceSchema.pre('save', function (next) {
   // 2. Calculate subtotal
   this.subtotal = this.items.reduce((sum, item) => sum + item.amount, 0);
 
-  // 3. Calculate total
-  this.totalAmount = Math.max(0, this.subtotal - this.discount);
+  // 3. Calculate taxable amount (subtotal - discount)
+  const taxable = Math.max(0, this.subtotal - this.discount);
+
+  // 4. Calculate taxes and final total amount
+  if (this.taxConfig) {
+    this.taxConfig.taxableAmount = taxable;
+    if (this.taxConfig.taxType === 'GST') {
+      this.taxConfig.cgstAmount = taxable * (this.taxConfig.cgstRate / 100);
+      this.taxConfig.sgstAmount = taxable * (this.taxConfig.sgstRate / 100);
+      this.taxConfig.igstAmount = 0;
+    } else if (this.taxConfig.taxType === 'IGST') {
+      this.taxConfig.igstAmount = taxable * (this.taxConfig.igstRate / 100);
+      this.taxConfig.cgstAmount = 0;
+      this.taxConfig.sgstAmount = 0;
+    } else {
+      this.taxConfig.cgstAmount = 0;
+      this.taxConfig.sgstAmount = 0;
+      this.taxConfig.igstAmount = 0;
+    }
+    const totalTax = this.taxConfig.cgstAmount + this.taxConfig.sgstAmount + this.taxConfig.igstAmount;
+    this.totalAmount = taxable + totalTax;
+  } else {
+    this.totalAmount = taxable;
+  }
 
   // Auto-treat Token Amount as Advance Payment if advancePaid is not set
   if (this.tokenAmount > 0 && this.advancePaid === 0) {
@@ -180,11 +226,11 @@ invoiceSchema.pre('save', function (next) {
     this.advancePaid = this.paidAmount;
   }
 
-  // 4. Calculate pending and remaining amount
+  // 5. Calculate pending and remaining amount
   this.pendingAmount = Math.max(0, this.totalAmount - this.paidAmount);
   this.remainingAmount = this.pendingAmount;
 
-  // 5. Update Status
+  // 6. Update Status
   if (this.paidAmount >= this.totalAmount && this.totalAmount > 0) {
     this.status = 'Paid';
   } else if (this.paidAmount > 0 && this.paidAmount < this.totalAmount) {

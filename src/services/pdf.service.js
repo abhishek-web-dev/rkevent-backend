@@ -32,6 +32,47 @@ const formatCurrency = (amount) => {
 };
 
 /**
+ * Get tax summary rows HTML for PDF
+ */
+const getTaxRowsHtml = (invoice) => {
+  if (!invoice.taxConfig || invoice.taxConfig.taxType === 'None') {
+    return '';
+  }
+
+  const tax = invoice.taxConfig;
+  let html = '';
+
+  html += `
+    <div class="summary-row" style="border-top: 1px dashed rgba(201, 162, 39, 0.15); padding-top: 4px; margin-top: 2px;">
+      <span class="summary-label">Taxable Value</span>
+      <span class="summary-val">${formatCurrency(tax.taxableAmount)}</span>
+    </div>
+  `;
+
+  if (tax.taxType === 'GST') {
+    html += `
+      <div class="summary-row">
+        <span class="summary-label">CGST (${tax.cgstRate}%)</span>
+        <span class="summary-val">${formatCurrency(tax.cgstAmount)}</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">SGST (${tax.sgstRate}%)</span>
+        <span class="summary-val">${formatCurrency(tax.sgstAmount)}</span>
+      </div>
+    `;
+  } else if (tax.taxType === 'IGST') {
+    html += `
+      <div class="summary-row">
+        <span class="summary-label">IGST (${tax.igstRate}%)</span>
+        <span class="summary-val">${formatCurrency(tax.igstAmount)}</span>
+      </div>
+    `;
+  }
+
+  return html;
+};
+
+/**
  * Generate PDF buffer for a specific invoice.
  * @param {object} invoice - The populated invoice document
  * @param {object} companySettings - Company settings document
@@ -143,6 +184,7 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       '{{statusBadgeClass}}': statusBadgeClass,
       '{{invoiceItemsRows}}': itemsHtmlRows,
       '{{notes}}': invoice.notes ? `<p style="margin-top: 6px; font-style: italic;">Note: ${invoice.notes}</p>` : '',
+      '{{taxRowsHtml}}': getTaxRowsHtml(invoice),
       '{{subtotal}}': formatCurrency(invoice.subtotal),
       '{{discount}}': formatCurrency(invoice.discount),
       '{{totalAmount}}': formatCurrency(invoice.totalAmount),

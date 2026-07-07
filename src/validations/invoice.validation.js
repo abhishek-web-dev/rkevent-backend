@@ -11,6 +11,9 @@ const createInvoice = {
     customer: Joi.string().regex(objectIdPattern).optional().messages({
       'string.pattern.base': 'Customer ID must be a valid MongoDB ObjectId',
     }),
+    booking: Joi.string().regex(objectIdPattern).optional().messages({
+      'string.pattern.base': 'Booking ID must be a valid MongoDB ObjectId',
+    }),
     customerDetails: Joi.object().keys({
       name: Joi.string().required().messages({
         'any.required': 'Customer name is required',
@@ -26,7 +29,14 @@ const createInvoice = {
       pincode: Joi.string().allow('').optional(),
       saveCustomer: Joi.boolean().default(true),
     }).optional(),
-    // Event Details
+    // Tax Settings
+    taxConfig: Joi.object().keys({
+      taxType: Joi.string().valid('GST', 'IGST', 'None').default('None'),
+      cgstRate: Joi.number().min(0).default(0),
+      sgstRate: Joi.number().min(0).default(0),
+      igstRate: Joi.number().min(0).default(0),
+    }).optional(),
+    // Event Details (Legacy support)
     eventType: Joi.string().allow('').optional(),
     eventDate: Joi.date().allow(null).optional(),
     eventTime: Joi.string().allow('').optional(),
@@ -57,14 +67,11 @@ const createInvoice = {
             'any.required': 'Item price is required',
             'number.min': 'Price cannot be negative',
           }),
+          bookingService: Joi.string().regex(objectIdPattern).optional()
         })
       )
       .min(1)
-      .required()
-      .messages({
-        'any.required': 'Invoice items are required',
-        'array.min': 'Invoice must contain at least one item',
-      }),
+      .optional() // Optional to support auto-pulling from booking services
   }),
 };
 
@@ -72,10 +79,19 @@ const updateInvoice = {
   body: Joi.object().keys({
     dueDate: Joi.date().optional(),
     customer: Joi.string().regex(objectIdPattern).optional(),
+    booking: Joi.string().regex(objectIdPattern).optional(),
     notes: Joi.string().allow('').optional(),
     discount: Joi.number().min(0).optional(),
     status: Joi.string().valid('Pending', 'Partial', 'Paid', 'Overdue').optional(),
     
+    // Tax Settings
+    taxConfig: Joi.object().keys({
+      taxType: Joi.string().valid('GST', 'IGST', 'None').optional(),
+      cgstRate: Joi.number().min(0).optional(),
+      sgstRate: Joi.number().min(0).optional(),
+      igstRate: Joi.number().min(0).optional(),
+    }).optional(),
+
     // Event Details
     eventType: Joi.string().allow('').optional(),
     eventDate: Joi.date().allow(null).optional(),
@@ -99,6 +115,7 @@ const updateInvoice = {
           description: Joi.string().allow('').optional(),
           quantity: Joi.number().integer().min(1).required(),
           price: Joi.number().min(0).required(),
+          bookingService: Joi.string().regex(objectIdPattern).optional()
         })
       )
       .min(1)
