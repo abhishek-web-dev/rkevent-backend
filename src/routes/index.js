@@ -8,6 +8,9 @@ const invoiceRoutes = require('./invoice.routes');
 const paymentRoutes = require('./payment.routes');
 const dashboardRoutes = require('./dashboard.routes');
 const systemRoutes = require('./system.routes');
+const serviceRoutes = require('./service.routes');
+const templateRoutes = require('./template.routes');
+const bookingRoutes = require('./booking.routes');
 
 // Mount routes
 router.use('/auth', authRoutes);
@@ -17,5 +20,8 @@ router.use('/invoices', invoiceRoutes);
 router.use('/payments', paymentRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/system', systemRoutes);
+router.use('/services', serviceRoutes);
+router.use('/templates', templateRoutes);
+router.use('/bookings', bookingRoutes);
 
 module.exports = router;
