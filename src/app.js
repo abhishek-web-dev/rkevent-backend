@@ -15,6 +15,9 @@ const ApiError = require('./utils/apiError');
 
 const app = express();
 
+// Trust proxy settings for Render load balancer / rate limiting
+app.set('trust proxy', 1);
+
 // Set security HTTP headers
 app.use(helmet());
 

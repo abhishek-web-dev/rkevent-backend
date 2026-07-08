@@ -9,8 +9,8 @@
     "seed": "node src/utils/seeder.js",
     "backup": "node src/utils/backup-cli.js",
     "restore": "node src/utils/restore-cli.js",
-    "build": "puppeteer browsers install chrome",
-    "postinstall": "puppeteer browsers install chrome"
+    "build": "npx puppeteer browsers install chrome",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "keywords": [
     "invoice",
