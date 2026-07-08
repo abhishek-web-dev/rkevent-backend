@@ -49,7 +49,16 @@ app.get('/', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'Server is healthy'
+    message: 'Server is healthy',
+    smtp: {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER,
+      fromEmail: process.env.SMTP_FROM_EMAIL,
+      fromName: process.env.SMTP_FROM_NAME,
+      hasPass: !!process.env.SMTP_PASS,
+      passLen: process.env.SMTP_PASS ? process.env.SMTP_PASS.length : 0
+    }
   });
 });
 
