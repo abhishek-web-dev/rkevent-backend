@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const QRCode = require('qrcode');
 
 // Thread-safe caching for @sparticuz/chromium to avoid spawn ETXTBSY race conditions
 let cachedExecutablePath = null;
@@ -127,13 +128,20 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       `;
     });
 
-    // 4. Generate UPI QR Code URL
+    // 4. Generate UPI QR Code URL locally
     const upiId = companySettings.upiId || '9169659965-5@ybl';
     const ownerName = companySettings.ownerName || 'Rahul Kumar';
     const upiAmount = invoice.pendingAmount || 0;
     const upiNote = `Invoice-${invoice.invoiceNumber}`;
     const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(ownerName)}&am=${upiAmount}&tn=${encodeURIComponent(upiNote)}&cu=INR`;
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUri)}`;
+    
+    let qrCodeUrl = '';
+    try {
+      qrCodeUrl = await QRCode.toDataURL(upiUri);
+    } catch (qrErr) {
+      console.error('Failed to generate QR code locally, falling back to remote api:', qrErr.message);
+      qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiUri)}`;
+    }
 
     // 5. Prepare Signature Image HTML with Base64 fallback
     let signatureHtml = '';
@@ -290,7 +298,16 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     
     // Set viewport and content
     await page.setViewport({ width: 800, height: 1130 });
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+    
+    try {
+      // Try to load with networkidle2 first (wait for network to be mostly idle)
+      // with a short timeout to handle slow CDN/font connections
+      await page.setContent(htmlContent, { waitUntil: 'networkidle2', timeout: 5000 });
+    } catch (loadErr) {
+      console.warn(`setContent timed out with networkidle2: ${loadErr.message}. Falling back to domcontentloaded.`);
+      // Fallback to domcontentloaded which is instant and doesn't wait for external resources
+      await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
+    }
 
     // Generate PDF
     const pdfBuffer = await page.pdf({

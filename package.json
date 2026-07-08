@@ -38,6 +38,7 @@
     "nodemailer": "^6.9.14",
     "puppeteer": "^22.11.1",
     "puppeteer-core": "^22.11.1",
+    "qrcode": "^1.5.4",
     "swagger-jsdoc": "^6.3.0",
     "swagger-ui-express": "^5.0.1"
   },
