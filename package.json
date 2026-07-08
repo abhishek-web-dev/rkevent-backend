@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "seed": "node src/utils/seeder.js",
     "backup": "node src/utils/backup-cli.js",
-    "restore": "node src/utils/restore-cli.js"
+    "restore": "node src/utils/restore-cli.js",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "keywords": [
     "invoice",
