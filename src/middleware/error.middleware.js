@@ -44,10 +44,8 @@ const errorHandler = (err, req, res, next) => {
     ...(process.env.NODE_ENV === 'development' && { stack: error.stack }),
   };
 
-  // Log error for developers
-  if (process.env.NODE_ENV === 'development') {
-    console.error(err);
-  }
+  // Log error for diagnostics
+  console.error('Error details:', err);
 
   res.status(error.statusCode || 500).json(response);
 };
