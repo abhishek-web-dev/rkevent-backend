@@ -714,9 +714,9 @@ const getWhatsAppLink = async (req, res, next) => {
       `*Invoice Details:*\n` +
       `- Issue Date: ${formattedDate}\n` +
       `- Due Date: ${formattedDueDate}\n` +
-      `- Total Amount: $${invoice.totalAmount.toFixed(2)}\n` +
-      `- Paid Amount: $${invoice.paidAmount.toFixed(2)}\n` +
-      `- Balance Due: *$${invoice.pendingAmount.toFixed(2)}*\n` +
+      `- Total Amount: ₹${invoice.totalAmount.toFixed(2)}\n` +
+      `- Paid Amount: ₹${invoice.paidAmount.toFixed(2)}\n` +
+      `- Balance Due: *₹${invoice.pendingAmount.toFixed(2)}*\n` +
       `- Payment Status: *${invoice.status.toUpperCase()}*\n\n` +
       `Please clear the balance as soon as possible. Thank you for your business!`;
 
