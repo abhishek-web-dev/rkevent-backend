@@ -1,6 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
+// Thread-safe caching for @sparticuz/chromium to avoid spawn ETXTBSY race conditions
+let cachedExecutablePath = null;
+let downloadPromise = null;
+
 /**
  * Format date to a readable string (e.g. July 2, 2026)
  * @param {Date|string} dateVal 
@@ -264,10 +268,20 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       const puppeteerCore = require('puppeteer-core');
       const chromium = require('@sparticuz/chromium');
 
+      if (!cachedExecutablePath) {
+        if (!downloadPromise) {
+          downloadPromise = chromium.executablePath().then(path => {
+            cachedExecutablePath = path;
+            return path;
+          });
+        }
+        await downloadPromise;
+      }
+
       browser = await puppeteerCore.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
+        executablePath: cachedExecutablePath,
         headless: chromium.headless,
       });
     }
