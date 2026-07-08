@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
@@ -248,15 +247,30 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     });
 
     // 5. Generate PDF using Puppeteer
-    const executablePath = fs.existsSync('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
-      ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
-      : undefined;
+    const isWindows = process.platform === 'win32';
+    if (isWindows) {
+      const puppeteer = require('puppeteer');
+      const executablePath = fs.existsSync('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
+        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+        : undefined;
 
-    browser = await puppeteer.launch({
-      headless: true,
-      executablePath,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+      browser = await puppeteer.launch({
+        headless: true,
+        executablePath,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+    } else {
+      // Production cloud environment (Render Linux Node.js environment)
+      const puppeteerCore = require('puppeteer-core');
+      const chromium = require('@sparticuz/chromium');
+
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    }
 
     const page = await browser.newPage();
     
