@@ -21,6 +21,16 @@ const createTransporter = async () => {
     }
   }
 
+  if (process.env.SMTP_HOST === 'smtp.gmail.com' || (process.env.SMTP_USER && process.env.SMTP_USER.endsWith('@gmail.com'))) {
+    return nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+  }
+
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '2525', 10),
@@ -44,7 +54,7 @@ const sendInvoiceEmail = async (toEmail, customerName, invoice, pdfBuffer) => {
   try {
     const transporter = await createTransporter();
     const fromName = process.env.SMTP_FROM_NAME || 'RK Event Invoice System';
-    const fromEmail = process.env.SMTP_FROM_EMAIL || 'noreply@rkevent.com';
+    const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER || 'noreply@rkevent.com';
 
     const mailOptions = {
       from: `"${fromName}" <${fromEmail}>`,
