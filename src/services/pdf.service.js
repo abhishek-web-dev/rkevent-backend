@@ -112,11 +112,14 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     invoice.items.forEach((item, index) => {
       itemsHtmlRows += `
         <tr>
-          <td style="text-align: center;">${index + 1}</td>
-          <td style="font-weight: 600; color: #2D3748;">${item.serviceName || item.title || ''}</td>
-          <td style="text-align: center;">${item.quantity}</td>
-          <td style="text-align: right;">${formatCurrency(item.price)}</td>
-          <td style="text-align: right; font-weight: 700; color: #2D3748;">${formatCurrency(item.amount)}</td>
+          <td style="text-align: center; vertical-align: top; padding-top: 12px;">${index + 1}</td>
+          <td style="font-weight: 600; color: #2D3748; vertical-align: top; padding-top: 12px;">
+            ${item.serviceName || item.title || ''}
+            ${item.description ? `<div style="font-size: 9.5px; font-weight: 400; color: #555555; margin-top: 4px; line-height: 1.35;">${item.description}</div>` : ''}
+          </td>
+          <td style="text-align: center; vertical-align: top; padding-top: 12px;">${item.quantity}</td>
+          <td style="text-align: right; vertical-align: top; padding-top: 12px;">${formatCurrency(item.price)}</td>
+          <td style="text-align: right; font-weight: 700; color: #2D3748; vertical-align: top; padding-top: 12px;">${formatCurrency(item.amount)}</td>
         </tr>
       `;
     });
@@ -144,7 +147,52 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       console.warn('Could not render signature buffer:', sigErr.message);
     }
 
-    // 6. Inject variables into template
+    // 5.5 Fetch and compile booking functions
+    let ceremoniesTimelineHtml = '';
+    if (invoice.booking) {
+      try {
+        const BookingFunction = require('../models/BookingFunction');
+        const functions = await BookingFunction.find({ booking: invoice.booking }).sort({ date: 1, startTime: 1 });
+        if (functions && functions.length > 0) {
+          let rowsHtml = '';
+          functions.forEach((fn) => {
+            const fnDate = formatDate(fn.date);
+            const timingStr = (fn.startTime && fn.endTime) ? `${fn.startTime} - ${fn.endTime}` : fn.startTime || 'TBD';
+            rowsHtml += `
+              <tr style="border-bottom: 1px solid rgba(201, 162, 39, 0.1);">
+                <td style="padding: 6px 10px; font-size: 9.5px; font-weight: 700; color: #5B0B14;">${fn.name}</td>
+                <td style="padding: 6px 10px; font-size: 9.5px; color: #444444;">${fnDate}</td>
+                <td style="padding: 6px 10px; font-size: 9.5px; color: #444444;">${timingStr}</td>
+                <td style="padding: 6px 10px; font-size: 9.5px; color: #444444; font-style: italic;">${fn.venue || 'Event Venue'}</td>
+              </tr>
+            `;
+          });
+          ceremoniesTimelineHtml = `
+            <div class="terms-card full-width" style="margin-top: 10px; border: 1px solid rgba(201, 162, 39, 0.3);">
+              <h3 class="terms-section-title" style="color: #5B0B14; font-weight: 800; border-bottom: 1.5px solid rgba(201, 162, 39, 0.25); margin-bottom: 6px;">
+                <span class="terms-icon">📅</span> Ceremonies Schedule / कार्यक्रम विवरण
+              </h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="background-color: rgba(91, 11, 20, 0.04); border-bottom: 1.5px solid rgba(201, 162, 39, 0.2);">
+                    <th style="padding: 6px 10px; text-align: left; font-size: 9.5px; font-weight: 700; color: #5B0B14; width: 25%;">Ceremony</th>
+                    <th style="padding: 6px 10px; text-align: left; font-size: 9.5px; font-weight: 700; color: #5B0B14; width: 25%;">Date</th>
+                    <th style="padding: 6px 10px; text-align: left; font-size: 9.5px; font-weight: 700; color: #5B0B14; width: 20%;">Timing</th>
+                    <th style="padding: 6px 10px; text-align: left; font-size: 9.5px; font-weight: 700; color: #5B0B14; width: 30%;">Venue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rowsHtml}
+                </tbody>
+              </table>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.error('Failed to compile booking functions in PDF:', err.message);
+      }
+    }
+
     // 6. Inject variables into template
     const placeholders = {
       '{{invoiceNumber}}': invoice.invoiceNumber,
@@ -192,6 +240,7 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       '{{pendingAmount}}': formatCurrency(invoice.pendingAmount),
       '{{qrCodeUrl}}': qrCodeUrl,
       '{{signatureHtml}}': signatureHtml,
+      '{{ceremoniesTimelineHtml}}': ceremoniesTimelineHtml,
     };
 
     Object.keys(placeholders).forEach((key) => {

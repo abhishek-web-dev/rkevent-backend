@@ -148,8 +148,186 @@ const createInvoice = async (req, res, next) => {
         amount: bs.quotedPrice,
         bookingService: bs._id
       }));
-    } else {
-      throw new ApiError(400, 'Invoice items are required');
+    }
+
+    // Auto-create Booking from timeline functions if provided
+    const { functions } = req.body;
+    if (!bookingObj && functions && functions.length > 0) {
+      const Booking = require('../models/Booking');
+      const BookingFunction = require('../models/BookingFunction');
+      const BookingService = require('../models/BookingService');
+
+      const getNextBookingNumber = async () => {
+        const latest = await Booking.findOne().sort({ createdAt: -1 });
+        let nextSeq = 1;
+        if (latest && latest.bookingNumber) {
+          const num = parseInt(latest.bookingNumber.replace('BKG-', ''), 10);
+          if (!isNaN(num)) nextSeq = num + 1;
+        }
+        return `BKG-${String(nextSeq).padStart(4, '0')}`;
+      };
+
+      const bookingNumber = await getNextBookingNumber();
+      const newBooking = new Booking({
+        bookingNumber,
+        customer: finalCustomerId,
+        startDate: eventDate ? new Date(eventDate) : new Date(),
+        endDate: eventDate ? new Date(eventDate) : new Date(),
+        status: 'Confirmed',
+        notes: notes || 'Auto-created from Invoice'
+      });
+      await newBooking.save();
+
+      // Spawn timeline functions
+      const funcPromises = functions.map(fn => {
+        const bFn = new BookingFunction({
+          booking: newBooking._id,
+          name: fn.name,
+          date: fn.date || eventDate || new Date().toISOString().split('T')[0],
+          startTime: fn.startTime || fn.time || '10:00',
+          endTime: fn.endTime || '14:00',
+          venue: fn.venue || eventLocation || '',
+          notes: fn.notes || ''
+        });
+        return bFn.save();
+      });
+      await Promise.all(funcPromises);
+
+      // Create Booking Services from manual invoice items to keep them in sync
+      const Service = require('../models/Service');
+      const allServices = await Service.find({ isActive: true });
+      const defaultService = allServices[0];
+
+      const svcPromises = [];
+      for (const item of invoiceItems) {
+        const itemName = item.title || item.serviceName || 'Standard Service';
+        let matchedService = allServices.find(s => s.name.toLowerCase() === itemName.toLowerCase());
+        if (!matchedService) {
+          matchedService = defaultService;
+        }
+
+        if (!matchedService) {
+          throw new ApiError(400, 'Please seed services master database first');
+        }
+
+        // 1. Create the main billing service card (e.g. Wedding Photography)
+        const bSvc = new BookingService({
+          booking: newBooking._id,
+          serviceId: matchedService._id,
+          serviceSnapshot: {
+            name: itemName,
+            slug: matchedService.slug || 'generic-service',
+            fields: matchedService.fields || []
+          },
+          quotedPrice: item.price,
+          dynamicData: item.specs || {},
+          workflowStatus: 'Pending'
+        });
+        svcPromises.push(bSvc.save());
+
+        // 2. Check if nested deliverables are enabled
+        if (item.specs) {
+          // Album
+          if (item.specs.album && item.specs.album.selected) {
+            const albumService = allServices.find(s => s.name.toLowerCase().includes('album')) || defaultService;
+            const bSvcAlbum = new BookingService({
+              booking: newBooking._id,
+              serviceId: albumService._id,
+              serviceSnapshot: {
+                name: 'Premium Wedding Album',
+                slug: albumService.slug || 'premium-wedding-album',
+                fields: albumService.fields || []
+              },
+              quotedPrice: 0,
+              dynamicData: item.specs.album,
+              workflowStatus: 'Pending'
+            });
+            svcPromises.push(bSvcAlbum.save());
+          }
+
+          // Traditional Video
+          if (item.specs.video && item.specs.video.selected) {
+            const videoService = allServices.find(s => s.name.toLowerCase().includes('traditional')) || defaultService;
+            const bSvcVideo = new BookingService({
+              booking: newBooking._id,
+              serviceId: videoService._id,
+              serviceSnapshot: {
+                name: 'Traditional Video Deliverables',
+                slug: videoService.slug || 'traditional-video-deliverables',
+                fields: videoService.fields || []
+              },
+              quotedPrice: 0,
+              dynamicData: item.specs.video,
+              workflowStatus: 'Pending'
+            });
+            svcPromises.push(bSvcVideo.save());
+          }
+
+          // Cinematic Video
+          if (item.specs.cinematic && item.specs.cinematic.selected) {
+            const cinematicService = allServices.find(s => s.name.toLowerCase().includes('cinematic')) || defaultService;
+            const bSvcCinematic = new BookingService({
+              booking: newBooking._id,
+              serviceId: cinematicService._id,
+              serviceSnapshot: {
+                name: 'Cinematic Movie & Reels',
+                slug: cinematicService.slug || 'cinematic-movie-reels',
+                fields: cinematicService.fields || []
+              },
+              quotedPrice: 0,
+              dynamicData: item.specs.cinematic,
+              workflowStatus: 'Pending'
+            });
+            svcPromises.push(bSvcCinematic.save());
+          }
+
+          // Drone Service
+          if (item.specs.drone && item.specs.drone.selected) {
+            const droneService = allServices.find(s => s.name.toLowerCase().includes('drone')) || defaultService;
+            const bSvcDrone = new BookingService({
+              booking: newBooking._id,
+              serviceId: droneService._id,
+              serviceSnapshot: {
+                name: 'Drone Shoot',
+                slug: droneService.slug || 'drone-shoot',
+                fields: droneService.fields || []
+              },
+              quotedPrice: 0,
+              dynamicData: item.specs.drone,
+              workflowStatus: 'Pending'
+            });
+            svcPromises.push(bSvcDrone.save());
+          }
+
+          // Custom Deliverables checklist items
+          if (item.specs.customDeliverables && item.specs.customDeliverables.length > 0) {
+            for (const cust of item.specs.customDeliverables) {
+              if (cust.selected) {
+                let matchedCustService = allServices.find(s => s.name.toLowerCase() === cust.name.toLowerCase());
+                if (!matchedCustService) {
+                  matchedCustService = defaultService;
+                }
+                const bSvcCust = new BookingService({
+                  booking: newBooking._id,
+                  serviceId: matchedCustService._id,
+                  serviceSnapshot: {
+                    name: cust.name,
+                    slug: matchedCustService.slug || 'custom-deliverable',
+                    fields: matchedCustService.fields || []
+                  },
+                  quotedPrice: 0,
+                  dynamicData: { notes: cust.notes },
+                  workflowStatus: 'Pending'
+                });
+                svcPromises.push(bSvcCust.save());
+              }
+            }
+          }
+        }
+      }
+      await Promise.all(svcPromises);
+
+      bookingObj = newBooking;
     }
 
     // 4. Generate Next auto invoice number
@@ -300,7 +478,13 @@ const getInvoice = async (req, res, next) => {
       throw new ApiError(404, 'Invoice not found or has been deleted');
     }
 
-    res.status(200).json(new ApiResponse(200, invoice, 'Invoice retrieved successfully'));
+    const invoiceObj = invoice.toObject();
+    if (invoiceObj.booking) {
+      const BookingFunction = require('../models/BookingFunction');
+      invoiceObj.booking.functions = await BookingFunction.find({ booking: invoice.booking._id }).sort({ date: 1, startTime: 1 });
+    }
+
+    res.status(200).json(new ApiResponse(200, invoiceObj, 'Invoice retrieved successfully'));
   } catch (error) {
     next(error);
   }

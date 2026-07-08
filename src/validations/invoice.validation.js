@@ -43,6 +43,18 @@ const createInvoice = {
     eventLocation: Joi.string().allow('').optional(),
     expectedGuestCount: Joi.number().integer().min(0).optional(),
     specialRequirements: Joi.string().allow('').optional(),
+    functions: Joi.array()
+      .items(
+        Joi.object().keys({
+          name: Joi.string().required(),
+          date: Joi.string().required(),
+          startTime: Joi.string().allow('').optional(),
+          endTime: Joi.string().allow('').optional(),
+          venue: Joi.string().allow('').optional(),
+          notes: Joi.string().allow('').optional()
+        })
+      )
+      .optional(),
     // Payment Details
     tokenAmount: Joi.number().min(0).optional(),
     advancePaid: Joi.number().min(0).optional(),
@@ -67,7 +79,8 @@ const createInvoice = {
             'any.required': 'Item price is required',
             'number.min': 'Price cannot be negative',
           }),
-          bookingService: Joi.string().regex(objectIdPattern).optional()
+          bookingService: Joi.string().regex(objectIdPattern).optional(),
+          specs: Joi.object().optional()
         })
       )
       .min(1)
@@ -115,7 +128,8 @@ const updateInvoice = {
           description: Joi.string().allow('').optional(),
           quantity: Joi.number().integer().min(1).required(),
           price: Joi.number().min(0).required(),
-          bookingService: Joi.string().regex(objectIdPattern).optional()
+          bookingService: Joi.string().regex(objectIdPattern).optional(),
+          specs: Joi.object().optional()
         })
       )
       .min(1)
