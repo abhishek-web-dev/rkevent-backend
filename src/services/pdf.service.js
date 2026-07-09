@@ -309,6 +309,13 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
     }
 
+    // Wait for all web fonts to load to prevent tofu / blank text rendering
+    try {
+      await page.evaluateHandle('document.fonts.ready');
+    } catch (fontErr) {
+      console.warn(`Font loading check failed: ${fontErr.message}`);
+    }
+
     // Generate PDF
     const pdfBuffer = await page.pdf({
       format: 'A4',
