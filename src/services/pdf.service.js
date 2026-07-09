@@ -179,8 +179,8 @@ const generateInvoicePdf = async (invoice, companySettings) => {
             `;
           });
           ceremoniesTimelineHtml = `
-            <div class="terms-card full-width" style="margin-top: 10px; border: 1px solid rgba(201, 162, 39, 0.3);">
-              <h3 class="terms-section-title" style="color: #5B0B14; font-weight: 800; border-bottom: 1.5px solid rgba(201, 162, 39, 0.25); margin-bottom: 6px;">
+            <div class="terms-card full-width" style="margin-top: 6px; padding: 8px 10px; border: 1px solid rgba(201, 162, 39, 0.3);">
+              <h3 class="terms-section-title" style="color: #5B0B14; font-weight: 800; border-bottom: 1.5px solid rgba(201, 162, 39, 0.25); margin-bottom: 4px; padding-bottom: 3px;">
                 <span class="terms-icon">📅</span> Ceremonies Schedule / कार्यक्रम विवरण
               </h3>
               <table style="width: 100%; border-collapse: collapse;">
