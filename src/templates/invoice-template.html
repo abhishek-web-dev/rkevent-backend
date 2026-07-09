@@ -25,7 +25,7 @@
       width: 210mm;
       height: 297mm;
       box-sizing: border-box;
-      padding: 18mm 18mm 18mm 18mm;
+      padding: 10mm 18mm 15mm 18mm;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -69,14 +69,14 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #C9A227; /* Gold divider line */
-      padding-bottom: 15px;
-      margin-bottom: 18px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
       position: relative;
       z-index: 2;
     }
     
     .logo-block {
-      width: 35%;
+      width: 25%;
     }
     
     .logo-block img {
@@ -90,7 +90,7 @@
     }
     
     .company-info {
-      width: 54%;
+      width: 50%;
       text-align: center;
       padding: 0 10px;
     }
@@ -136,37 +136,50 @@
       font-weight: 600;
     }
     
-    .invoice-badge-container {
-      width: 18%;
+    .invoice-details-header {
+      width: 25%;
       text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
     }
 
-    .invoice-badge {
-      background: linear-gradient(135deg, #5B0B14 0%, #8B1E2D 100%);
-      color: #FFFDF9;
-      border: 1px solid #C9A227;
-      padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
+    .invoice-details-header h3 {
+      font-size: 11.5px;
       text-transform: uppercase;
-      border-radius: 4px;
-      display: inline-block;
-      box-shadow: 0 3px 6px rgba(91, 11, 20, 0.15);
+      letter-spacing: 1px;
+      color: #5B0B14;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      border-bottom: 1.5px solid rgba(201, 162, 39, 0.35);
+      padding-bottom: 3px;
+      width: 100%;
+    }
+
+    .header-details-text {
+      font-size: 9.5px;
+      color: #444444;
+      margin: 0 0 3px 0;
+      line-height: 1.35;
+    }
+
+    .header-details-text strong {
+      color: #5B0B14;
+      font-weight: 600;
     }
     
-    /* 3-Card Grid Details */
+    /* 2-Card Grid Details */
     .info-grid {
       display: flex;
       justify-content: space-between;
       gap: 15px;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
       position: relative;
       z-index: 2;
     }
     
     .info-card {
-      flex: 1;
       background-color: #FFFFFF;
       border: 1px solid rgba(201, 162, 39, 0.25); /* Gold border */
       border-radius: 8px;
@@ -175,6 +188,14 @@
       box-shadow: 0 3px 10px rgba(91, 11, 20, 0.02); /* Soft shadow */
       display: flex;
       flex-direction: column;
+    }
+
+    .info-card.bill-to {
+      flex: 0 0 calc(30% - 7.5px);
+    }
+
+    .info-card.event-details {
+      flex: 0 0 calc(70% - 7.5px);
     }
     
     .card-title-container {
@@ -684,16 +705,22 @@
           <p class="company-tagline">"We Plan. You Celebrate. We Create Memories."</p>
         </div>
         
-        <!-- Invoice Badge Right -->
-        <div class="invoice-badge-container">
-          <div class="invoice-badge">Invoice</div>
+        <!-- Invoice Details Header Right -->
+        <div class="invoice-details-header">
+          <h3>Invoice Details</h3>
+          <p class="header-details-text"><strong>Invoice Number:</strong> {{invoiceNumber}}</p>
+          <p class="header-details-text"><strong>Booking Date:</strong> {{invoiceDate}}</p>
+          <p class="header-details-text"><strong>Due Date:</strong> {{dueDate}}</p>
+          <div style="margin-top: 4px;">
+            <span class="status-badge {{statusBadgeClass}}">{{status}}</span>
+          </div>
         </div>
       </div>
       
-      <!-- 3-Card Grid Details Section -->
+      <!-- 2-Card Grid Details Section (30% / 70% split) -->
       <div class="info-grid">
         <!-- Card 1: Bill To -->
-        <div class="info-card">
+        <div class="info-card bill-to">
           <div class="card-title-container">
             <span class="card-title-icon">👤</span>
             <h4 class="card-title">Bill To</h4>
@@ -710,7 +737,7 @@
         </div>
         
         <!-- Card 2: Event Details -->
-        <div class="info-card">
+        <div class="info-card event-details">
           <div class="card-title-container">
             <span class="card-title-icon">📅</span>
             <h4 class="card-title">Event Details</h4>
@@ -720,19 +747,6 @@
           <p class="card-text"><strong>Venue:</strong> {{eventLocation}}</p>
           {{expectedGuestCount}}
           {{specialRequirements}}
-        </div>
-        
-        <!-- Card 3: Invoice Info -->
-        <div class="info-card">
-          <div class="card-title-container">
-            <span class="card-title-icon">📄</span>
-            <h4 class="card-title">Invoice Details</h4>
-          </div>
-          <p class="card-text"><strong>Invoice Number:</strong> {{invoiceNumber}}</p>
-          <p class="card-text"><strong>Booking Date:</strong> {{invoiceDate}}</p>
-          <p class="card-text"><strong>Due Date:</strong> {{dueDate}}</p>
-          <p class="card-label">Payment Status</p>
-          <span class="status-badge {{statusBadgeClass}}">{{status}}</span>
         </div>
       </div>
     </div>
