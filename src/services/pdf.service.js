@@ -119,7 +119,7 @@ const generateInvoicePdf = async (invoice, companySettings) => {
           <td style="text-align: center; vertical-align: top; padding-top: 12px;">${index + 1}</td>
           <td style="font-weight: 600; color: #2D3748; vertical-align: top; padding-top: 12px;">
             ${item.serviceName || item.title || ''}
-            ${item.description ? `<div style="font-size: 9.5px; font-weight: 400; color: #555555; margin-top: 4px; line-height: 1.35;">${item.description}</div>` : ''}
+            ${item.description ? `<div style="font-size: 9.5px; font-weight: 400; color: #555555; margin-top: 4px; line-height: 1.35; word-break: break-word; overflow-wrap: break-word;">${item.description}</div>` : ''}
           </td>
           <td style="text-align: center; vertical-align: top; padding-top: 12px;">${item.quantity}</td>
           <td style="text-align: right; vertical-align: top; padding-top: 12px;">${formatCurrency(item.price)}</td>
@@ -242,7 +242,7 @@ const generateInvoicePdf = async (invoice, companySettings) => {
       '{{status}}': invoice.status,
       '{{statusBadgeClass}}': statusBadgeClass,
       '{{invoiceItemsRows}}': itemsHtmlRows,
-      '{{notes}}': invoice.notes ? `<p style="margin-top: 6px; font-style: italic;">Note: ${invoice.notes}</p>` : '',
+      '{{notes}}': invoice.notes ? `<p style="margin-top: 6px; font-style: italic; word-break: break-word; overflow-wrap: break-word;">Note: ${invoice.notes}</p>` : '',
       '{{taxRowsHtml}}': getTaxRowsHtml(invoice),
       '{{subtotal}}': formatCurrency(invoice.subtotal),
       '{{discount}}': formatCurrency(invoice.discount),

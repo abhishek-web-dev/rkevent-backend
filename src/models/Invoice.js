@@ -41,6 +41,10 @@ const invoiceItemSchema = new mongoose.Schema({
     ref: 'BookingService',
     default: null,
   },
+  specs: {
+    type: mongoose.Schema.Types.Mixed,
+    default: {},
+  },
 });
 
 const invoiceSchema = new mongoose.Schema(
