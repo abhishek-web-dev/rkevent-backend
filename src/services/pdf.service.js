@@ -133,7 +133,7 @@ const generateInvoicePdf = async (invoice, companySettings) => {
     const ownerName = companySettings.ownerName || 'Rahul Kumar';
     const upiAmount = invoice.pendingAmount || 0;
     const upiNote = `Invoice-${invoice.invoiceNumber}`;
-    const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(ownerName)}&am=${upiAmount}&tn=${encodeURIComponent(upiNote)}&cu=INR`;
+    const upiUri = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(ownerName)}&tn=${encodeURIComponent(upiNote)}&cu=INR`;
     
     let qrCodeUrl = '';
     try {
