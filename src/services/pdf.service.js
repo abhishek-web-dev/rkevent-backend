@@ -339,6 +339,153 @@ const generateInvoicePdf = async (invoice, companySettings) => {
   }
 };
 
+/**
+ * Generate PDF buffer for a payment receipt.
+ * @param {object} payment - The populated payment document
+ * @param {object} companySettings - Company settings document
+ * @returns {Promise<Buffer>} PDF buffer
+ */
+const generatePaymentReceiptPdf = async (payment, companySettings) => {
+  let browser;
+  try {
+    const templatePath = path.join(__dirname, '../templates/payment-receipt-template.html');
+    let htmlContent = fs.readFileSync(templatePath, 'utf8');
+
+    // 1. Prepare Logo HTML with Base64 load fallback
+    let logoHtml = '';
+    try {
+      const logoPath = path.join(__dirname, '../../public/logo-white.png');
+      if (fs.existsSync(logoPath)) {
+        const logoBuffer = fs.readFileSync(logoPath);
+        const logoBase64 = `data:image/png;base64,${logoBuffer.toString('base64')}`;
+        logoHtml = `<img src="${logoBase64}" alt="${companySettings.companyName}" style="max-height: 80px; max-width: 250px; object-fit: contain;">`;
+      } else if (companySettings.companyLogo) {
+        logoHtml = `<img src="${companySettings.companyLogo}" alt="${companySettings.companyName}" style="max-height: 80px; max-width: 250px; object-fit: contain;">`;
+      } else {
+        logoHtml = `<div style="font-size: 20px; font-weight: 800; color: #681AA7; border: 2px solid #681AA7; padding: 5px 12px; display: inline-block;">${companySettings.companyName.substring(0, 3).toUpperCase()}</div>`;
+      }
+    } catch (logoErr) {
+      logoHtml = `<div style="font-size: 20px; font-weight: 800; color: #681AA7; border: 2px solid #681AA7; padding: 5px 12px; display: inline-block;">${companySettings.companyName.substring(0, 3).toUpperCase()}</div>`;
+    }
+
+    // 2. Prepare Signature Image HTML with Base64 fallback
+    let signatureHtml = '';
+    try {
+      const sigPath = path.join(__dirname, '../../public/signature.png');
+      if (fs.existsSync(sigPath)) {
+        const sigBuffer = fs.readFileSync(sigPath);
+        const sigBase64 = `data:image/png;base64,${sigBuffer.toString('base64')}`;
+        signatureHtml = `<img src="${sigBase64}" alt="Signature" style="max-height: 45px; max-width: 120px; object-fit: contain;">`;
+      } else if (companySettings.signatureUrl) {
+        signatureHtml = `<img src="${companySettings.signatureUrl}" alt="Signature" style="max-height: 45px; max-width: 120px; object-fit: contain;">`;
+      }
+    } catch (sigErr) {
+      console.warn('Could not render signature buffer:', sigErr.message);
+    }
+
+    const invoice = payment.invoiceId;
+
+    // 3. Inject variables into template
+    const placeholders = {
+      '{{logoHtml}}': logoHtml,
+      '{{companyName}}': companySettings.companyName || '',
+      '{{companyPhone}}': companySettings.phone || '',
+      '{{companyEmail}}': companySettings.email || '',
+      '{{companyAddress}}': (companySettings.address && typeof companySettings.address === 'string') ? companySettings.address.replace(/\n/g, '<br>') : '',
+      '{{paymentDate}}': formatDate(payment.paymentDate || payment.createdAt),
+      '{{customerName}}': invoice.customer ? invoice.customer.name : 'N/A',
+      '{{customerPhone}}': invoice.customer ? invoice.customer.phone : 'N/A',
+      '{{receiptNumber}}': payment._id.toString().substring(payment._id.toString().length - 8).toUpperCase(),
+      '{{invoiceNumber}}': invoice.invoiceNumber,
+      '{{paymentMode}}': payment.paymentMethod || 'N/A',
+      '{{transactionId}}': payment.transactionId || payment.notes || '-',
+      '{{amountPaid}}': formatCurrency(payment.amount),
+      '{{invoiceTotal}}': formatCurrency(invoice.totalAmount),
+      '{{pendingBalance}}': formatCurrency(invoice.pendingAmount),
+      '{{signatureHtml}}': signatureHtml,
+    };
+
+    Object.keys(placeholders).forEach((key) => {
+      htmlContent = htmlContent.replaceAll(key, placeholders[key] || '');
+    });
+
+    // 4. Generate PDF using Puppeteer
+    const isWindows = process.platform === 'win32';
+    if (isWindows) {
+      const puppeteer = require('puppeteer');
+      const executablePath = fs.existsSync('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe')
+        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+        : undefined;
+
+      browser = await puppeteer.launch({
+        headless: true,
+        executablePath,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+    } else {
+      // Production cloud environment
+      const puppeteerCore = require('puppeteer-core');
+      const chromium = require('@sparticuz/chromium');
+
+      if (!cachedExecutablePath) {
+        if (!downloadPromise) {
+          downloadPromise = chromium.executablePath().then(path => {
+            cachedExecutablePath = path;
+            return path;
+          });
+        }
+        await downloadPromise;
+      }
+
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: cachedExecutablePath,
+        headless: chromium.headless,
+      });
+    }
+
+    const page = await browser.newPage();
+    
+    // Receipt-like sizing
+    await page.setViewport({ width: 800, height: 1130 });
+    
+    try {
+      await page.setContent(htmlContent, { waitUntil: 'networkidle2', timeout: 5000 });
+    } catch (loadErr) {
+      await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
+    }
+
+    try {
+      await page.evaluateHandle('document.fonts.ready');
+    } catch (fontErr) {
+      console.warn(`Font loading check failed: ${fontErr.message}`);
+    }
+
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        top: '20px',
+        bottom: '20px',
+        left: '20px',
+        right: '20px',
+      },
+    });
+
+    await browser.close();
+    return pdfBuffer;
+  } catch (error) {
+    if (browser) {
+      await browser.close();
+    }
+    console.error(`Receipt Generation Error: ${error.message}`);
+    throw error;
+  }
+};
+
 module.exports = {
   generateInvoicePdf,
+  generatePaymentReceiptPdf,
 };
+

@@ -196,9 +196,58 @@ const getPaymentHistory = async (req, res, next) => {
   }
 };
 
+const CompanySettings = require('../models/CompanySettings');
+const { generatePaymentReceiptPdf } = require('../services/pdf.service');
+
+/**
+ * Generate and download a payment receipt PDF
+ */
+const downloadReceipt = async (req, res, next) => {
+  try {
+    const payment = await Payment.findById(req.params.id).populate({
+      path: 'invoiceId',
+      populate: {
+        path: 'customer',
+      }
+    });
+
+    if (!payment) {
+      throw new ApiError(404, 'Payment record not found');
+    }
+
+    if (!payment.invoiceId) {
+      throw new ApiError(404, 'Associated invoice not found');
+    }
+
+    let companySettings = await CompanySettings.findOne();
+    if (!companySettings) {
+      companySettings = {
+        companyName: 'RK Event Group',
+        email: 'info@rkevent.com',
+        phone: '+91 99999 99999',
+        address: 'RK Event Headquarters, New Delhi, India',
+        website: 'https://rkevent.com',
+      };
+    }
+
+    const pdfBuffer = await generatePaymentReceiptPdf(payment, companySettings);
+
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=Payment_Receipt_${payment._id.toString().substring(payment._id.toString().length - 8).toUpperCase()}.pdf`,
+      'Content-Length': pdfBuffer.length,
+    });
+
+    res.status(200).send(pdfBuffer);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   addPayment,
   updatePayment,
   deletePayment,
   getPaymentHistory,
+  downloadReceipt,
 };

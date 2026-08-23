@@ -17,4 +17,6 @@ router
   .put(validate(paymentValidation.updatePayment), paymentController.updatePayment)
   .delete(paymentController.deletePayment);
 
+router.get('/:id/receipt', paymentController.downloadReceipt);
+
 module.exports = router;

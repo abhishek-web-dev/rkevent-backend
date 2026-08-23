@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Receipt - {{receiptNumber}}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+    
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    
+    body {
+      font-family: 'Outfit', 'Inter', 'Poppins', sans-serif;
+      color: #333333;
+      margin: 0;
+      padding: 0;
+      background-color: #FFFDF9; /* Off-white background */
+      -webkit-print-color-adjust: exact;
+    }
+    
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      box-sizing: border-box;
+      padding: 8mm 15mm 10mm 15mm;
+      display: flex;
+      flex-direction: column;
+      background-image: linear-gradient(135deg, #FFFDF9 0%, #FAF6EE 100%);
+    }
+    
+    /* Watermark styling */
+    .watermark {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 55px;
+      font-weight: 800;
+      color: rgba(91, 11, 20, 0.02);
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
+      letter-spacing: 6px;
+    }
+
+    /* Top Header block styling */
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #C9A227; /* Gold divider line */
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .logo-block {
+      width: 25%;
+    }
+    
+    .logo-block img {
+      max-height: 180px !important;
+      max-width: 100% !important;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(11%) sepia(50%) saturate(4177%) hue-rotate(338deg) brightness(85%) contrast(90%);
+    }
+    
+    .company-info {
+      width: 50%;
+      text-align: center;
+      padding: 0 10px;
+    }
+    
+    .company-name {
+      font-family: 'Outfit', sans-serif;
+      color: #5B0B14;
+      font-size: 23px;
+      font-weight: 800;
+      margin: 0 0 2px 0;
+      letter-spacing: 1.5px;
+    }
+    
+    .company-subtitle {
+      color: #C9A227;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0 0 5px 0;
+      letter-spacing: 1.5px;
+    }
+    
+    .company-details {
+      font-size: 9.5px;
+      color: #555555;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .company-address {
+      font-size: 9px;
+      color: #666666;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    
+    .company-tagline {
+      font-family: 'Outfit', sans-serif;
+      font-style: italic;
+      font-size: 9.5px;
+      color: #8B1E2D;
+      margin: 0;
+      font-weight: 600;
+    }
+    
+    .invoice-details-header {
+      width: 25%;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .invoice-details-header h3 {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #5B0B14;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      border-bottom: 1.5px solid rgba(201, 162, 39, 0.35);
+      padding-bottom: 3px;
+      width: 100%;
+    }
+
+    .header-details-text {
+      font-size: 9.5px;
+      color: #444444;
+      margin: 0 0 3px 0;
+      line-height: 1.35;
+    }
+
+    .header-details-text strong {
+      color: #5B0B14;
+      font-weight: 600;
+    }
+    
+    /* 2-Card Grid Details */
+    .info-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .info-card {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      border-radius: 8px;
+      padding: 8px 10px;
+      min-height: 100px;
+      box-shadow: 0 3px 10px rgba(91, 11, 20, 0.02);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-card.bill-to {
+      flex: 0 0 calc(30% - 7.5px);
+    }
+
+    .info-card.event-details {
+      flex: 0 0 calc(70% - 7.5px);
+    }
+    
+    .card-title-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+      padding-bottom: 2px;
+      margin-bottom: 4px;
+    }
+
+    .card-title-icon {
+      color: #C9A227;
+      font-size: 11px;
+    }
+
+    .card-title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #5B0B14;
+      font-weight: 800;
+      margin: 0;
+    }
+    
+    .card-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #5B0B14;
+      margin: 0 0 2px 0;
+    }
+
+    .card-text {
+      font-size: 10px;
+      color: #444444;
+      margin: 0 0 2px 0;
+      line-height: 1.3;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .card-text strong {
+      color: #5B0B14;
+      font-weight: 600;
+    }
+
+    /* Success Status Badge for Receipt */
+    .status-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      text-align: center;
+      background-color: #E6F4EA;
+      color: #137333;
+      border: 1px solid rgba(19, 115, 51, 0.25);
+    }
+
+    /* Highlighted Amount Received */
+    .amount-banner {
+      background: linear-gradient(135deg, rgba(91,11,20,0.05) 0%, rgba(201,162,39,0.1) 100%);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 10px rgba(91, 11, 20, 0.02);
+      position: relative;
+      z-index: 2;
+    }
+
+    .amount-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #5B0B14;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .amount-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #137333; /* Green for received amount */
+    }
+    
+    /* Services Table Section (Reused for Receipt) */
+    .table-container {
+      flex-grow: 1;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .premium-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      box-shadow: 0 3px 10px rgba(91, 11, 20, 0.02);
+    }
+    
+    .premium-table th {
+      background: linear-gradient(135deg, #5B0B14 0%, #8B1E2D 100%);
+      color: #FFFDF9;
+      font-weight: 700;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 2px solid #C9A227;
+    }
+    
+    .premium-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+      font-size: 11px;
+      color: #333333;
+      background-color: #FFFFFF;
+    }
+    
+    .premium-table tr:nth-child(even) td {
+      background-color: #FFFDF9;
+    }
+
+    .amount-highlight {
+      font-size: 14px;
+      font-weight: 800;
+      color: #137333;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="watermark">RK EVENT JHANSI</div>
+    
+    <!-- Top Header Layout -->
+    <div>
+      <div class="header-container">
+        <!-- Logo Left -->
+        <div class="logo-block">
+          {{logoHtml}}
+        </div>
+        
+        <!-- Company Info Center -->
+        <div class="company-info">
+          <h1 class="company-name" style="text-transform: uppercase;">{{companyName}}</h1>
+          <p class="company-subtitle">Weddings | Decoration | Catering | Photography</p>
+          <div class="company-details">
+            <span>📞 {{companyPhone}}</span> &bull; 
+            <span>✉ {{companyEmail}}</span>
+          </div>
+          <div class="company-address">
+            📍 {{companyAddress}}
+          </div>
+          <p class="company-tagline">"We Plan. You Celebrate. We Create Memories."</p>
+        </div>
+        
+        <!-- Invoice Details Header Right -->
+        <div class="invoice-details-header">
+          <h3>Payment Receipt</h3>
+          <p class="header-details-text"><strong>Receipt Number:</strong> {{receiptNumber}}</p>
+          <p class="header-details-text"><strong>Payment Date:</strong> {{paymentDate}}</p>
+          <p class="header-details-text"><strong>Invoice Ref:</strong> {{invoiceNumber}}</p>
+          <div style="margin-top: 4px;">
+            <span class="status-badge">PAYMENT RECEIVED</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="info-grid">
+        <!-- Card 1: Bill To -->
+        <div class="info-card bill-to" style="flex: 1;">
+          <div class="card-title-container">
+            <span class="card-title-icon">👤</span>
+            <h4 class="card-title">Received From</h4>
+          </div>
+          <h5 class="card-name">{{customerName}}</h5>
+          <p class="card-text"><strong>Phone:</strong> {{customerPhone}}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Transaction Table -->
+    <div class="table-container">
+      <table class="premium-table">
+        <thead>
+          <tr>
+            <th style="width: 45%;">Description</th>
+            <th style="width: 20%; text-align: center;">Payment Mode</th>
+            <th style="width: 20%; text-align: center;">Transaction ID / Ref</th>
+            <th style="width: 15%; text-align: right;">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 600; color: #5B0B14;">Payment towards Invoice #{{invoiceNumber}}</td>
+            <td style="text-align: center; font-weight: 500;">{{paymentMode}}</td>
+            <td style="text-align: center; font-style: italic;">{{transactionId}}</td>
+            <td style="text-align: right;" class="amount-highlight">{{amountPaid}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Totals Summary Box -->
+    <div class="totals-container">
+      <div class="totals-summary-box">
+        <div class="summary-row">
+          <span class="summary-label">Invoice Total</span>
+          <span class="summary-val">{{invoiceTotal}}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Amount Received</span>
+          <span class="summary-val" style="color: #137333;">{{amountPaid}}</span>
+        </div>
+        <div class="summary-row balance-row">
+          <span class="summary-label">Remaining Balance</span>
+          <span class="summary-val">{{pendingBalance}}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer Area -->
+    <div class="footer-block">
+      <div class="footer-thanks">
+        <span>Thank you for your payment!</span>
+        <div class="footer-logo" style="margin-top: 4px;">
+          {{logoHtml}}
+        </div>
+      </div>
+      <div class="signature-area">
+        {{signatureHtml}}
+        <div class="signature-title">Authorized Signatory</div>
+      </div>
+    </div>
+    
+    <div class="bottom-accent-banner"></div>
+  </div>
+</body>
+</html>
